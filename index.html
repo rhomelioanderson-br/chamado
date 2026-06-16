@@ -4,55 +4,227 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chamado Técnico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f6f9; display: flex; justify-content: center; padding: 20px; }
-    .container { background: white; padding: 25px; border-radius: 10px; width: 100%; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    h2 { text-align: center; margin-bottom: 20px; }
-    label { margin-top: 15px; display: block; font-weight: bold; }
-    input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
-    button { margin-top: 20px; width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
-    button:hover { background: #1da851; }
-    button:disabled { background: #aaa; cursor: not-allowed; }
-    #status { text-align: center; margin-top: 10px; font-size: 14px; min-height: 20px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: slideUp 0.6s ease;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .header-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 32px;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    h2 {
+      color: #1a1a2e;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .subtitle {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 18px;
+    }
+    
+    label {
+      display: block;
+      color: #374151;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    label .icon {
+      margin-right: 6px;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.3s;
+      background: #f9fafb;
+      color: #1a1a2e;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    #status {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      min-height: 22px;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    
+    .status-success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .status-error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>📢 Solicitação de Suporte</h2>
+  <div class="header">
+    <div class="header-icon">🔧</div>
+    <h2>Solicitação de Suporte</h2>
+    <p class="subtitle">Preencha os dados do chamado abaixo</p>
+  </div>
+
   <form id="formChamado">
 
-    <label>Bloco</label>
-    <select id="bloco" required>
-      <option value="C" selected>Bloco C</option>
-    </select>
+    <div class="form-group">
+      <label><span class="icon">🏢</span>Bloco</label>
+      <select id="bloco" required>
+        <option value="C" selected>Bloco C</option>
+      </select>
+    </div>
 
-    <label>Sala</label>
-    <select id="sala" required>
-      <option value="">Selecione a sala</option>
-    </select>
+    <div class="form-group">
+      <label><span class="icon">🚪</span>Sala</label>
+      <select id="sala" required>
+        <option value="">Selecione a sala</option>
+      </select>
+    </div>
 
-    <label>Nome do Professor</label>
-    <input type="text" id="nome" required placeholder="Ex: Prof. Maria Silva">
+    <div class="form-group">
+      <label><span class="icon">👨‍🏫</span>Nome do Professor</label>
+      <input type="text" id="nome" required placeholder="Ex: Prof. Maria Silva">
+    </div>
 
-    <label>Problema</label>
-    <select id="problema" required>
-      <option value="">Selecione</option>
-      <option>Projetor não liga</option>
-      <option>Computador sem internet</option>
-      <option>Som não funciona</option>
-      <option>Ar-condicionado com problema</option>
-      <option>Lâmpada queimada</option>
-      <option>Cadeiras/mesas danificadas</option>
-      <option>Outro</option>
-    </select>
+    <div class="form-group">
+      <label><span class="icon">⚠️</span>Tipo de Problema</label>
+      <select id="problema" required>
+        <option value="">Selecione o problema</option>
+        <option>Projetor não liga</option>
+        <option>Computador sem internet</option>
+        <option>Som não funciona</option>
+        <option>Ar-condicionado com problema</option>
+        <option>Lâmpada queimada</option>
+        <option>Cadeiras/mesas danificadas</option>
+        <option>Outro</option>
+      </select>
+    </div>
 
-    <label>Observação</label>
-    <textarea id="obs" rows="3" placeholder="Detalhes adicionais (opcional)"></textarea>
+    <div class="form-group">
+      <label><span class="icon">📝</span>Observação</label>
+      <textarea id="obs" rows="3" placeholder="Detalhes adicionais (opcional)"></textarea>
+    </div>
 
-    <button type="submit" id="btnEnviar">Enviar pelo WhatsApp</button>
+    <button type="submit" id="btnEnviar">
+      <span>📲</span> Enviar pelo WhatsApp
+    </button>
     <p id="status"></p>
   </form>
+
+  <div class="footer">
+    🔒 Seus dados são registrados com segurança
+  </div>
 </div>
 
 <script>
@@ -89,7 +261,6 @@
     }
   }
 
-  // Carrega as salas automaticamente ao abrir a página
   carregarSalas(blocoSelect.value);
 
   blocoSelect.addEventListener("change", function() {
@@ -105,9 +276,9 @@
     const status = document.getElementById("status");
 
     btn.disabled = true;
-    btn.textContent = "Salvando...";
+    btn.innerHTML = "⏳ Salvando...";
     status.textContent = "";
-    status.style.color = "#666";
+    status.className = "";
 
     const dados = {
       bloco: blocoSelect.value,
@@ -124,15 +295,15 @@
 
       window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
 
-      status.textContent = "✅ Registrado! Envie a mensagem no WhatsApp.";
-      status.style.color = "#25D366";
-      btn.textContent = "Enviar pelo WhatsApp";
+      status.textContent = "✅ Chamado registrado com sucesso!";
+      status.className = "status-success";
+      btn.innerHTML = "<span>📲</span> Enviar pelo WhatsApp";
       btn.disabled = false;
     } catch (err) {
       status.textContent = "❌ Erro ao salvar. Verifique sua internet.";
-      status.style.color = "#d32f2f";
+      status.className = "status-error";
       btn.disabled = false;
-      btn.textContent = "Enviar pelo WhatsApp";
+      btn.innerHTML = "<span>📲</span> Enviar pelo WhatsApp";
     }
   });
 </script>
