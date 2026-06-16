@@ -24,13 +24,12 @@
 
     <label>Bloco</label>
     <select id="bloco" required>
-      <option value="">Selecione o bloco</option>
-      <option value="C">Bloco C</option>
+      <option value="C" selected>Bloco C</option>
     </select>
 
     <label>Sala</label>
-    <select id="sala" required disabled>
-      <option value="">Selecione primeiro o bloco</option>
+    <select id="sala" required>
+      <option value="">Selecione a sala</option>
     </select>
 
     <label>Nome do Professor</label>
@@ -78,8 +77,7 @@
   const blocoSelect = document.getElementById("bloco");
   const salaSelect = document.getElementById("sala");
 
-  blocoSelect.addEventListener("change", function() {
-    const bloco = this.value;
+  function carregarSalas(bloco) {
     salaSelect.innerHTML = '<option value="">Selecione a sala</option>';
     if (bloco && salasPorBloco[bloco]) {
       salasPorBloco[bloco].forEach(sala => {
@@ -88,10 +86,14 @@
         opt.textContent = sala;
         salaSelect.appendChild(opt);
       });
-      salaSelect.disabled = false;
-    } else {
-      salaSelect.disabled = true;
     }
+  }
+
+  // Carrega as salas automaticamente ao abrir a página
+  carregarSalas(blocoSelect.value);
+
+  blocoSelect.addEventListener("change", function() {
+    carregarSalas(this.value);
   });
 
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
@@ -118,4 +120,22 @@
     try {
       await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(dados) });
 
-      const msg = `📢 *Chamado Técnico*\n🏫 Bloco: ${dados.bloco} | Sala: 
+      const msg = `📢 *Chamado Técnico*\n🏫 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Professor: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
+
+      window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+
+      status.textContent = "✅ Registrado! Envie a mensagem no WhatsApp.";
+      status.style.color = "#25D366";
+      btn.textContent = "Enviar pelo WhatsApp";
+      btn.disabled = false;
+    } catch (err) {
+      status.textContent = "❌ Erro ao salvar. Verifique sua internet.";
+      status.style.color = "#d32f2f";
+      btn.disabled = false;
+      btn.textContent = "Enviar pelo WhatsApp";
+    }
+  });
+</script>
+
+</body>
+</html>
