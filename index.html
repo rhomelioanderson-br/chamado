@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamado Técnico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1da851;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Solicitação de Suporte</h2>
+
+  <form id="formChamado">
+    <label>Sala</label>
+    <input type="text" id="sala" readonly>
+
+    <label>Nome do Professor</label>
+    <input type="text" id="nome" required>
+
+    <label>Problema</label>
+    <select id="problema" required>
+      <option value="">Selecione</option>
+      <option>Projetor não liga</option>
+      <option>Computador sem internet</option>
+      <option>Som não funciona</option>
+      <option>Ar-condicionado com problema</option>
+      <option>Lâmpada queimada</option>
+      <option>Outro</option>
+    </select>
+
+    <label>Observação</label>
+    <textarea id="obs" rows="3"></textarea>
+
+    <button type="submit">Enviar pelo WhatsApp</button>
+  </form>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const sala = params.get("sala") || "Não informada";
+  document.getElementById("sala").value = sala;
+
+  document.getElementById("formChamado").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const problema = document.getElementById("problema").value;
+    const obs = document.getElementById("obs").value;
+
+    const mensagem =
+`📢 *Chamado Técnico*
+🏫 Sala: ${sala}
+👨‍🏫 Professor: ${nome}
+🔧 Problema: ${problema}
+📝 Observação: ${obs || "Nenhuma"}`;
+
+    const numero = "5511999999999"; // ⚠️ TROCAR PELO SEU NÚMERO
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, "_blank");
+  });
+</script>
+
+</body>
+</html>
