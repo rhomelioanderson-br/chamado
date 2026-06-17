@@ -20,36 +20,28 @@
     }
     
     body::before {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: -100px; right: -100px;
       width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      border-radius: 50%; pointer-events: none;
     }
     
     body::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       bottom: -100px; left: -100px;
       width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(220, 20, 20, 0.2) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      border-radius: 50%; pointer-events: none;
     }
     
     .container {
-      background: white;
-      padding: 0;
-      border-radius: 20px;
-      width: 100%;
+      background: white; padding: 0;
+      border-radius: 20px; width: 100%;
       max-width: 440px;
       box-shadow: 0 25px 70px rgba(0,0,0,0.5);
       animation: slideUp 0.6s ease;
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
+      overflow: hidden; position: relative; z-index: 1;
     }
     
     @keyframes slideUp {
@@ -60,27 +52,21 @@
     .header {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       padding: 35px 30px 30px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      text-align: center; position: relative; overflow: hidden;
     }
     
     .header::before {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: -50px; right: -50px;
       width: 150px; height: 150px;
-      background: rgba(255, 193, 7, 0.15);
-      border-radius: 50%;
+      background: rgba(255, 193, 7, 0.15); border-radius: 50%;
     }
     
     .header::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       bottom: -30px; left: -30px;
       width: 100px; height: 100px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05); border-radius: 50%;
     }
     
     .header-icon {
@@ -88,24 +74,19 @@
       background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 15px;
-      font-size: 32px;
+      margin: 0 auto 15px; font-size: 32px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       position: relative; z-index: 1;
     }
     
     h2 {
-      color: white;
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 5px;
-      position: relative; z-index: 1;
+      color: white; font-size: 22px; font-weight: 800;
+      margin-bottom: 5px; position: relative; z-index: 1;
       letter-spacing: 0.5px;
     }
     
     .subtitle {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9); font-size: 13px;
       position: relative; z-index: 1;
     }
     
@@ -113,76 +94,54 @@
     .form-group { margin-bottom: 18px; }
     
     label {
-      display: block;
-      color: #4a0000;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-transform: uppercase;
+      display: block; color: #4a0000;
+      font-size: 12px; font-weight: 700;
+      margin-bottom: 8px; text-transform: uppercase;
       letter-spacing: 0.8px;
     }
     
     label .icon { margin-right: 6px; }
     
     input, select, textarea {
-      width: 100%;
-      padding: 13px 15px;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 15px;
-      transition: all 0.3s;
-      background: #fafafa;
-      color: #1a1a1a;
+      width: 100%; padding: 13px 15px;
+      border: 2px solid #e5e7eb; border-radius: 10px;
+      font-size: 15px; transition: all 0.3s;
+      background: #fafafa; color: #1a1a1a;
       font-family: 'Inter', sans-serif;
     }
     
     input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #C8102E;
+      outline: none; border-color: #C8102E;
       background: white;
       box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
     }
     
     input.bloqueado, select.bloqueado {
-      background: #fef3c7;
-      border-color: #FFC107;
-      color: #4a0000;
-      font-weight: 700;
-      cursor: not-allowed;
+      background: #fef3c7; border-color: #FFC107;
+      color: #4a0000; font-weight: 700; cursor: not-allowed;
     }
     
     .badge-qr {
-      display: inline-block;
-      background: #FFC107;
-      color: #4a0000;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 10px;
-      margin-left: 8px;
-      text-transform: uppercase;
+      display: inline-block; background: #FFC107;
+      color: #4a0000; font-size: 10px; font-weight: 800;
+      padding: 3px 8px; border-radius: 10px;
+      margin-left: 8px; text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     
     textarea { resize: vertical; min-height: 80px; }
     
     button {
-      width: 100%;
-      padding: 15px;
+      width: 100%; padding: 15px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
+      color: white; border: none; border-radius: 10px;
+      font-size: 16px; font-weight: 700;
+      cursor: pointer; margin-top: 10px;
       transition: all 0.3s;
       display: flex; align-items: center; justify-content: center;
       gap: 10px;
       box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      letter-spacing: 0.5px; text-transform: uppercase;
     }
     
     button:hover {
@@ -193,35 +152,24 @@
     }
     
     button:active { transform: translateY(0); }
-    
     button:disabled {
-      background: #9ca3af;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-      color: white;
+      background: #9ca3af; cursor: not-allowed;
+      transform: none; box-shadow: none; color: white;
     }
     
     #status {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: 600;
-      min-height: 22px;
-      padding: 10px;
-      border-radius: 8px;
+      text-align: center; margin-top: 15px;
+      font-size: 14px; font-weight: 600;
+      min-height: 22px; padding: 10px; border-radius: 8px;
     }
     
     .status-success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
     .status-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
     
     .footer {
-      text-align: center;
-      padding: 15px;
-      background: #f9fafb;
-      font-size: 11px;
-      color: #6b7280;
-      font-weight: 500;
+      text-align: center; padding: 15px;
+      background: #f9fafb; font-size: 11px;
+      color: #6b7280; font-weight: 500;
       border-top: 1px solid #e5e7eb;
     }
     
@@ -244,17 +192,12 @@
         <label><span class="icon">🏢</span>Bloco<span id="badgeBloco"></span></label>
         <select id="bloco" required>
           <option value="">Selecione o bloco</option>
-          <option value="A">Bloco A</option>
-          <option value="B">Bloco B</option>
-          <option value="C">Bloco C</option>
-          <option value="D">Bloco D</option>
-          <option value="Arquitetura">Anexo da Arquitetura</option>
         </select>
       </div>
 
       <div class="form-group">
         <label><span class="icon">🚪</span>Sala/Setor<span id="badgeSala"></span></label>
-        <select id="sala" required>
+        <select id="sala" required disabled>
           <option value="">Selecione primeiro o bloco</option>
         </select>
       </div>
@@ -291,128 +234,120 @@
   </div>
 
   <div class="footer">
-    🔒 <strong>UNINTA</strong> — Sistema de Suporte Técnico
+    🔒 <strong>UNINTA</strong> — Sistema de Chamados NTI
   </div>
 </div>
 
 <script>
-  const salasPorBloco = {
-    A: [
-      "SEPAT",
-      "Secretaria Geral",
-      "Tesouraria",
-      "Recepção Diretoria",
-      "RH",
-      "Direção",
-      "Diretoria Acadêmica",
-      "Secretaria Medicina",
-      "Secretaria de Cursos",
-      "Coordenações de Cursos"
-    ],
-    B: [
-      "Comercial",
-      "Sala de Professores",
-      "Sala de Reuniões",
-      "Marketing",
-      "NAPSI"
-    ],
-    C: [
-      "Sala 1",
-      "Sala 2",
-      "Sala 3",
-      "Sala 4",
-      "Pequeno Grupo 1",
-      "Pequeno Grupo 2",
-      "Pequeno Grupo 3",
-      "Pequeno Grupo 4",
-      "Pequeno Grupo 5",
-      "Pequeno Grupo 6",
-      "Pequeno Grupo 7",
-      "Pequeno Grupo 8",
-      "Pequeno Grupo 9",
-      "Pós Graduação"
-    ],
-    D: [
-      "Sala 5",
-      "Sala 6",
-      "Sala 7",
-      "Sala 8",
-      "Sala 9",
-      "Sala 10",
-      "Sala 11",
-      "Sala 12",
-      "Sala 13",
-      "Sala 14",
-      "Sala 15",
-      "Sala 16",
-      "Sala 17",
-      "Sala 18",
-      "Sala 36",
-      "Sala 37",
-      "Brinquedoteca",
-      "Laboratório de Informática 1",
-      "Laboratório de Informática 2",
-      "Biblioteca",
-      "Auditório",
-      "Almoxarifado"
-    ],
-    Arquitetura: [
-      "Sala 19",
-      "Sala 20 - Marqueteria",
-      "Sala 21 - Atêliê de Projetos",
-      "Sala 22 - Lab. Eng. Agrícola",
-      "Sala 23 - Lab. Desenho Técnico",
-      "Sala 24 - Lab. de Habilidades",
-      "Sala 25 - EMAU",
-      "Sala 26 - Lab. de Conforto Ambiental",
-      "Sala 27",
-      "Sala 28",
-      "Sala 29",
-      "Sala 30",
-      "Sala 31",
-      "Sala 32",
-      "Sala 33",
-      "Sala 34"
-    ]
+  // ESTRUTURA: Prédios → Blocos → Salas
+  const estrutura = {
+    "SEDE": {
+      "A": [
+        "SEPAT", "Secretaria Geral", "Tesouraria", "Recepção Diretoria",
+        "RH", "Direção", "Diretoria Acadêmica", "Secretaria Medicina",
+        "Secretaria de Cursos", "Coordenações de Cursos"
+      ],
+      "B": [
+        "Comercial", "Sala de Professores", "Sala de Reuniões",
+        "Marketing", "NAPSI"
+      ],
+      "C": [
+        "Sala 1", "Sala 2", "Sala 3", "Sala 4",
+        "Pequeno Grupo 1", "Pequeno Grupo 2", "Pequeno Grupo 3",
+        "Pequeno Grupo 4", "Pequeno Grupo 5", "Pequeno Grupo 6",
+        "Pequeno Grupo 7", "Pequeno Grupo 8", "Pequeno Grupo 9",
+        "Pós Graduação"
+      ],
+      "D": [
+        "Sala 5", "Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10",
+        "Sala 11", "Sala 12", "Sala 13", "Sala 14", "Sala 15",
+        "Sala 16", "Sala 17", "Sala 18", "Sala 36", "Sala 37",
+        "Brinquedoteca", "Laboratório de Informática 1",
+        "Laboratório de Informática 2", "Biblioteca", "Auditório",
+        "Almoxarifado"
+      ],
+      "Arquitetura": [
+        "Sala 19", "Sala 20 - Marqueteria", "Sala 21 - Atêliê de Projetos",
+        "Sala 22 - Lab. Eng. Agrícola", "Sala 23 - Lab. Desenho Técnico",
+        "Sala 24 - Lab. de Habilidades", "Sala 25 - EMAU",
+        "Sala 26 - Lab. de Conforto Ambiental", "Sala 27", "Sala 28",
+        "Sala 29", "Sala 30", "Sala 31", "Sala 32", "Sala 33", "Sala 34"
+      ]
+    },
+    "CCS": {},
+    "Clínica Escola": {},
+    "Shopping": {}
+  };
+
+  // Nomes amigáveis dos blocos
+  const NOMES_BLOCOS = {
+    "A": "Bloco A",
+    "B": "Bloco B",
+    "C": "Bloco C",
+    "D": "Bloco D",
+    "Arquitetura": "Anexo da Arquitetura"
   };
 
   const blocoSelect = document.getElementById("bloco");
   const salaSelect = document.getElementById("sala");
-
-  function carregarSalas(bloco, salaPreSelecionada) {
-    salaSelect.innerHTML = '<option value="">Selecione a sala</option>';
-    if (bloco && salasPorBloco[bloco]) {
-      salasPorBloco[bloco].forEach(sala => {
-        const opt = document.createElement("option");
-        opt.value = sala;
-        opt.textContent = sala;
-        if (salaPreSelecionada && sala === salaPreSelecionada) {
-          opt.selected = true;
-        }
-        salaSelect.appendChild(opt);
-      });
-    }
-  }
+  let predioAtivo = "SEDE"; // padrão
 
   // 🔍 LÊ OS PARÂMETROS DA URL (vindo do QR Code)
   const params = new URLSearchParams(window.location.search);
+  const predioURL = params.get("predio");
   const blocoURL = params.get("bloco");
   const salaURL = params.get("sala");
 
-  if (blocoURL && salasPorBloco[blocoURL]) {
+  // Define o prédio ativo
+  if (predioURL && estrutura[predioURL]) {
+    predioAtivo = predioURL;
+  }
+
+  // Carrega os blocos do prédio ativo no menu
+  function carregarBlocos() {
+    blocoSelect.innerHTML = '<option value="">Selecione o bloco</option>';
+    const blocos = Object.keys(estrutura[predioAtivo] || {});
+    blocos.forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b;
+      opt.textContent = NOMES_BLOCOS[b] || b;
+      blocoSelect.appendChild(opt);
+    });
+  }
+
+  function carregarSalas(bloco, salaPreSelecionada) {
+    salaSelect.innerHTML = '<option value="">Selecione a sala</option>';
+    if (bloco && estrutura[predioAtivo] && estrutura[predioAtivo][bloco]) {
+      estrutura[predioAtivo][bloco].forEach(sala => {
+        const opt = document.createElement("option");
+        opt.value = sala;
+        opt.textContent = sala;
+        if (salaPreSelecionada && sala === salaPreSelecionada) opt.selected = true;
+        salaSelect.appendChild(opt);
+      });
+      salaSelect.disabled = false;
+    } else {
+      salaSelect.disabled = true;
+    }
+  }
+
+  // Inicializa os blocos
+  carregarBlocos();
+
+  // Se veio com bloco pelo QR Code
+  if (blocoURL && estrutura[predioAtivo] && estrutura[predioAtivo][blocoURL]) {
     blocoSelect.value = blocoURL;
     blocoSelect.classList.add("bloqueado");
     blocoSelect.disabled = true;
     document.getElementById("badgeBloco").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
-  }
-
-  carregarSalas(blocoSelect.value, salaURL);
-
-  if (salaURL) {
-    salaSelect.value = salaURL;
-    salaSelect.classList.add("bloqueado");
-    salaSelect.disabled = true;
-    document.getElementById("badgeSala").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
+    carregarSalas(blocoURL, salaURL);
+    
+    if (salaURL) {
+      salaSelect.value = salaURL;
+      salaSelect.classList.add("bloqueado");
+      salaSelect.disabled = true;
+      document.getElementById("badgeSala").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
+    }
   }
 
   blocoSelect.addEventListener("change", function() {
@@ -433,6 +368,7 @@
     status.className = "";
 
     const dados = {
+      predio: predioAtivo,
       bloco: blocoSelect.value,
       sala: salaSelect.value,
       nome: document.getElementById("nome").value,
@@ -440,10 +376,12 @@
       obs: document.getElementById("obs").value
     };
 
+    console.log("📤 Enviando chamado:", dados);
+
     try {
       await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(dados) });
 
-      const msg = `📢 *Chamado Técnico - UNINTA*\n🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Solicitante: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
+      const msg = `📢 *Chamado Técnico - NTI*\n🏛️ Prédio: ${dados.predio}\n🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Solicitante: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
 
       window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
 
@@ -456,6 +394,7 @@
       status.className = "status-error";
       btn.disabled = false;
       btn.innerHTML = "<span>📲</span> Enviar Chamado";
+      console.error("Erro:", err);
     }
   });
 </script>
