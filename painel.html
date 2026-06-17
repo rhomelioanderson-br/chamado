@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Chamados - UNINTA</title>
+  <title>Painel de Chamados - NTI</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -11,8 +11,7 @@
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
-      padding: 20px;
-      color: #1a1a1a;
+      padding: 20px; color: #1a1a1a;
     }
     
     .container { max-width: 1400px; margin: 0 auto; }
@@ -129,14 +128,16 @@
       text-transform: uppercase;
     }
     
-    .modal input {
+    .modal input, .modal select {
       width: 100%; padding: 12px 15px;
       border: 2px solid #e5e7eb; border-radius: 10px;
       font-size: 14px; background: #fafafa;
       font-family: 'Inter', sans-serif;
     }
     
-    .modal input:focus { outline: none; border-color: #C8102E; background: white; }
+    .modal input:focus, .modal select:focus {
+      outline: none; border-color: #C8102E; background: white;
+    }
     
     .modal-botoes { display: flex; gap: 10px; margin-top: 20px; }
     
@@ -167,14 +168,25 @@
     }
     
     .header-title { color: white; }
-    .header-title h1 { font-size: 24px; font-weight: 800; }
-    .header-title p { font-size: 13px; opacity: 0.9; margin-top: 3px; }
+    .header-title h1 { font-size: 22px; font-weight: 800; }
+    .header-title p { font-size: 12px; opacity: 0.9; margin-top: 3px; }
     
     .header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     
-    .user-badge {
-      background: rgba(255, 193, 7, 0.95);
+    .predio-badge {
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       color: #4a0000; padding: 10px 18px;
+      border-radius: 25px; font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+    }
+    
+    .predio-badge:hover { transform: translateY(-2px); }
+    
+    .user-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: white; padding: 10px 18px;
       border-radius: 25px; font-size: 13px; font-weight: 700;
       display: flex; align-items: center; gap: 8px;
     }
@@ -284,6 +296,12 @@
     .status-atendimento { background: #fef3c7; color: #92400e; }
     .status-concluido { background: #d1fae5; color: #065f46; }
     
+    .predio-tag {
+      display: inline-block; padding: 4px 10px;
+      background: #FFC107; color: #4a0000;
+      border-radius: 6px; font-size: 11px; font-weight: 700;
+    }
+    
     .bloco-badge {
       display: inline-block; padding: 4px 10px;
       background: #C8102E; color: white;
@@ -359,7 +377,7 @@
     
     @media (max-width: 768px) {
       .table-container { overflow-x: auto; }
-      table { min-width: 1000px; }
+      table { min-width: 1100px; }
       .header { flex-direction: column; text-align: center; }
       .card-value { font-size: 26px; }
     }
@@ -370,7 +388,7 @@
 <div class="login-container" id="telaLogin">
   <div class="login-icon">🔐</div>
   <h2>ACESSO RESTRITO</h2>
-  <p class="sub">Sistema de Suporte Técnico — UNINTA</p>
+  <p class="sub">Sistema de Chamados — NTI</p>
   
   <label>Usuário</label>
   <select id="loginUser">
@@ -385,6 +403,15 @@
   
   <label>Senha</label>
   <input type="password" id="loginPass" placeholder="Digite sua senha" autocomplete="current-password">
+  
+  <label>Prédio de Atendimento</label>
+  <select id="loginPredio">
+    <option value="">Selecione o prédio</option>
+    <option value="SEDE">🏛️ SEDE</option>
+    <option value="CCS">🏥 CCS</option>
+    <option value="Clínica Escola">🏥 Clínica Escola</option>
+    <option value="Shopping">🏬 Shopping</option>
+  </select>
   
   <button onclick="fazerLogin()">🔓 Entrar</button>
   <div class="login-erro" id="loginErro">❌ Usuário ou senha incorretos</div>
@@ -418,13 +445,36 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="modalPredio">
+  <div class="modal">
+    <h2>🏛️ TROCAR PRÉDIO</h2>
+    <p class="sub">Selecione o prédio que deseja atender</p>
+    
+    <label>Prédio</label>
+    <select id="novoPredio">
+      <option value="SEDE">🏛️ SEDE</option>
+      <option value="CCS">🏥 CCS</option>
+      <option value="Clínica Escola">🏥 Clínica Escola</option>
+      <option value="Shopping">🏬 Shopping</option>
+    </select>
+    
+    <div class="modal-botoes">
+      <button class="btn-cancelar" onclick="fecharModalPredio()">Cancelar</button>
+      <button class="btn-salvar" onclick="trocarPredio()">Trocar</button>
+    </div>
+  </div>
+</div>
+
 <div class="container" id="painel" style="display:none;">
   <div class="header">
     <div class="header-title">
       <h1>📊 PAINEL DE CHAMADOS</h1>
-      <p>Sistema de Suporte Técnico — UNINTA</p>
+      <p>Sistema de Chamados — NTI</p>
     </div>
     <div class="header-controls">
+      <div class="predio-badge" onclick="abrirModalPredio()" title="Clique para trocar de prédio">
+        🏛️ <span id="predioAtual">SEDE</span> ▾
+      </div>
       <div class="user-badge">👤 <span id="nomeAtendente"></span></div>
       <button class="btn-senha" onclick="abrirModalSenha()">🔑 Senha</button>
       <button class="btn-som ativo" id="btnSom" onclick="toggleSom()">
@@ -482,11 +532,12 @@
       <thead>
         <tr>
           <th>Data/Hora</th>
+          <th>Prédio</th>
           <th>Bloco</th>
           <th>Sala</th>
-          <th>Professor</th>
+          <th>Solicitante</th>
           <th>Problema</th>
-          <th>Observação</th>
+          <th>Obs</th>
           <th>Status</th>
           <th>Atendente</th>
           <th>Tempo</th>
@@ -494,7 +545,7 @@
         </tr>
       </thead>
       <tbody id="tabelaChamados">
-        <tr><td colspan="10" class="loading">⏳ Carregando chamados...</td></tr>
+        <tr><td colspan="11" class="loading">⏳ Carregando chamados...</td></tr>
       </tbody>
     </table>
   </div>
@@ -511,7 +562,6 @@
   };
   
   const SENHA_PADRAO = "qaz@1234";
-  
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
   
   let todosChamados = [];
@@ -519,8 +569,8 @@
   let somAtivado = true;
   let idsConhecidos = new Set();
   let usuarioLogado = null;
+  let predioAtual = "SEDE";
 
-  // CORRIGIDO: Só cria a senha padrão se NUNCA existiu antes
   function obterSenha(user) {
     const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
     if (senhas[user] === undefined) {
@@ -538,8 +588,10 @@
 
   window.addEventListener("DOMContentLoaded", () => {
     const salvo = localStorage.getItem("atendente");
+    const predioSalvo = localStorage.getItem("predioAtual");
     if (salvo) {
       usuarioLogado = JSON.parse(salvo);
+      if (predioSalvo) predioAtual = predioSalvo;
       mostrarPainel();
     }
   });
@@ -547,6 +599,7 @@
   function fazerLogin() {
     const user = document.getElementById("loginUser").value;
     const pass = document.getElementById("loginPass").value.trim();
+    const predio = document.getElementById("loginPredio").value;
     const erro = document.getElementById("loginErro");
     
     if (!user) {
@@ -556,11 +609,20 @@
       return;
     }
     
+    if (!predio) {
+      erro.textContent = "❌ Selecione um prédio de atendimento";
+      erro.style.display = "block";
+      setTimeout(() => erro.style.display = "none", 3000);
+      return;
+    }
+    
     const senhaCorreta = obterSenha(user);
     
     if (USUARIOS_PADRAO[user] && senhaCorreta === pass) {
       usuarioLogado = { user: user, nome: USUARIOS_PADRAO[user].nome };
+      predioAtual = predio;
       localStorage.setItem("atendente", JSON.stringify(usuarioLogado));
+      localStorage.setItem("predioAtual", predioAtual);
       mostrarPainel();
     } else {
       erro.textContent = "❌ Senha incorreta";
@@ -573,15 +635,39 @@
     document.getElementById("telaLogin").style.display = "none";
     document.getElementById("painel").style.display = "block";
     document.getElementById("nomeAtendente").textContent = usuarioLogado.nome;
+    document.getElementById("predioAtual").textContent = predioAtual;
     carregarChamados();
     setInterval(carregarChamados, 15000);
-    setInterval(renderizar, 60000); // Atualiza tempos a cada minuto
+    setInterval(renderizar, 60000);
   }
 
   function sair() {
     if (confirm("Deseja realmente sair?")) {
       localStorage.removeItem("atendente");
+      localStorage.removeItem("predioAtual");
       location.reload();
+    }
+  }
+
+  function abrirModalPredio() {
+    document.getElementById("novoPredio").value = predioAtual;
+    document.getElementById("modalPredio").classList.add("ativo");
+  }
+
+  function fecharModalPredio() {
+    document.getElementById("modalPredio").classList.remove("ativo");
+  }
+
+  function trocarPredio() {
+    const novo = document.getElementById("novoPredio").value;
+    if (novo) {
+      predioAtual = novo;
+      localStorage.setItem("predioAtual", predioAtual);
+      document.getElementById("predioAtual").textContent = predioAtual;
+      fecharModalPredio();
+      primeiraCarga = true;
+      idsConhecidos = new Set();
+      renderizar();
     }
   }
 
@@ -624,7 +710,7 @@
     }
     
     salvarSenha(usuarioLogado.user, nova);
-    alert("✅ Senha alterada com sucesso! Use a nova senha no próximo login.");
+    alert("✅ Senha alterada com sucesso!");
     fecharModalSenha();
   }
 
@@ -669,8 +755,8 @@
 
   function mostrarNotificacao(chamado) {
     if ("Notification" in window && Notification.permission === "granted") {
-      const notif = new Notification("🔔 Novo Chamado Técnico!", {
-        body: `Bloco ${chamado.bloco} - ${chamado.sala}\n${chamado.professor}\nProblema: ${chamado.problema}`,
+      const notif = new Notification("🔔 Novo Chamado!", {
+        body: `${chamado.predio} - ${chamado.bloco}\n${chamado.sala} - ${chamado.professor}\nProblema: ${chamado.problema}`,
         icon: "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
         tag: "chamado-" + chamado.id
       });
@@ -684,7 +770,7 @@
       <div>
         <div style="font-size:15px;">Novo Chamado!</div>
         <div style="font-size:12px;opacity:0.9;margin-top:3px;">
-          ${chamado.bloco} • ${chamado.sala} • ${chamado.professor}
+          ${chamado.predio} • ${chamado.sala} • ${chamado.professor}
         </div>
       </div>`;
     document.body.appendChild(toast);
@@ -724,26 +810,29 @@
       const data = await res.json();
       const novosChamados = (data.chamados || []).reverse();
 
+      // Filtra apenas chamados do prédio atual
+      const chamadosDoPredio = novosChamados.filter(c => c.predio === predioAtual);
+
       if (!primeiraCarga) {
-        const novos = novosChamados.filter(c => !idsConhecidos.has(c.id));
+        const novos = chamadosDoPredio.filter(c => !idsConhecidos.has(c.id));
         if (novos.length > 0) {
           tocarSom();
           novos.forEach(c => mostrarNotificacao(c));
           document.title = `(${novos.length}) 🔔 Novo Chamado!`;
-          setTimeout(() => { document.title = "Painel de Chamados - UNINTA"; }, 10000);
+          setTimeout(() => { document.title = "Painel de Chamados - NTI"; }, 10000);
         }
       } else {
         primeiraCarga = false;
       }
 
-      idsConhecidos = new Set(novosChamados.map(c => c.id));
-      todosChamados = novosChamados;
+      idsConhecidos = new Set(chamadosDoPredio.map(c => c.id));
+      todosChamados = chamadosDoPredio;
       atualizarBlocos();
       renderizar();
       atualizarHora();
     } catch (err) {
       document.getElementById("tabelaChamados").innerHTML = 
-        '<tr><td colspan="10" class="empty">❌ Erro ao carregar dados</td></tr>';
+        '<tr><td colspan="11" class="empty">❌ Erro ao carregar dados</td></tr>';
     }
   }
 
@@ -753,7 +842,7 @@
     const blocos = [...new Set(todosChamados.map(c => c.bloco))].sort();
     filtroBloco.innerHTML = '<option value="">Todos os Blocos</option>';
     blocos.forEach(b => {
-      filtroBloco.innerHTML += `<option value="${b}">Bloco ${b}</option>`;
+      filtroBloco.innerHTML += `<option value="${b}">${b}</option>`;
     });
     filtroBloco.value = valorAtual;
   }
@@ -767,7 +856,6 @@
     });
   }
 
-  // Calcula diferença entre datas em formato legível
   function calcularTempo(dataInicio, dataFim) {
     if (!dataInicio || !dataFim) return null;
     const ms = new Date(dataFim) - new Date(dataInicio);
@@ -856,7 +944,7 @@
 
     const tbody = document.getElementById("tabelaChamados");
     if (filtrados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="10" class="empty">📭 Nenhum chamado encontrado</td></tr>';
+      tbody.innerHTML = `<tr><td colspan="11" class="empty">📭 Nenhum chamado para ${predioAtual}</td></tr>`;
       return;
     }
 
@@ -865,6 +953,7 @@
       return `
         <tr ${ehNovo ? 'class="novo-chamado"' : ''}>
           <td>${formatarData(c.dataHora)}</td>
+          <td><span class="predio-tag">${c.predio || "-"}</span></td>
           <td><span class="bloco-badge">${c.bloco}</span></td>
           <td><strong>${c.sala}</strong></td>
           <td>${c.professor}</td>
