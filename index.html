@@ -110,7 +110,6 @@
     }
     
     .form-content { padding: 30px; }
-    
     .form-group { margin-bottom: 18px; }
     
     label {
@@ -144,7 +143,6 @@
       box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
     }
     
-    /* Campo bloqueado (vindo do QR Code) */
     input.bloqueado, select.bloqueado {
       background: #fef3c7;
       border-color: #FFC107;
@@ -245,19 +243,24 @@
       <div class="form-group">
         <label><span class="icon">🏢</span>Bloco<span id="badgeBloco"></span></label>
         <select id="bloco" required>
-          <option value="C" selected>Bloco C</option>
+          <option value="">Selecione o bloco</option>
+          <option value="A">Bloco A</option>
+          <option value="B">Bloco B</option>
+          <option value="C">Bloco C</option>
+          <option value="D">Bloco D</option>
+          <option value="Arquitetura">Anexo da Arquitetura</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label><span class="icon">🚪</span>Sala<span id="badgeSala"></span></label>
+        <label><span class="icon">🚪</span>Sala/Setor<span id="badgeSala"></span></label>
         <select id="sala" required>
-          <option value="">Selecione a sala</option>
+          <option value="">Selecione primeiro o bloco</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label><span class="icon">👨‍🏫</span>Nome do Professor</label>
+        <label><span class="icon">👨‍🏫</span>Nome do Solicitante</label>
         <input type="text" id="nome" required placeholder="Ex: Prof. Maria Silva">
       </div>
 
@@ -294,6 +297,25 @@
 
 <script>
   const salasPorBloco = {
+    A: [
+      "SEPAT",
+      "Secretaria Geral",
+      "Tesouraria",
+      "Recepção Diretoria",
+      "RH",
+      "Direção",
+      "Diretoria Acadêmica",
+      "Secretaria Medicina",
+      "Secretaria de Cursos",
+      "Coordenações de Cursos"
+    ],
+    B: [
+      "Comercial",
+      "Sala de Professores",
+      "Sala de Reuniões",
+      "Marketing",
+      "NAPSI"
+    ],
     C: [
       "Sala 1",
       "Sala 2",
@@ -307,7 +329,50 @@
       "Pequeno Grupo 6",
       "Pequeno Grupo 7",
       "Pequeno Grupo 8",
-      "Pequeno Grupo 9"
+      "Pequeno Grupo 9",
+      "Pós Graduação"
+    ],
+    D: [
+      "Sala 5",
+      "Sala 6",
+      "Sala 7",
+      "Sala 8",
+      "Sala 9",
+      "Sala 10",
+      "Sala 11",
+      "Sala 12",
+      "Sala 13",
+      "Sala 14",
+      "Sala 15",
+      "Sala 16",
+      "Sala 17",
+      "Sala 18",
+      "Sala 36",
+      "Sala 37",
+      "Brinquedoteca",
+      "Laboratório de Informática 1",
+      "Laboratório de Informática 2",
+      "Biblioteca",
+      "Auditório",
+      "Almoxarifado"
+    ],
+    Arquitetura: [
+      "Sala 19",
+      "Sala 20 - Marqueteria",
+      "Sala 21 - Atêliê de Projetos",
+      "Sala 22 - Lab. Eng. Agrícola",
+      "Sala 23 - Lab. Desenho Técnico",
+      "Sala 24 - Lab. de Habilidades",
+      "Sala 25 - EMAU",
+      "Sala 26 - Lab. de Conforto Ambiental",
+      "Sala 27",
+      "Sala 28",
+      "Sala 29",
+      "Sala 30",
+      "Sala 31",
+      "Sala 32",
+      "Sala 33",
+      "Sala 34"
     ]
   };
 
@@ -378,7 +443,7 @@
     try {
       await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(dados) });
 
-      const msg = `📢 *Chamado Técnico - UNINTA*\n🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Professor: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
+      const msg = `📢 *Chamado Técnico - UNINTA*\n🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Solicitante: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
 
       window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
 
