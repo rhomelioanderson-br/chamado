@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>QR Codes - Chamados UNINTA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     
     body {
-      background: #f0f0f0;
-      padding: 20px;
+      background: #1a0000;
+      padding: 30px 20px;
     }
     
     .controls {
       max-width: 1000px;
-      margin: 0 auto 20px;
+      margin: 0 auto 25px;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       display: flex;
       gap: 15px;
       flex-wrap: wrap;
@@ -29,60 +30,104 @@
     .controls h1 {
       color: #C8102E;
       font-size: 22px;
+      font-weight: 800;
     }
     
     .controls button {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       color: white;
       border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
     }
     
-    .controls button:hover { opacity: 0.9; }
+    .controls button:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200, 16, 46, 0.5);
+    }
     
     .info {
       max-width: 1000px;
-      margin: 0 auto 20px;
-      background: #fef3c7;
-      color: #92400e;
-      padding: 15px 20px;
-      border-radius: 8px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+      color: #4a0000;
+      padding: 18px 25px;
+      border-radius: 12px;
       font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
     }
     
     .pagina {
       width: 210mm;
       min-height: 297mm;
       background: white;
-      margin: 0 auto 20px;
-      padding: 15mm;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 0 auto 30px;
+      padding: 12mm;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
       page-break-after: always;
+      position: relative;
+      overflow: hidden;
     }
     
     .pagina-titulo {
       text-align: center;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      padding: 18px 25px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(200, 16, 46, 0.3);
+    }
+    
+    .pagina-titulo::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 193, 7, 0.2);
+      border-radius: 50%;
+    }
+    
+    .pagina-titulo::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
     }
     
     .pagina-titulo h2 {
       font-size: 22px;
+      font-weight: 900;
       letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
     }
     
     .pagina-titulo p {
-      font-size: 12px;
-      opacity: 0.9;
-      margin-top: 3px;
+      font-size: 11px;
+      opacity: 0.95;
+      margin-top: 4px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
     
     .grid {
@@ -92,61 +137,135 @@
     }
     
     .card {
-      border: 2px dashed #C8102E;
-      border-radius: 10px;
-      padding: 12px;
-      text-align: center;
       background: white;
+      border-radius: 16px;
+      padding: 0;
+      text-align: center;
       page-break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #1a1a1a;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
     
-    .card-bloco {
-      background: #C8102E;
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #C8102E 0%, #FFC107 50%, #C8102E 100%);
+    }
+    
+    .card-header {
+      background: linear-gradient(135deg, #1a0000 0%, #4a0000 100%);
       color: white;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 4px 10px;
-      border-radius: 15px;
+      padding: 10px 12px;
+      position: relative;
+    }
+    
+    .card-bloco-badge {
       display: inline-block;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+      color: #4a0000;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
     }
     
     .card-sala {
-      font-size: 15px;
-      font-weight: bold;
-      color: #1a1a1a;
-      margin-bottom: 10px;
-      min-height: 36px;
+      font-size: 16px;
+      font-weight: 900;
+      color: white;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      min-height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
+    .card-body {
+      padding: 12px 8px 8px;
+      background: white;
+      position: relative;
+    }
+    
+    .card-body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: #C8102E;
+      border-radius: 0 0 6px 6px;
+    }
+    
     .qrcode {
       display: flex;
       justify-content: center;
-      margin: 5px 0;
+      margin: 4px 0;
+      padding: 8px;
+      background: white;
+      border-radius: 12px;
     }
     
     .qrcode img, .qrcode canvas {
-      border: 1px solid #ddd;
-      padding: 4px;
+      border: 3px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 6px;
       background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
     .card-instrucao {
-      font-size: 9px;
-      color: #6b7280;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #92400e;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 8px;
       margin-top: 8px;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
     
-    .card-logo {
-      font-size: 10px;
+    .card-footer {
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white;
+      padding: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    
+    .card-footer-icon {
+      width: 16px;
+      height: 16px;
+      background: white;
       color: #C8102E;
-      font-weight: bold;
-      margin-top: 4px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
     }
     
     @media print {
@@ -156,6 +275,9 @@
         box-shadow: none;
         margin: 0;
         padding: 10mm;
+      }
+      .card {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       }
     }
   </style>
@@ -278,7 +400,6 @@
     const dados = blocos[nomeBloco];
     const salas = dados.salas;
     
-    // Divide as salas em páginas
     for (let i = 0; i < salas.length; i += CARDS_POR_PAGINA) {
       const grupoSalas = salas.slice(i, i + CARDS_POR_PAGINA);
       const numPagina = Math.floor(i / CARDS_POR_PAGINA) + 1;
@@ -307,24 +428,33 @@
         const card = document.createElement("div");
         card.className = "card";
         const qrId = `qr-${dados.cor}-${numPagina}-${idx}`;
+        const blocoNome = nomeBloco.split(" - ")[0];
         
         card.innerHTML = `
-          <div class="card-bloco">📍 ${nomeBloco.split(" - ")[0]}</div>
-          <div class="card-sala">${sala}</div>
-          <div class="qrcode" id="${qrId}"></div>
-          <div class="card-instrucao">📱 Aponte a câmera para abrir o chamado</div>
-          <div class="card-logo">UNINTA — Suporte Técnico</div>
+          <div class="card-header">
+            <span class="card-bloco-badge">📍 ${blocoNome}</span>
+            <div class="card-sala">${sala}</div>
+          </div>
+          <div class="card-body">
+            <div class="qrcode" id="${qrId}"></div>
+            <div class="card-instrucao">
+              📱 Aponte a câmera do celular
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-footer-icon">U</span>
+            UNINTA • Suporte Técnico
+          </div>
         `;
         
         grid.appendChild(card);
         
-        // Gera o QR Code
         const url = `${URL_BASE}?bloco=${dados.cor}&sala=${encodeURIComponent(sala)}`;
         new QRCode(document.getElementById(qrId), {
           text: url,
-          width: 130,
-          height: 130,
-          colorDark: "#000000",
+          width: 140,
+          height: 140,
+          colorDark: "#1a0000",
           colorLight: "#ffffff",
           correctLevel: QRCode.CorrectLevel.H
         });
