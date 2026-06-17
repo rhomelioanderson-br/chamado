@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Codes - Chamados UNINTA</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    
+    body {
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    
+    .controls {
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .controls h1 {
+      color: #C8102E;
+      font-size: 22px;
+    }
+    
+    .controls button {
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    
+    .controls button:hover { opacity: 0.9; }
+    
+    .info {
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    
+    .pagina {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: 0 auto 20px;
+      padding: 15mm;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      page-break-after: always;
+    }
+    
+    .pagina-titulo {
+      text-align: center;
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .pagina-titulo h2 {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+    
+    .pagina-titulo p {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-top: 3px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .card {
+      border: 2px dashed #C8102E;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      background: white;
+      page-break-inside: avoid;
+    }
+    
+    .card-bloco {
+      background: #C8102E;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    
+    .card-sala {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .qrcode {
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+    }
+    
+    .qrcode img, .qrcode canvas {
+      border: 1px solid #ddd;
+      padding: 4px;
+      background: white;
+    }
+    
+    .card-instrucao {
+      font-size: 9px;
+      color: #6b7280;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    
+    .card-logo {
+      font-size: 10px;
+      color: #C8102E;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+    
+    @media print {
+      body { background: white; padding: 0; }
+      .controls, .info { display: none; }
+      .pagina {
+        box-shadow: none;
+        margin: 0;
+        padding: 10mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="controls">
+  <h1>📱 QR Codes - Sistema de Chamados</h1>
+  <button onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+</div>
+
+<div class="info">
+  💡 <strong>Como usar:</strong> Clique em "Imprimir / Salvar PDF" → Escolha "Salvar como PDF" no destino → Imprima e cole nas portas das salas.
+</div>
+
+<div id="paginas"></div>
+
+<script>
+  const URL_BASE = "https://rhomelioanderson-br.github.io/chamado/";
+  
+  const blocos = {
+    "BLOCO A - ADMINISTRATIVO": {
+      cor: "A",
+      salas: [
+        "SEPAT",
+        "Secretaria Geral",
+        "Tesouraria",
+        "Recepção Diretoria",
+        "RH",
+        "Direção",
+        "Diretoria Acadêmica",
+        "Secretaria Medicina",
+        "Secretaria de Cursos",
+        "Coordenações de Cursos"
+      ]
+    },
+    "BLOCO B - ADMINISTRATIVO": {
+      cor: "B",
+      salas: [
+        "Comercial",
+        "Sala de Professores",
+        "Sala de Reuniões",
+        "Marketing",
+        "NAPSI"
+      ]
+    },
+    "BLOCO C - SALAS DE AULA": {
+      cor: "C",
+      salas: [
+        "Sala 1",
+        "Sala 2",
+        "Sala 3",
+        "Sala 4",
+        "Pequeno Grupo 1",
+        "Pequeno Grupo 2",
+        "Pequeno Grupo 3",
+        "Pequeno Grupo 4",
+        "Pequeno Grupo 5",
+        "Pequeno Grupo 6",
+        "Pequeno Grupo 7",
+        "Pequeno Grupo 8",
+        "Pequeno Grupo 9",
+        "Pós Graduação"
+      ]
+    },
+    "BLOCO D - SALAS E LABORATÓRIOS": {
+      cor: "D",
+      salas: [
+        "Sala 5",
+        "Sala 6",
+        "Sala 7",
+        "Sala 8",
+        "Sala 9",
+        "Sala 10",
+        "Sala 11",
+        "Sala 12",
+        "Sala 13",
+        "Sala 14",
+        "Sala 15",
+        "Sala 16",
+        "Sala 17",
+        "Sala 18",
+        "Sala 36",
+        "Sala 37",
+        "Brinquedoteca",
+        "Laboratório de Informática 1",
+        "Laboratório de Informática 2",
+        "Biblioteca",
+        "Auditório",
+        "Almoxarifado"
+      ]
+    },
+    "ANEXO DA ARQUITETURA": {
+      cor: "Arquitetura",
+      salas: [
+        "Sala 19",
+        "Sala 20 - Marqueteria",
+        "Sala 21 - Atêliê de Projetos",
+        "Sala 22 - Lab. Eng. Agrícola",
+        "Sala 23 - Lab. Desenho Técnico",
+        "Sala 24 - Lab. de Habilidades",
+        "Sala 25 - EMAU",
+        "Sala 26 - Lab. de Conforto Ambiental",
+        "Sala 27",
+        "Sala 28",
+        "Sala 29",
+        "Sala 30",
+        "Sala 31",
+        "Sala 32",
+        "Sala 33",
+        "Sala 34"
+      ]
+    }
+  };
+
+  const CARDS_POR_PAGINA = 6;
+  const paginasDiv = document.getElementById("paginas");
+
+  Object.keys(blocos).forEach(nomeBloco => {
+    const dados = blocos[nomeBloco];
+    const salas = dados.salas;
+    
+    // Divide as salas em páginas
+    for (let i = 0; i < salas.length; i += CARDS_POR_PAGINA) {
+      const grupoSalas = salas.slice(i, i + CARDS_POR_PAGINA);
+      const numPagina = Math.floor(i / CARDS_POR_PAGINA) + 1;
+      const totalPaginas = Math.ceil(salas.length / CARDS_POR_PAGINA);
+      
+      const pagina = document.createElement("div");
+      pagina.className = "pagina";
+      
+      const tituloTexto = totalPaginas > 1 
+        ? `${nomeBloco} (${numPagina}/${totalPaginas})`
+        : nomeBloco;
+      
+      pagina.innerHTML = `
+        <div class="pagina-titulo">
+          <h2>${tituloTexto}</h2>
+          <p>Sistema de Chamados Técnicos — UNINTA</p>
+        </div>
+        <div class="grid" id="grid-${dados.cor}-${numPagina}"></div>
+      `;
+      
+      paginasDiv.appendChild(pagina);
+      
+      const grid = document.getElementById(`grid-${dados.cor}-${numPagina}`);
+      
+      grupoSalas.forEach((sala, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const qrId = `qr-${dados.cor}-${numPagina}-${idx}`;
+        
+        card.innerHTML = `
+          <div class="card-bloco">📍 ${nomeBloco.split(" - ")[0]}</div>
+          <div class="card-sala">${sala}</div>
+          <div class="qrcode" id="${qrId}"></div>
+          <div class="card-instrucao">📱 Aponte a câmera para abrir o chamado</div>
+          <div class="card-logo">UNINTA — Suporte Técnico</div>
+        `;
+        
+        grid.appendChild(card);
+        
+        // Gera o QR Code
+        const url = `${URL_BASE}?bloco=${dados.cor}&sala=${encodeURIComponent(sala)}`;
+        new QRCode(document.getElementById(qrId), {
+          text: url,
+          width: 130,
+          height: 130,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
