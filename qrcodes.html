@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>QR Codes - Chamados UNINTA</title>
+  <title>QR Codes - Chamados NTI</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
@@ -148,73 +148,62 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
     
-    .card::before {
+    /* TOPO - Chamados NTI */
+    .card-top {
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white;
+      padding: 10px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-top::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #C8102E 0%, #FFC107 50%, #C8102E 100%);
+      height: 4px;
+      background: linear-gradient(90deg, #FFC107 0%, #FF8F00 50%, #FFC107 100%);
     }
     
-    .card-header {
-      background: linear-gradient(135deg, #1a0000 0%, #4a0000 100%);
-      color: white;
-      padding: 10px 12px;
-      position: relative;
-    }
-    
-    .card-bloco-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
-      color: #4a0000;
-      font-size: 9px;
-      font-weight: 900;
-      padding: 4px 12px;
-      border-radius: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
-    }
-    
-    .card-sala {
-      font-size: 16px;
-      font-weight: 900;
-      color: white;
-      margin-top: 6px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      line-height: 1.2;
-      min-height: 38px;
-      display: flex;
+    .card-top-icon {
+      width: 24px;
+      height: 24px;
+      background: white;
+      color: #C8102E;
+      border-radius: 50%;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     
+    .card-top-text {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    
+    /* CORPO - QR Code */
     .card-body {
-      padding: 12px 8px 8px;
+      padding: 14px 8px 10px;
       background: white;
       position: relative;
-    }
-    
-    .card-body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 4px;
-      background: #C8102E;
-      border-radius: 0 0 6px 6px;
     }
     
     .qrcode {
       display: flex;
       justify-content: center;
       margin: 4px 0;
-      padding: 8px;
+      padding: 6px;
       background: white;
       border-radius: 12px;
     }
@@ -232,7 +221,7 @@
       color: #92400e;
       font-size: 11px;
       font-weight: 700;
-      padding: 8px 10px;
+      padding: 7px 10px;
       border-radius: 8px;
       margin-top: 8px;
       display: flex;
@@ -241,31 +230,46 @@
       gap: 6px;
     }
     
-    .card-footer {
-      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+    /* RODAPÉ - Bloco e Sala */
+    .card-bottom {
+      background: linear-gradient(135deg, #1a0000 0%, #4a0000 100%);
       color: white;
-      padding: 6px;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
+      padding: 12px 10px;
+      position: relative;
     }
     
-    .card-footer-icon {
-      width: 16px;
-      height: 16px;
-      background: white;
-      color: #C8102E;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
+    .card-bottom::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #FFC107 0%, #FF8F00 50%, #FFC107 100%);
+    }
+    
+    .card-bloco-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+      color: #4a0000;
+      font-size: 9px;
       font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
+      margin-bottom: 6px;
+    }
+    
+    .card-sala {
+      font-size: 17px;
+      font-weight: 900;
+      color: white;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
     
     @media print {
@@ -285,7 +289,7 @@
 <body>
 
 <div class="controls">
-  <h1>📱 QR Codes - Sistema de Chamados</h1>
+  <h1>📱 QR Codes - Chamados NTI</h1>
   <button onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
 </div>
 
@@ -415,7 +419,7 @@
       pagina.innerHTML = `
         <div class="pagina-titulo">
           <h2>${tituloTexto}</h2>
-          <p>Sistema de Chamados Técnicos — UNINTA</p>
+          <p>Sistema de Chamados Técnicos — NTI</p>
         </div>
         <div class="grid" id="grid-${dados.cor}-${numPagina}"></div>
       `;
@@ -431,9 +435,9 @@
         const blocoNome = nomeBloco.split(" - ")[0];
         
         card.innerHTML = `
-          <div class="card-header">
-            <span class="card-bloco-badge">📍 ${blocoNome}</span>
-            <div class="card-sala">${sala}</div>
+          <div class="card-top">
+            <span class="card-top-icon">🔧</span>
+            <span class="card-top-text">CHAMADOS NTI</span>
           </div>
           <div class="card-body">
             <div class="qrcode" id="${qrId}"></div>
@@ -441,9 +445,9 @@
               📱 Aponte a câmera do celular
             </div>
           </div>
-          <div class="card-footer">
-            <span class="card-footer-icon">U</span>
-            UNINTA • Suporte Técnico
+          <div class="card-bottom">
+            <span class="card-bloco-badge">📍 ${blocoNome}</span>
+            <div class="card-sala">${sala}</div>
           </div>
         `;
         
