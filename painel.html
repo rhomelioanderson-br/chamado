@@ -17,205 +17,299 @@
     
     .container { max-width: 1400px; margin: 0 auto; }
     
+    /* TELA DE LOGIN */
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+      animation: slideUp 0.6s ease;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .login-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 36px;
+      box-shadow: 0 10px 25px rgba(200, 16, 46, 0.4);
+    }
+    
+    .login-container h2 {
+      text-align: center; color: #1a1a1a;
+      font-size: 22px; margin-bottom: 5px; font-weight: 800;
+    }
+    
+    .login-container .sub {
+      text-align: center; color: #6b7280;
+      font-size: 13px; margin-bottom: 25px;
+    }
+    
+    .login-container label {
+      display: block; color: #4a0000;
+      font-size: 12px; font-weight: 700;
+      margin-bottom: 8px; margin-top: 15px;
+      text-transform: uppercase;
+    }
+    
+    .login-container input, .login-container select {
+      width: 100%;
+      padding: 13px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fafafa;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .login-container input:focus, .login-container select:focus {
+      outline: none; border-color: #C8102E; background: white;
+    }
+    
+    .login-container button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white; border: none;
+      border-radius: 10px;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 20px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    
+    .login-container button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(200, 16, 46, 0.4);
+    }
+    
+    .login-erro {
+      background: #fee2e2; color: #991b1b;
+      padding: 10px; border-radius: 8px;
+      font-size: 13px; text-align: center;
+      margin-top: 15px; display: none;
+    }
+    
+    .login-sucesso {
+      background: #d1fae5; color: #065f46;
+      padding: 10px; border-radius: 8px;
+      font-size: 13px; text-align: center;
+      margin-top: 15px; display: none;
+    }
+    
+    .info-padrao {
+      background: #fef3c7; color: #92400e;
+      padding: 12px; border-radius: 8px;
+      font-size: 12px; text-align: center;
+      margin-top: 15px;
+    }
+    
+    /* MODAL DE ALTERAR SENHA */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); z-index: 2000;
+      justify-content: center; align-items: center;
+    }
+    
+    .modal-overlay.ativo { display: flex; }
+    
+    .modal {
+      background: white; padding: 35px 30px;
+      border-radius: 20px; max-width: 400px; width: 90%;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+      animation: slideUp 0.4s ease;
+    }
+    
+    .modal h2 {
+      color: #1a1a1a; font-size: 20px;
+      margin-bottom: 5px; font-weight: 800; text-align: center;
+    }
+    
+    .modal .sub {
+      text-align: center; color: #6b7280;
+      font-size: 13px; margin-bottom: 20px;
+    }
+    
+    .modal label {
+      display: block; color: #4a0000;
+      font-size: 12px; font-weight: 700;
+      margin-bottom: 8px; margin-top: 15px;
+      text-transform: uppercase;
+    }
+    
+    .modal input {
+      width: 100%; padding: 12px 15px;
+      border: 2px solid #e5e7eb; border-radius: 10px;
+      font-size: 14px; background: #fafafa;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .modal input:focus {
+      outline: none; border-color: #C8102E; background: white;
+    }
+    
+    .modal-botoes {
+      display: flex; gap: 10px; margin-top: 20px;
+    }
+    
+    .modal button {
+      flex: 1; padding: 12px;
+      border: none; border-radius: 10px;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; text-transform: uppercase;
+      transition: all 0.3s; font-family: 'Inter', sans-serif;
+    }
+    
+    .btn-salvar {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+    
+    .btn-cancelar {
+      background: #e5e7eb; color: #374151;
+    }
+    
+    .modal-erro {
+      background: #fee2e2; color: #991b1b;
+      padding: 10px; border-radius: 8px;
+      font-size: 13px; text-align: center;
+      margin-top: 15px; display: none;
+    }
+    
+    /* PAINEL */
     .header {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      padding: 25px 30px;
-      border-radius: 15px;
+      padding: 25px 30px; border-radius: 15px;
       margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     
     .header-title { color: white; }
-    .header-title h1 { font-size: 26px; font-weight: 800; letter-spacing: 0.5px; }
+    .header-title h1 { font-size: 24px; font-weight: 800; }
     .header-title p { font-size: 13px; opacity: 0.9; margin-top: 3px; }
     
-    .header-controls {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
+    .header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    
+    .user-badge {
+      background: rgba(255, 193, 7, 0.95);
+      color: #4a0000; padding: 10px 18px;
+      border-radius: 25px; font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
     }
     
     .refresh-info {
       background: rgba(255, 255, 255, 0.15);
-      padding: 10px 18px;
-      border-radius: 25px;
-      color: white;
-      font-size: 13px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      padding: 10px 18px; border-radius: 25px;
+      color: white; font-size: 13px; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
     }
     
-    .btn-som {
+    .btn-som, .btn-sair, .btn-senha {
       background: rgba(255, 255, 255, 0.15);
-      color: white;
-      border: 2px solid rgba(255,255,255,0.3);
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: white; border: 2px solid rgba(255,255,255,0.3);
+      padding: 10px 18px; border-radius: 25px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
     }
     
-    .btn-som:hover { background: rgba(255,255,255,0.25); }
+    .btn-som:hover, .btn-sair:hover, .btn-senha:hover { background: rgba(255,255,255,0.25); }
     .btn-som.ativo { background: #FFC107; color: #4a0000; border-color: #FFC107; }
     
     .dot {
-      width: 8px;
-      height: 8px;
-      background: #4ade80;
-      border-radius: 50%;
+      width: 8px; height: 8px;
+      background: #4ade80; border-radius: 50%;
       animation: pulse 2s infinite;
     }
     
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-    
-    @keyframes flash {
-      0%, 100% { background: white; }
-      50% { background: #fef3c7; }
-    }
-    
-    .novo-chamado {
-      animation: flash 1s ease 3;
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes flash { 0%, 100% { background: white; } 50% { background: #fef3c7; } }
+    .novo-chamado { animation: flash 1s ease 3; }
     
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
+      gap: 15px; margin-bottom: 25px;
     }
     
     .card {
-      background: white;
-      padding: 22px;
+      background: white; padding: 22px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     
-    .card:hover { transform: translateY(-5px); }
-    
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 5px;
-      height: 100%;
-    }
-    
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; }
     .card.total::before { background: #C8102E; }
     .card.pendente::before { background: #ef4444; }
     .card.atendimento::before { background: #f59e0b; }
     .card.concluido::before { background: #10b981; }
     
     .card-label {
-      font-size: 12px;
-      color: #6b7280;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
+      font-size: 12px; color: #6b7280; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
     }
-    
     .card-value { font-size: 38px; font-weight: 800; color: #1a1a1a; }
-    
     .card-icon {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      opacity: 0.15;
+      position: absolute; right: 20px; top: 50%;
+      transform: translateY(-50%); font-size: 40px; opacity: 0.15;
     }
     
     .filters {
-      background: white;
-      padding: 18px 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
+      background: white; padding: 18px 20px;
+      border-radius: 15px; margin-bottom: 20px;
+      display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
     
     .filters label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #4a0000;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 13px; font-weight: 600; color: #4a0000;
+      text-transform: uppercase; letter-spacing: 0.5px;
     }
     
     .filters select {
-      padding: 8px 14px;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 14px;
-      background: #fafafa;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
+      padding: 8px 14px; border: 2px solid #e5e7eb;
+      border-radius: 8px; font-size: 14px; background: #fafafa;
+      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500;
     }
     
     .filters select:focus { outline: none; border-color: #C8102E; }
     
     .table-container {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: white; border-radius: 15px;
+      overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
     
     table { width: 100%; border-collapse: collapse; }
-    
     thead { background: linear-gradient(135deg, #4a0000 0%, #2a0000 100%); }
     
     th {
-      padding: 15px 12px;
-      text-align: left;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
+      padding: 15px 12px; text-align: left; color: white;
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     
     td {
-      padding: 14px 12px;
-      border-bottom: 1px solid #f3f4f6;
-      font-size: 14px;
-      color: #374151;
+      padding: 14px 12px; border-bottom: 1px solid #f3f4f6;
+      font-size: 14px; color: #374151;
     }
     
     tbody tr:hover { background: #fef2f2; }
     
     .status-badge {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      display: inline-block; padding: 5px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
     }
     
     .status-pendente { background: #fee2e2; color: #991b1b; }
@@ -223,35 +317,53 @@
     .status-concluido { background: #d1fae5; color: #065f46; }
     
     .bloco-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: #C8102E;
+      display: inline-block; padding: 4px 10px;
+      background: #C8102E; color: white;
+      border-radius: 6px; font-size: 11px; font-weight: 700;
+    }
+    
+    .btn-acao {
+      padding: 7px 14px; border: none; border-radius: 8px;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.3px;
+      transition: all 0.3s; font-family: 'Inter', sans-serif;
+    }
+    
+    .btn-puxar {
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       color: white;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
+    }
+    
+    .btn-puxar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(200, 16, 46, 0.4);
+    }
+    
+    .btn-concluir {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+    
+    .btn-concluir:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-acao:disabled {
+      background: #d1d5db; color: #6b7280;
+      cursor: not-allowed; transform: none;
     }
     
     .empty { text-align: center; padding: 60px 20px; color: #9ca3af; font-size: 15px; }
     .loading { text-align: center; padding: 40px; color: #6b7280; }
     
-    /* Toast de notificação */
     .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      position: fixed; top: 20px; right: 20px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white;
-      padding: 18px 25px;
-      border-radius: 12px;
+      color: white; padding: 18px 25px; border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      animation: slideIn 0.4s ease;
-      max-width: 350px;
+      z-index: 1000; display: flex; align-items: center; gap: 12px;
+      font-weight: 600; animation: slideIn 0.4s ease; max-width: 350px;
     }
     
     @keyframes slideIn {
@@ -259,20 +371,15 @@
       to { transform: translateX(0); opacity: 1; }
     }
     
-    .toast-icon {
-      font-size: 28px;
-      animation: shake 0.5s ease 3;
-    }
-    
+    .toast-icon { font-size: 28px; animation: shake 0.5s ease 3; }
     @keyframes shake {
       0%, 100% { transform: rotate(0); }
-      25% { transform: rotate(-15deg); }
-      75% { transform: rotate(15deg); }
+      25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); }
     }
     
     @media (max-width: 768px) {
       .table-container { overflow-x: auto; }
-      table { min-width: 800px; }
+      table { min-width: 900px; }
       .header { flex-direction: column; text-align: center; }
       .card-value { font-size: 30px; }
     }
@@ -280,26 +387,80 @@
 </head>
 <body>
 
-<div class="container">
+<!-- TELA DE LOGIN -->
+<div class="login-container" id="telaLogin">
+  <div class="login-icon">🔐</div>
+  <h2>ACESSO RESTRITO</h2>
+  <p class="sub">Sistema de Suporte Técnico — UNINTA</p>
+  
+  <label>Usuário</label>
+  <select id="loginUser">
+    <option value="">Selecione seu usuário</option>
+    <option value="rhomelio">Rhomelio</option>
+    <option value="eudes">Eudes</option>
+    <option value="william">William</option>
+    <option value="joab">Joab</option>
+    <option value="eglenrique">Eglenrique</option>
+    <option value="nestor">Nestor</option>
+  </select>
+  
+  <label>Senha</label>
+  <input type="password" id="loginPass" placeholder="Digite sua senha" autocomplete="current-password">
+  
+  <button onclick="fazerLogin()">🔓 Entrar</button>
+  <div class="login-erro" id="loginErro">❌ Usuário ou senha incorretos</div>
+  
+  <div class="info-padrao">
+    🔑 <strong>Senha padrão:</strong> qaz@1234<br>
+    <span style="font-size:11px;">(Altere depois de fazer login)</span>
+  </div>
+</div>
+
+<!-- MODAL ALTERAR SENHA -->
+<div class="modal-overlay" id="modalSenha">
+  <div class="modal">
+    <h2>🔑 ALTERAR SENHA</h2>
+    <p class="sub">Defina uma nova senha pessoal</p>
+    
+    <label>Senha Atual</label>
+    <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+    
+    <label>Nova Senha</label>
+    <input type="password" id="senhaNova" placeholder="Mínimo 4 caracteres">
+    
+    <label>Confirmar Nova Senha</label>
+    <input type="password" id="senhaConfirma" placeholder="Digite novamente">
+    
+    <div class="modal-erro" id="modalErro"></div>
+    
+    <div class="modal-botoes">
+      <button class="btn-cancelar" onclick="fecharModalSenha()">Cancelar</button>
+      <button class="btn-salvar" onclick="salvarNovaSenha()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAINEL -->
+<div class="container" id="painel" style="display:none;">
   <div class="header">
     <div class="header-title">
       <h1>📊 PAINEL DE CHAMADOS</h1>
       <p>Sistema de Suporte Técnico — UNINTA</p>
     </div>
     <div class="header-controls">
+      <div class="user-badge">👤 <span id="nomeAtendente"></span></div>
+      <button class="btn-senha" onclick="abrirModalSenha()">🔑 Senha</button>
       <button class="btn-som ativo" id="btnSom" onclick="toggleSom()">
-        🔔 <span id="somTexto">Som Ativado</span>
+        🔔 <span id="somTexto">Som On</span>
       </button>
-      <div class="refresh-info">
-        <div class="dot"></div>
-        <span id="updateInfo">Atualizando...</span>
-      </div>
+      <div class="refresh-info"><div class="dot"></div><span id="updateInfo">Atualizando...</span></div>
+      <button class="btn-sair" onclick="sair()">🚪 Sair</button>
     </div>
   </div>
 
   <div class="cards">
     <div class="card total">
-      <div class="card-label">Total de Chamados</div>
+      <div class="card-label">Total</div>
       <div class="card-value" id="totalGeral">0</div>
       <div class="card-icon">📋</div>
     </div>
@@ -345,30 +506,151 @@
           <th>Observação</th>
           <th>Status</th>
           <th>Atendente</th>
+          <th>Ação</th>
         </tr>
       </thead>
       <tbody id="tabelaChamados">
-        <tr><td colspan="8" class="loading">⏳ Carregando chamados...</td></tr>
+        <tr><td colspan="9" class="loading">⏳ Carregando chamados...</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- Som de notificação -->
-<audio id="somNotificacao" preload="auto">
-  <source src="https://www.soundjay.com/buttons/sounds/beep-07a.mp3" type="audio/mpeg">
-</audio>
-
 <script>
+  // 👥 USUÁRIOS DO SISTEMA
+  const USUARIOS_PADRAO = {
+    "rhomelio":   { nome: "Rhomelio" },
+    "eudes":      { nome: "Eudes" },
+    "william":    { nome: "William" },
+    "joab":       { nome: "Joab" },
+    "eglenrique": { nome: "Eglenrique" },
+    "nestor":     { nome: "Nestor" }
+  };
+  
+  const SENHA_PADRAO = "qaz@1234";
+  
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
   
   let todosChamados = [];
-  let ultimoTotal = 0;
   let primeiraCarga = true;
   let somAtivado = true;
   let idsConhecidos = new Set();
+  let usuarioLogado = null;
 
-  // Pede permissão pra notificação no navegador
+  // Inicializa senhas (se não existir, cria com a padrão)
+  function inicializarSenhas() {
+    let senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
+    Object.keys(USUARIOS_PADRAO).forEach(user => {
+      if (!senhas[user]) senhas[user] = SENHA_PADRAO;
+    });
+    localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
+  }
+  inicializarSenhas();
+
+  function obterSenha(user) {
+    const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
+    return senhas[user] || SENHA_PADRAO;
+  }
+
+  function salvarSenha(user, novaSenha) {
+    const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
+    senhas[user] = novaSenha;
+    localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
+  }
+
+  // Verifica login salvo
+  window.addEventListener("DOMContentLoaded", () => {
+    const salvo = localStorage.getItem("atendente");
+    if (salvo) {
+      usuarioLogado = JSON.parse(salvo);
+      mostrarPainel();
+    }
+  });
+
+  function fazerLogin() {
+    const user = document.getElementById("loginUser").value;
+    const pass = document.getElementById("loginPass").value.trim();
+    const erro = document.getElementById("loginErro");
+    
+    if (!user) {
+      erro.textContent = "❌ Selecione um usuário";
+      erro.style.display = "block";
+      setTimeout(() => erro.style.display = "none", 3000);
+      return;
+    }
+    
+    if (USUARIOS_PADRAO[user] && obterSenha(user) === pass) {
+      usuarioLogado = { user: user, nome: USUARIOS_PADRAO[user].nome };
+      localStorage.setItem("atendente", JSON.stringify(usuarioLogado));
+      mostrarPainel();
+    } else {
+      erro.textContent = "❌ Senha incorreta";
+      erro.style.display = "block";
+      setTimeout(() => erro.style.display = "none", 3000);
+    }
+  }
+
+  function mostrarPainel() {
+    document.getElementById("telaLogin").style.display = "none";
+    document.getElementById("painel").style.display = "block";
+    document.getElementById("nomeAtendente").textContent = usuarioLogado.nome;
+    carregarChamados();
+    setInterval(carregarChamados, 15000);
+  }
+
+  function sair() {
+    if (confirm("Deseja realmente sair?")) {
+      localStorage.removeItem("atendente");
+      location.reload();
+    }
+  }
+
+  // MODAL DE SENHA
+  function abrirModalSenha() {
+    document.getElementById("modalSenha").classList.add("ativo");
+    document.getElementById("senhaAtual").value = "";
+    document.getElementById("senhaNova").value = "";
+    document.getElementById("senhaConfirma").value = "";
+    document.getElementById("modalErro").style.display = "none";
+  }
+
+  function fecharModalSenha() {
+    document.getElementById("modalSenha").classList.remove("ativo");
+  }
+
+  function salvarNovaSenha() {
+    const atual = document.getElementById("senhaAtual").value;
+    const nova = document.getElementById("senhaNova").value;
+    const confirma = document.getElementById("senhaConfirma").value;
+    const erro = document.getElementById("modalErro");
+    
+    if (obterSenha(usuarioLogado.user) !== atual) {
+      erro.textContent = "❌ Senha atual incorreta";
+      erro.style.display = "block";
+      return;
+    }
+    
+    if (nova.length < 4) {
+      erro.textContent = "❌ A nova senha deve ter pelo menos 4 caracteres";
+      erro.style.display = "block";
+      return;
+    }
+    
+    if (nova !== confirma) {
+      erro.textContent = "❌ As senhas não coincidem";
+      erro.style.display = "block";
+      return;
+    }
+    
+    salvarSenha(usuarioLogado.user, nova);
+    alert("✅ Senha alterada com sucesso!");
+    fecharModalSenha();
+  }
+
+  document.getElementById("loginPass").addEventListener("keypress", e => {
+    if (e.key === "Enter") fazerLogin();
+  });
+
   if ("Notification" in window && Notification.permission === "default") {
     Notification.requestPermission();
   }
@@ -376,54 +658,44 @@
   function toggleSom() {
     somAtivado = !somAtivado;
     const btn = document.getElementById("btnSom");
-    const texto = document.getElementById("somTexto");
     if (somAtivado) {
       btn.classList.add("ativo");
-      btn.innerHTML = '🔔 <span id="somTexto">Som Ativado</span>';
+      btn.innerHTML = '🔔 <span id="somTexto">Som On</span>';
     } else {
       btn.classList.remove("ativo");
-      btn.innerHTML = '🔕 <span id="somTexto">Som Desativado</span>';
+      btn.innerHTML = '🔕 <span id="somTexto">Som Off</span>';
     }
   }
 
   function tocarSom() {
     if (!somAtivado) return;
     try {
-      // Som via Web Audio API (não depende de internet)
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
+      osc.connect(gain); gain.connect(ctx.destination);
       osc.frequency.value = 800;
       gain.gain.setValueAtTime(0.3, ctx.currentTime);
       osc.start();
-      
       setTimeout(() => { osc.frequency.value = 1000; }, 150);
       setTimeout(() => { osc.frequency.value = 800; }, 300);
       setTimeout(() => {
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
         osc.stop(ctx.currentTime + 0.3);
       }, 450);
-    } catch (e) {
-      console.log("Som não disponível");
-    }
+    } catch (e) {}
   }
 
   function mostrarNotificacao(chamado) {
-    // Notificação no navegador
     if ("Notification" in window && Notification.permission === "granted") {
       const notif = new Notification("🔔 Novo Chamado Técnico!", {
         body: `Bloco ${chamado.bloco} - ${chamado.sala}\n${chamado.professor}\nProblema: ${chamado.problema}`,
         icon: "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
-        tag: "chamado-" + chamado.id,
-        requireInteraction: false
+        tag: "chamado-" + chamado.id
       });
       setTimeout(() => notif.close(), 8000);
     }
 
-    // Toast visual no painel
     const toast = document.createElement("div");
     toast.className = "toast";
     toast.innerHTML = `
@@ -433,8 +705,7 @@
         <div style="font-size:12px;opacity:0.9;margin-top:3px;">
           ${chamado.bloco} • ${chamado.sala} • ${chamado.professor}
         </div>
-      </div>
-    `;
+      </div>`;
     document.body.appendChild(toast);
     setTimeout(() => {
       toast.style.transition = "all 0.4s";
@@ -444,22 +715,39 @@
     }, 5000);
   }
 
+  async function puxarChamado(linha) {
+    if (!confirm(`Puxar este chamado para ${usuarioLogado.nome}?`)) return;
+    try {
+      await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify({ acao: "puxar", linha: linha, atendente: usuarioLogado.nome })
+      });
+      setTimeout(carregarChamados, 1000);
+    } catch (e) { alert("Erro ao puxar chamado"); }
+  }
+
+  async function concluirChamado(linha) {
+    if (!confirm("Marcar este chamado como concluído?")) return;
+    try {
+      await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify({ acao: "concluir", linha: linha })
+      });
+      setTimeout(carregarChamados, 1000);
+    } catch (e) { alert("Erro ao concluir chamado"); }
+  }
+
   async function carregarChamados() {
     try {
-      const res = await fetch(SHEET_URL);
+      const res = await fetch(SHEET_URL, { redirect: "follow" });
       const data = await res.json();
       const novosChamados = (data.chamados || []).reverse();
 
-      // Detectar novos chamados
       if (!primeiraCarga) {
-        const idsAtuais = new Set(novosChamados.map(c => c.id));
         const novos = novosChamados.filter(c => !idsConhecidos.has(c.id));
-        
         if (novos.length > 0) {
           tocarSom();
           novos.forEach(c => mostrarNotificacao(c));
-          
-          // Atualizar título da aba pra chamar atenção
           document.title = `(${novos.length}) 🔔 Novo Chamado!`;
           setTimeout(() => { document.title = "Painel de Chamados - UNINTA"; }, 10000);
         }
@@ -474,7 +762,7 @@
       atualizarHora();
     } catch (err) {
       document.getElementById("tabelaChamados").innerHTML = 
-        '<tr><td colspan="8" class="empty">❌ Erro ao carregar dados</td></tr>';
+        '<tr><td colspan="9" class="empty">❌ Erro ao carregar dados</td></tr>';
     }
   }
 
@@ -505,6 +793,20 @@
     return '<span class="status-badge status-pendente">Pendente</span>';
   }
 
+  function getBotaoAcao(c) {
+    const status = c.status || "Pendente";
+    if (status === "Pendente") {
+      return `<button class="btn-acao btn-puxar" onclick="puxarChamado(${c.id})">🙋 Puxar pra mim</button>`;
+    }
+    if (status.includes("Atendimento")) {
+      if (c.atendente === usuarioLogado.nome) {
+        return `<button class="btn-acao btn-concluir" onclick="concluirChamado(${c.id})">✅ Concluir</button>`;
+      }
+      return `<button class="btn-acao" disabled>Em atendimento</button>`;
+    }
+    return `<span style="color:#10b981;font-weight:700;">✅ Concluído</span>`;
+  }
+
   function renderizar() {
     const filtroStatus = document.getElementById("filtroStatus").value;
     const filtroBloco = document.getElementById("filtroBloco").value;
@@ -520,7 +822,7 @@
 
     const tbody = document.getElementById("tabelaChamados");
     if (filtrados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="empty">📭 Nenhum chamado encontrado</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9" class="empty">📭 Nenhum chamado encontrado</td></tr>';
       return;
     }
 
@@ -536,8 +838,8 @@
           <td>${c.observacao || "-"}</td>
           <td>${getStatusBadge(c.status)}</td>
           <td>${c.atendente || "-"}</td>
-        </tr>
-      `;
+          <td>${getBotaoAcao(c)}</td>
+        </tr>`;
     }).join('');
   }
 
@@ -549,14 +851,10 @@
   document.getElementById("filtroStatus").addEventListener("change", renderizar);
   document.getElementById("filtroBloco").addEventListener("change", renderizar);
 
-  // Ativa o áudio no primeiro clique (requisito dos navegadores)
   document.body.addEventListener("click", function ativar() {
     try { new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
     document.body.removeEventListener("click", ativar);
   }, { once: true });
-
-  carregarChamados();
-  setInterval(carregarChamados, 15000); // Atualiza a cada 15 segundos
 </script>
 
 </body>
