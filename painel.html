@@ -17,12 +17,9 @@
     
     .container { max-width: 1400px; margin: 0 auto; }
     
-    /* TELA DE LOGIN */
     .login-container {
-      max-width: 400px;
-      margin: 80px auto;
-      background: white;
-      padding: 40px 30px;
+      max-width: 400px; margin: 80px auto;
+      background: white; padding: 40px 30px;
       border-radius: 20px;
       box-shadow: 0 25px 70px rgba(0,0,0,0.5);
       animation: slideUp 0.6s ease;
@@ -38,8 +35,7 @@
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 36px;
+      margin: 0 auto 20px; font-size: 36px;
       box-shadow: 0 10px 25px rgba(200, 16, 46, 0.4);
     }
     
@@ -61,12 +57,9 @@
     }
     
     .login-container input, .login-container select {
-      width: 100%;
-      padding: 13px 15px;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 15px;
-      background: #fafafa;
+      width: 100%; padding: 13px 15px;
+      border: 2px solid #e5e7eb; border-radius: 10px;
+      font-size: 15px; background: #fafafa;
       font-family: 'Inter', sans-serif;
     }
     
@@ -75,11 +68,9 @@
     }
     
     .login-container button {
-      width: 100%;
-      padding: 14px;
+      width: 100%; padding: 14px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white; border: none;
-      border-radius: 10px;
+      color: white; border: none; border-radius: 10px;
       font-size: 15px; font-weight: 700;
       cursor: pointer; margin-top: 20px;
       text-transform: uppercase; letter-spacing: 0.5px;
@@ -98,13 +89,6 @@
       margin-top: 15px; display: none;
     }
     
-    .login-sucesso {
-      background: #d1fae5; color: #065f46;
-      padding: 10px; border-radius: 8px;
-      font-size: 13px; text-align: center;
-      margin-top: 15px; display: none;
-    }
-    
     .info-padrao {
       background: #fef3c7; color: #92400e;
       padding: 12px; border-radius: 8px;
@@ -112,7 +96,6 @@
       margin-top: 15px;
     }
     
-    /* MODAL DE ALTERAR SENHA */
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -153,30 +136,19 @@
       font-family: 'Inter', sans-serif;
     }
     
-    .modal input:focus {
-      outline: none; border-color: #C8102E; background: white;
-    }
+    .modal input:focus { outline: none; border-color: #C8102E; background: white; }
     
-    .modal-botoes {
-      display: flex; gap: 10px; margin-top: 20px;
-    }
+    .modal-botoes { display: flex; gap: 10px; margin-top: 20px; }
     
     .modal button {
-      flex: 1; padding: 12px;
-      border: none; border-radius: 10px;
-      font-size: 14px; font-weight: 700;
-      cursor: pointer; text-transform: uppercase;
-      transition: all 0.3s; font-family: 'Inter', sans-serif;
+      flex: 1; padding: 12px; border: none; border-radius: 10px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      text-transform: uppercase; transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
     }
     
-    .btn-salvar {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: white;
-    }
-    
-    .btn-cancelar {
-      background: #e5e7eb; color: #374151;
-    }
+    .btn-salvar { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
+    .btn-cancelar { background: #e5e7eb; color: #374151; }
     
     .modal-erro {
       background: #fee2e2; color: #991b1b;
@@ -185,7 +157,6 @@
       margin-top: 15px; display: none;
     }
     
-    /* PAINEL */
     .header {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       padding: 25px 30px; border-radius: 15px;
@@ -227,19 +198,14 @@
     .btn-som:hover, .btn-sair:hover, .btn-senha:hover { background: rgba(255,255,255,0.25); }
     .btn-som.ativo { background: #FFC107; color: #4a0000; border-color: #FFC107; }
     
-    .dot {
-      width: 8px; height: 8px;
-      background: #4ade80; border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
+    .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     @keyframes flash { 0%, 100% { background: white; } 50% { background: #fef3c7; } }
     .novo-chamado { animation: flash 1s ease 3; }
     
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px; margin-bottom: 25px;
     }
     
@@ -255,12 +221,14 @@
     .card.pendente::before { background: #ef4444; }
     .card.atendimento::before { background: #f59e0b; }
     .card.concluido::before { background: #10b981; }
+    .card.tempo::before { background: #6366f1; }
     
     .card-label {
       font-size: 12px; color: #6b7280; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
     }
-    .card-value { font-size: 38px; font-weight: 800; color: #1a1a1a; }
+    .card-value { font-size: 32px; font-weight: 800; color: #1a1a1a; }
+    .card-sub { font-size: 11px; color: #9ca3af; margin-top: 4px; font-weight: 500; }
     .card-icon {
       position: absolute; right: 20px; top: 50%;
       transform: translateY(-50%); font-size: 40px; opacity: 0.15;
@@ -322,6 +290,18 @@
       border-radius: 6px; font-size: 11px; font-weight: 700;
     }
     
+    .tempo-badge {
+      display: inline-block; padding: 4px 10px;
+      background: #eef2ff; color: #4338ca;
+      border-radius: 6px; font-size: 12px; font-weight: 700;
+    }
+    
+    .tempo-atual {
+      display: inline-block; padding: 4px 10px;
+      background: #fef3c7; color: #92400e;
+      border-radius: 6px; font-size: 12px; font-weight: 700;
+    }
+    
     .btn-acao {
       padding: 7px 14px; border: none; border-radius: 8px;
       font-size: 12px; font-weight: 700; cursor: pointer;
@@ -379,15 +359,14 @@
     
     @media (max-width: 768px) {
       .table-container { overflow-x: auto; }
-      table { min-width: 900px; }
+      table { min-width: 1000px; }
       .header { flex-direction: column; text-align: center; }
-      .card-value { font-size: 30px; }
+      .card-value { font-size: 26px; }
     }
   </style>
 </head>
 <body>
 
-<!-- TELA DE LOGIN -->
 <div class="login-container" id="telaLogin">
   <div class="login-icon">🔐</div>
   <h2>ACESSO RESTRITO</h2>
@@ -416,7 +395,6 @@
   </div>
 </div>
 
-<!-- MODAL ALTERAR SENHA -->
 <div class="modal-overlay" id="modalSenha">
   <div class="modal">
     <h2>🔑 ALTERAR SENHA</h2>
@@ -440,7 +418,6 @@
   </div>
 </div>
 
-<!-- PAINEL -->
 <div class="container" id="painel" style="display:none;">
   <div class="header">
     <div class="header-title">
@@ -479,6 +456,12 @@
       <div class="card-value" id="totalConcluido">0</div>
       <div class="card-icon">🟢</div>
     </div>
+    <div class="card tempo">
+      <div class="card-label">Tempo Médio</div>
+      <div class="card-value" id="tempoMedio">-</div>
+      <div class="card-sub">de atendimento</div>
+      <div class="card-icon">⏱️</div>
+    </div>
   </div>
 
   <div class="filters">
@@ -506,18 +489,18 @@
           <th>Observação</th>
           <th>Status</th>
           <th>Atendente</th>
+          <th>Tempo</th>
           <th>Ação</th>
         </tr>
       </thead>
       <tbody id="tabelaChamados">
-        <tr><td colspan="9" class="loading">⏳ Carregando chamados...</td></tr>
+        <tr><td colspan="10" class="loading">⏳ Carregando chamados...</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <script>
-  // 👥 USUÁRIOS DO SISTEMA
   const USUARIOS_PADRAO = {
     "rhomelio":   { nome: "Rhomelio" },
     "eudes":      { nome: "Eudes" },
@@ -537,19 +520,14 @@
   let idsConhecidos = new Set();
   let usuarioLogado = null;
 
-  // Inicializa senhas (se não existir, cria com a padrão)
-  function inicializarSenhas() {
-    let senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
-    Object.keys(USUARIOS_PADRAO).forEach(user => {
-      if (!senhas[user]) senhas[user] = SENHA_PADRAO;
-    });
-    localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
-  }
-  inicializarSenhas();
-
+  // CORRIGIDO: Só cria a senha padrão se NUNCA existiu antes
   function obterSenha(user) {
     const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
-    return senhas[user] || SENHA_PADRAO;
+    if (senhas[user] === undefined) {
+      senhas[user] = SENHA_PADRAO;
+      localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
+    }
+    return senhas[user];
   }
 
   function salvarSenha(user, novaSenha) {
@@ -558,7 +536,6 @@
     localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
   }
 
-  // Verifica login salvo
   window.addEventListener("DOMContentLoaded", () => {
     const salvo = localStorage.getItem("atendente");
     if (salvo) {
@@ -579,7 +556,9 @@
       return;
     }
     
-    if (USUARIOS_PADRAO[user] && obterSenha(user) === pass) {
+    const senhaCorreta = obterSenha(user);
+    
+    if (USUARIOS_PADRAO[user] && senhaCorreta === pass) {
       usuarioLogado = { user: user, nome: USUARIOS_PADRAO[user].nome };
       localStorage.setItem("atendente", JSON.stringify(usuarioLogado));
       mostrarPainel();
@@ -596,6 +575,7 @@
     document.getElementById("nomeAtendente").textContent = usuarioLogado.nome;
     carregarChamados();
     setInterval(carregarChamados, 15000);
+    setInterval(renderizar, 60000); // Atualiza tempos a cada minuto
   }
 
   function sair() {
@@ -605,7 +585,6 @@
     }
   }
 
-  // MODAL DE SENHA
   function abrirModalSenha() {
     document.getElementById("modalSenha").classList.add("ativo");
     document.getElementById("senhaAtual").value = "";
@@ -624,7 +603,9 @@
     const confirma = document.getElementById("senhaConfirma").value;
     const erro = document.getElementById("modalErro");
     
-    if (obterSenha(usuarioLogado.user) !== atual) {
+    const senhaSalva = obterSenha(usuarioLogado.user);
+    
+    if (senhaSalva !== atual) {
       erro.textContent = "❌ Senha atual incorreta";
       erro.style.display = "block";
       return;
@@ -643,7 +624,7 @@
     }
     
     salvarSenha(usuarioLogado.user, nova);
-    alert("✅ Senha alterada com sucesso!");
+    alert("✅ Senha alterada com sucesso! Use a nova senha no próximo login.");
     fecharModalSenha();
   }
 
@@ -762,7 +743,7 @@
       atualizarHora();
     } catch (err) {
       document.getElementById("tabelaChamados").innerHTML = 
-        '<tr><td colspan="9" class="empty">❌ Erro ao carregar dados</td></tr>';
+        '<tr><td colspan="10" class="empty">❌ Erro ao carregar dados</td></tr>';
     }
   }
 
@@ -784,6 +765,58 @@
       day: '2-digit', month: '2-digit', 
       hour: '2-digit', minute: '2-digit' 
     });
+  }
+
+  // Calcula diferença entre datas em formato legível
+  function calcularTempo(dataInicio, dataFim) {
+    if (!dataInicio || !dataFim) return null;
+    const ms = new Date(dataFim) - new Date(dataInicio);
+    if (ms < 0) return null;
+    
+    const minutos = Math.floor(ms / 60000);
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
+    
+    if (dias > 0) return `${dias}d ${horas % 24}h`;
+    if (horas > 0) return `${horas}h ${minutos % 60}min`;
+    if (minutos > 0) return `${minutos}min`;
+    return "menos de 1min";
+  }
+
+  function getTempoChamado(c) {
+    const status = c.status || "Pendente";
+    
+    if (status.includes("Concluído") && c.dataConclusao) {
+      const tempo = calcularTempo(c.dataHora, c.dataConclusao);
+      return tempo ? `<span class="tempo-badge">⏱️ ${tempo}</span>` : "-";
+    }
+    
+    if (status === "Pendente" || status.includes("Atendimento")) {
+      const tempo = calcularTempo(c.dataHora, new Date());
+      return tempo ? `<span class="tempo-atual">⏳ ${tempo}</span>` : "-";
+    }
+    
+    return "-";
+  }
+
+  function calcularTempoMedio() {
+    const concluidos = todosChamados.filter(c => 
+      c.status && c.status.includes("Concluído") && c.dataHora && c.dataConclusao
+    );
+    
+    if (concluidos.length === 0) return "-";
+    
+    const totalMs = concluidos.reduce((sum, c) => {
+      return sum + (new Date(c.dataConclusao) - new Date(c.dataHora));
+    }, 0);
+    
+    const mediaMs = totalMs / concluidos.length;
+    const minutos = Math.floor(mediaMs / 60000);
+    const horas = Math.floor(minutos / 60);
+    
+    if (horas > 0) return `${horas}h ${minutos % 60}min`;
+    if (minutos > 0) return `${minutos}min`;
+    return "<1min";
   }
 
   function getStatusBadge(status) {
@@ -819,10 +852,11 @@
     document.getElementById("totalPendente").textContent = todosChamados.filter(c => !c.status || c.status === "Pendente").length;
     document.getElementById("totalAtendimento").textContent = todosChamados.filter(c => c.status && c.status.includes("Atendimento")).length;
     document.getElementById("totalConcluido").textContent = todosChamados.filter(c => c.status && c.status.includes("Concluído")).length;
+    document.getElementById("tempoMedio").textContent = calcularTempoMedio();
 
     const tbody = document.getElementById("tabelaChamados");
     if (filtrados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="9" class="empty">📭 Nenhum chamado encontrado</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="10" class="empty">📭 Nenhum chamado encontrado</td></tr>';
       return;
     }
 
@@ -838,6 +872,7 @@
           <td>${c.observacao || "-"}</td>
           <td>${getStatusBadge(c.status)}</td>
           <td>${c.atendente || "-"}</td>
+          <td>${getTempoChamado(c)}</td>
           <td>${getBotaoAcao(c)}</td>
         </tr>`;
     }).join('');
