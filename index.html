@@ -22,10 +22,8 @@
     body::before {
       content: '';
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 400px;
-      height: 400px;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -34,10 +32,8 @@
     body::after {
       content: '';
       position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(220, 20, 20, 0.2) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -72,10 +68,8 @@
     .header::before {
       content: '';
       position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 150px;
-      height: 150px;
+      top: -50px; right: -50px;
+      width: 150px; height: 150px;
       background: rgba(255, 193, 7, 0.15);
       border-radius: 50%;
     }
@@ -83,27 +77,21 @@
     .header::after {
       content: '';
       position: absolute;
-      bottom: -30px;
-      left: -30px;
-      width: 100px;
-      height: 100px;
+      bottom: -30px; left: -30px;
+      width: 100px; height: 100px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 50%;
     }
     
     .header-icon {
-      width: 70px;
-      height: 70px;
+      width: 70px; height: 70px;
       background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 15px;
       font-size: 32px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
     
     h2 {
@@ -111,25 +99,19 @@
       font-size: 22px;
       font-weight: 800;
       margin-bottom: 5px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       letter-spacing: 0.5px;
     }
     
     .subtitle {
       color: rgba(255, 255, 255, 0.9);
       font-size: 13px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
     
-    .form-content {
-      padding: 30px;
-    }
+    .form-content { padding: 30px; }
     
-    .form-group {
-      margin-bottom: 18px;
-    }
+    .form-group { margin-bottom: 18px; }
     
     label {
       display: block;
@@ -141,9 +123,7 @@
       letter-spacing: 0.8px;
     }
     
-    label .icon {
-      margin-right: 6px;
-    }
+    label .icon { margin-right: 6px; }
     
     input, select, textarea {
       width: 100%;
@@ -164,10 +144,29 @@
       box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
     }
     
-    textarea {
-      resize: vertical;
-      min-height: 80px;
+    /* Campo bloqueado (vindo do QR Code) */
+    input.bloqueado, select.bloqueado {
+      background: #fef3c7;
+      border-color: #FFC107;
+      color: #4a0000;
+      font-weight: 700;
+      cursor: not-allowed;
     }
+    
+    .badge-qr {
+      display: inline-block;
+      background: #FFC107;
+      color: #4a0000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    textarea { resize: vertical; min-height: 80px; }
     
     button {
       width: 100%;
@@ -181,9 +180,7 @@
       cursor: pointer;
       margin-top: 10px;
       transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       gap: 10px;
       box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
       letter-spacing: 0.5px;
@@ -197,9 +194,7 @@
       color: #4a0000;
     }
     
-    button:active {
-      transform: translateY(0);
-    }
+    button:active { transform: translateY(0); }
     
     button:disabled {
       background: #9ca3af;
@@ -219,17 +214,8 @@
       border-radius: 8px;
     }
     
-    .status-success {
-      background: #d1fae5;
-      color: #065f46;
-      border: 1px solid #6ee7b7;
-    }
-    
-    .status-error {
-      background: #fee2e2;
-      color: #991b1b;
-      border: 1px solid #fca5a5;
-    }
+    .status-success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .status-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
     
     .footer {
       text-align: center;
@@ -241,9 +227,7 @@
       border-top: 1px solid #e5e7eb;
     }
     
-    .footer strong {
-      color: #C8102E;
-    }
+    .footer strong { color: #C8102E; }
   </style>
 </head>
 <body>
@@ -259,14 +243,14 @@
     <form id="formChamado">
 
       <div class="form-group">
-        <label><span class="icon">🏢</span>Bloco</label>
+        <label><span class="icon">🏢</span>Bloco<span id="badgeBloco"></span></label>
         <select id="bloco" required>
           <option value="C" selected>Bloco C</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label><span class="icon">🚪</span>Sala</label>
+        <label><span class="icon">🚪</span>Sala<span id="badgeSala"></span></label>
         <select id="sala" required>
           <option value="">Selecione a sala</option>
         </select>
@@ -330,19 +314,41 @@
   const blocoSelect = document.getElementById("bloco");
   const salaSelect = document.getElementById("sala");
 
-  function carregarSalas(bloco) {
+  function carregarSalas(bloco, salaPreSelecionada) {
     salaSelect.innerHTML = '<option value="">Selecione a sala</option>';
     if (bloco && salasPorBloco[bloco]) {
       salasPorBloco[bloco].forEach(sala => {
         const opt = document.createElement("option");
         opt.value = sala;
         opt.textContent = sala;
+        if (salaPreSelecionada && sala === salaPreSelecionada) {
+          opt.selected = true;
+        }
         salaSelect.appendChild(opt);
       });
     }
   }
 
-  carregarSalas(blocoSelect.value);
+  // 🔍 LÊ OS PARÂMETROS DA URL (vindo do QR Code)
+  const params = new URLSearchParams(window.location.search);
+  const blocoURL = params.get("bloco");
+  const salaURL = params.get("sala");
+
+  if (blocoURL && salasPorBloco[blocoURL]) {
+    blocoSelect.value = blocoURL;
+    blocoSelect.classList.add("bloqueado");
+    blocoSelect.disabled = true;
+    document.getElementById("badgeBloco").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
+  }
+
+  carregarSalas(blocoSelect.value, salaURL);
+
+  if (salaURL) {
+    salaSelect.value = salaURL;
+    salaSelect.classList.add("bloqueado");
+    salaSelect.disabled = true;
+    document.getElementById("badgeSala").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
+  }
 
   blocoSelect.addEventListener("change", function() {
     carregarSalas(this.value);
