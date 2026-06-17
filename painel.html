@@ -149,4 +149,415 @@
       background: white;
       padding: 18px 20px;
       border-radius: 15px;
-      margin-bottom: 
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .filters label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4a0000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .filters select {
+      padding: 8px 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fafafa;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+    
+    .filters select:focus { outline: none; border-color: #C8102E; }
+    
+    .table-container {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead { background: linear-gradient(135deg, #4a0000 0%, #2a0000 100%); }
+    
+    th {
+      padding: 15px 12px;
+      text-align: left;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+      color: #374151;
+    }
+    
+    tbody tr:hover { background: #fef2f2; }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .status-pendente { background: #fee2e2; color: #991b1b; }
+    .status-atendimento { background: #fef3c7; color: #92400e; }
+    .status-concluido { background: #d1fae5; color: #065f46; }
+    
+    .bloco-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #C8102E;
+      color: white;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    
+    .empty { text-align: center; padding: 60px 20px; color: #9ca3af; font-size: 15px; }
+    .loading { text-align: center; padding: 40px; color: #6b7280; }
+    
+    /* Toast de notificação */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      color: white;
+      padding: 18px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      animation: slideIn 0.4s ease;
+      max-width: 350px;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .toast-icon {
+      font-size: 28px;
+      animation: shake 0.5s ease 3;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-15deg); }
+      75% { transform: rotate(15deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .table-container { overflow-x: auto; }
+      table { min-width: 800px; }
+      .header { flex-direction: column; text-align: center; }
+      .card-value { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header-title">
+      <h1>📊 PAINEL DE CHAMADOS</h1>
+      <p>Sistema de Suporte Técnico — UNINTA</p>
+    </div>
+    <div class="header-controls">
+      <button class="btn-som ativo" id="btnSom" onclick="toggleSom()">
+        🔔 <span id="somTexto">Som Ativado</span>
+      </button>
+      <div class="refresh-info">
+        <div class="dot"></div>
+        <span id="updateInfo">Atualizando...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card total">
+      <div class="card-label">Total de Chamados</div>
+      <div class="card-value" id="totalGeral">0</div>
+      <div class="card-icon">📋</div>
+    </div>
+    <div class="card pendente">
+      <div class="card-label">Pendentes</div>
+      <div class="card-value" id="totalPendente">0</div>
+      <div class="card-icon">🔴</div>
+    </div>
+    <div class="card atendimento">
+      <div class="card-label">Em Atendimento</div>
+      <div class="card-value" id="totalAtendimento">0</div>
+      <div class="card-icon">🟡</div>
+    </div>
+    <div class="card concluido">
+      <div class="card-label">Concluídos</div>
+      <div class="card-value" id="totalConcluido">0</div>
+      <div class="card-icon">🟢</div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <label>Filtrar:</label>
+    <select id="filtroStatus">
+      <option value="">Todos os Status</option>
+      <option value="Pendente">Pendente</option>
+      <option value="Em Atendimento">Em Atendimento</option>
+      <option value="Concluído">Concluído</option>
+    </select>
+    <select id="filtroBloco">
+      <option value="">Todos os Blocos</option>
+    </select>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Data/Hora</th>
+          <th>Bloco</th>
+          <th>Sala</th>
+          <th>Professor</th>
+          <th>Problema</th>
+          <th>Observação</th>
+          <th>Status</th>
+          <th>Atendente</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaChamados">
+        <tr><td colspan="8" class="loading">⏳ Carregando chamados...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Som de notificação -->
+<audio id="somNotificacao" preload="auto">
+  <source src="https://www.soundjay.com/buttons/sounds/beep-07a.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
+  
+  let todosChamados = [];
+  let ultimoTotal = 0;
+  let primeiraCarga = true;
+  let somAtivado = true;
+  let idsConhecidos = new Set();
+
+  // Pede permissão pra notificação no navegador
+  if ("Notification" in window && Notification.permission === "default") {
+    Notification.requestPermission();
+  }
+
+  function toggleSom() {
+    somAtivado = !somAtivado;
+    const btn = document.getElementById("btnSom");
+    const texto = document.getElementById("somTexto");
+    if (somAtivado) {
+      btn.classList.add("ativo");
+      btn.innerHTML = '🔔 <span id="somTexto">Som Ativado</span>';
+    } else {
+      btn.classList.remove("ativo");
+      btn.innerHTML = '🔕 <span id="somTexto">Som Desativado</span>';
+    }
+  }
+
+  function tocarSom() {
+    if (!somAtivado) return;
+    try {
+      // Som via Web Audio API (não depende de internet)
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.frequency.value = 800;
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      osc.start();
+      
+      setTimeout(() => { osc.frequency.value = 1000; }, 150);
+      setTimeout(() => { osc.frequency.value = 800; }, 300);
+      setTimeout(() => {
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+        osc.stop(ctx.currentTime + 0.3);
+      }, 450);
+    } catch (e) {
+      console.log("Som não disponível");
+    }
+  }
+
+  function mostrarNotificacao(chamado) {
+    // Notificação no navegador
+    if ("Notification" in window && Notification.permission === "granted") {
+      const notif = new Notification("🔔 Novo Chamado Técnico!", {
+        body: `Bloco ${chamado.bloco} - ${chamado.sala}\n${chamado.professor}\nProblema: ${chamado.problema}`,
+        icon: "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
+        tag: "chamado-" + chamado.id,
+        requireInteraction: false
+      });
+      setTimeout(() => notif.close(), 8000);
+    }
+
+    // Toast visual no painel
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = `
+      <div class="toast-icon">🔔</div>
+      <div>
+        <div style="font-size:15px;">Novo Chamado!</div>
+        <div style="font-size:12px;opacity:0.9;margin-top:3px;">
+          ${chamado.bloco} • ${chamado.sala} • ${chamado.professor}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.style.transition = "all 0.4s";
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(400px)";
+      setTimeout(() => toast.remove(), 400);
+    }, 5000);
+  }
+
+  async function carregarChamados() {
+    try {
+      const res = await fetch(SHEET_URL);
+      const data = await res.json();
+      const novosChamados = (data.chamados || []).reverse();
+
+      // Detectar novos chamados
+      if (!primeiraCarga) {
+        const idsAtuais = new Set(novosChamados.map(c => c.id));
+        const novos = novosChamados.filter(c => !idsConhecidos.has(c.id));
+        
+        if (novos.length > 0) {
+          tocarSom();
+          novos.forEach(c => mostrarNotificacao(c));
+          
+          // Atualizar título da aba pra chamar atenção
+          document.title = `(${novos.length}) 🔔 Novo Chamado!`;
+          setTimeout(() => { document.title = "Painel de Chamados - UNINTA"; }, 10000);
+        }
+      } else {
+        primeiraCarga = false;
+      }
+
+      idsConhecidos = new Set(novosChamados.map(c => c.id));
+      todosChamados = novosChamados;
+      atualizarBlocos();
+      renderizar();
+      atualizarHora();
+    } catch (err) {
+      document.getElementById("tabelaChamados").innerHTML = 
+        '<tr><td colspan="8" class="empty">❌ Erro ao carregar dados</td></tr>';
+    }
+  }
+
+  function atualizarBlocos() {
+    const filtroBloco = document.getElementById("filtroBloco");
+    const valorAtual = filtroBloco.value;
+    const blocos = [...new Set(todosChamados.map(c => c.bloco))].sort();
+    filtroBloco.innerHTML = '<option value="">Todos os Blocos</option>';
+    blocos.forEach(b => {
+      filtroBloco.innerHTML += `<option value="${b}">Bloco ${b}</option>`;
+    });
+    filtroBloco.value = valorAtual;
+  }
+
+  function formatarData(data) {
+    if (!data) return "-";
+    const d = new Date(data);
+    return d.toLocaleString('pt-BR', { 
+      day: '2-digit', month: '2-digit', 
+      hour: '2-digit', minute: '2-digit' 
+    });
+  }
+
+  function getStatusBadge(status) {
+    if (!status) return '<span class="status-badge status-pendente">Pendente</span>';
+    if (status.includes("Concluído")) return '<span class="status-badge status-concluido">Concluído</span>';
+    if (status.includes("Atendimento")) return '<span class="status-badge status-atendimento">Em Atendimento</span>';
+    return '<span class="status-badge status-pendente">Pendente</span>';
+  }
+
+  function renderizar() {
+    const filtroStatus = document.getElementById("filtroStatus").value;
+    const filtroBloco = document.getElementById("filtroBloco").value;
+    
+    let filtrados = todosChamados;
+    if (filtroStatus) filtrados = filtrados.filter(c => (c.status || "Pendente").includes(filtroStatus));
+    if (filtroBloco) filtrados = filtrados.filter(c => c.bloco === filtroBloco);
+
+    document.getElementById("totalGeral").textContent = todosChamados.length;
+    document.getElementById("totalPendente").textContent = todosChamados.filter(c => !c.status || c.status === "Pendente").length;
+    document.getElementById("totalAtendimento").textContent = todosChamados.filter(c => c.status && c.status.includes("Atendimento")).length;
+    document.getElementById("totalConcluido").textContent = todosChamados.filter(c => c.status && c.status.includes("Concluído")).length;
+
+    const tbody = document.getElementById("tabelaChamados");
+    if (filtrados.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">📭 Nenhum chamado encontrado</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = filtrados.map((c, idx) => {
+      const ehNovo = idx === 0 && !primeiraCarga;
+      return `
+        <tr ${ehNovo ? 'class="novo-chamado"' : ''}>
+          <td>${formatarData(c.dataHora)}</td>
+          <td><span class="bloco-badge">${c.bloco}</span></td>
+          <td><strong>${c.sala}</strong></td>
+          <td>${c.professor}</td>
+          <td>${c.problema}</td>
+          <td>${c.observacao || "-"}</td>
+          <td>${getStatusBadge(c.status)}</td>
+          <td>${c.atendente || "-"}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function atualizarHora() {
+    const agora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById("updateInfo").textContent = `Atualizado às ${agora}`;
+  }
+
+  document.getElementById("filtroStatus").addEventListener("change", renderizar);
+  document.getElementById("filtroBloco").addEventListener("change", renderizar);
+
+  // Ativa o áudio no primeiro clique (requisito dos navegadores)
+  document.body.addEventListener("click", function ativar() {
+    try { new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
+    document.body.removeEventListener("click", ativar);
+  }, { once: true });
+
+  carregarChamados();
+  setInterval(carregarChamados, 15000); // Atualiza a cada 15 segundos
+</script>
+
+</body>
+</html>
