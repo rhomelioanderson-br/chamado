@@ -563,6 +563,7 @@
   
   const SENHA_PADRAO = "qaz@1234";
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
+const CHAVE = "UNINTA@NTI#2025$ChavSecr3t@!RhoM3l1o";
   
   let todosChamados = [];
   let primeiraCarga = true;
@@ -787,30 +788,38 @@
     try {
       await fetch(SHEET_URL, {
         method: "POST",
-        body: JSON.stringify({ acao: "puxar", linha: linha, atendente: usuarioLogado.nome })
+        body: JSON.stringify({ 
+          acao: "puxar", 
+          linha: linha, 
+          atendente: usuarioLogado.nome,
+          chave: CHAVE
+        })
       });
       setTimeout(carregarChamados, 1000);
     } catch (e) { alert("Erro ao puxar chamado"); }
   }
 
-  async function concluirChamado(linha) {
+async function concluirChamado(linha) {
     if (!confirm("Marcar este chamado como concluído?")) return;
     try {
       await fetch(SHEET_URL, {
         method: "POST",
-        body: JSON.stringify({ acao: "concluir", linha: linha })
+        body: JSON.stringify({ 
+          acao: "concluir", 
+          linha: linha,
+          chave: CHAVE
+        })
       });
       setTimeout(carregarChamados, 1000);
     } catch (e) { alert("Erro ao concluir chamado"); }
   }
 
-  async function carregarChamados() {
+ async function carregarChamados() {
     try {
-      const res = await fetch(SHEET_URL, { redirect: "follow" });
+      const res = await fetch(`${SHEET_URL}?chave=${encodeURIComponent(CHAVE)}`, { redirect: "follow" });
       const data = await res.json();
       const novosChamados = (data.chamados || []).reverse();
 
-      // Filtra apenas chamados do prédio atual
       const chamadosDoPredio = novosChamados.filter(c => c.predio === predioAtual);
 
       if (!primeiraCarga) {
