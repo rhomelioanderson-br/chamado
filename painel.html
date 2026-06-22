@@ -626,7 +626,7 @@
     document.getElementById("nomeAtendente").textContent = usuarioLogado.nome;
     document.getElementById("predioAtual").textContent = predioAtual;
     carregarChamados();
-    setInterval(carregarChamados, 15000);
+    setInterval(carregarChamados, 2000);
     setInterval(renderizar, 60000);
   }
 
@@ -764,7 +764,7 @@
     }, 5000);
   }
 
-  async function puxarChamado(linha) {
+ async function puxarChamado(linha) {
     if (!confirm("Puxar este chamado para " + usuarioLogado.nome + "?")) return;
     try {
       await fetch(SHEET_URL, {
@@ -776,7 +776,7 @@
           chave: CHAVE
         })
       });
-      setTimeout(carregarChamados, 1000);
+      carregarChamados();
     } catch (e) { alert("Erro ao puxar chamado"); }
   }
 
@@ -791,7 +791,7 @@
           chave: CHAVE
         })
       });
-      setTimeout(carregarChamados, 1000);
+      carregarChamados();
     } catch (e) { alert("Erro ao concluir chamado"); }
   }
 
@@ -868,14 +868,19 @@
   function getTempoChamado(c) {
     const status = c.status || "Pendente";
     
-    if (status.includes("Concluído") && c.dataConclusao) {
-      const tempo = calcularTempo(c.dataHora, c.dataConclusao);
+    if (status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao) {
+      const tempo = calcularTempo(c.dataInicioAtendimento, c.dataConclusao);
       return tempo ? '<span class="tempo-badge">⏱️ ' + tempo + '</span>' : "-";
     }
     
-    if (status === "Pendente" || status.includes("Atendimento")) {
-      const tempo = calcularTempo(c.dataHora, new Date());
+    if (status.includes("Atendimento") && c.dataInicioAtendimento) {
+      const tempo = calcularTempo(c.dataInicioAtendimento, new Date());
       return tempo ? '<span class="tempo-atual">⏳ ' + tempo + '</span>' : "-";
+    }
+    
+    if (status === "Pendente") {
+      const tempo = calcularTempo(c.dataHora, new Date());
+      return tempo ? '<span class="tempo-atual">⏳ Espera: ' + tempo + '</span>' : "-";
     }
     
     return "-";
@@ -883,13 +888,13 @@
 
   function calcularTempoMedio() {
     const concluidos = todosChamados.filter(c => 
-      c.status && c.status.includes("Concluído") && c.dataHora && c.dataConclusao
+      c.status && c.status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao
     );
     
     if (concluidos.length === 0) return "-";
     
     const totalMs = concluidos.reduce((sum, c) => {
-      return sum + (new Date(c.dataConclusao) - new Date(c.dataHora));
+      return sum + (new Date(c.dataConclusao) - new Date(c.dataInicioAtendimento));
     }, 0);
     
     const mediaMs = totalMs / concluidos.length;
