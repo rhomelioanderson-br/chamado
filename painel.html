@@ -88,13 +88,6 @@
       margin-top: 15px; display: none;
     }
     
-    .info-padrao {
-      background: #fef3c7; color: #92400e;
-      padding: 12px; border-radius: 8px;
-      font-size: 12px; text-align: center;
-      margin-top: 15px;
-    }
-    
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -415,7 +408,7 @@
   
   <button onclick="fazerLogin()">🔓 Entrar</button>
   <div class="login-erro" id="loginErro">❌ Usuário ou senha incorretos</div>
-  
+</div>
 
 <div class="modal-overlay" id="modalSenha">
   <div class="modal">
@@ -558,7 +551,7 @@
   
   const SENHA_PADRAO = "qaz@1234";
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbwqmGSpJp0j60X4cD6FwkKa3dTRW-0cSPlCB7tcHu2ez5aeZlVwXp3ZjjpJatEjag2-/exec";
-const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
+  const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
   
   let todosChamados = [];
   let primeiraCarga = true;
@@ -752,7 +745,7 @@ const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
   function mostrarNotificacao(chamado) {
     if ("Notification" in window && Notification.permission === "granted") {
       const notif = new Notification("🔔 Novo Chamado!", {
-        body: `${chamado.predio} - ${chamado.bloco}\n${chamado.sala} - ${chamado.professor}\nProblema: ${chamado.problema}`,
+        body: chamado.predio + " - " + chamado.bloco + "\n" + chamado.sala + " - " + chamado.professor + "\nProblema: " + chamado.problema,
         icon: "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
         tag: "chamado-" + chamado.id
       });
@@ -761,14 +754,7 @@ const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
 
     const toast = document.createElement("div");
     toast.className = "toast";
-    toast.innerHTML = `
-      <div class="toast-icon">🔔</div>
-      <div>
-        <div style="font-size:15px;">Novo Chamado!</div>
-        <div style="font-size:12px;opacity:0.9;margin-top:3px;">
-          ${chamado.predio} • ${chamado.sala} • ${chamado.professor}
-        </div>
-      </div>`;
+    toast.innerHTML = '<div class="toast-icon">🔔</div><div><div style="font-size:15px;">Novo Chamado!</div><div style="font-size:12px;opacity:0.9;margin-top:3px;">' + chamado.predio + ' • ' + chamado.sala + ' • ' + chamado.professor + '</div></div>';
     document.body.appendChild(toast);
     setTimeout(() => {
       toast.style.transition = "all 0.4s";
@@ -779,7 +765,7 @@ const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
   }
 
   async function puxarChamado(linha) {
-    if (!confirm(`Puxar este chamado para ${usuarioLogado.nome}?`)) return;
+    if (!confirm("Puxar este chamado para " + usuarioLogado.nome + "?")) return;
     try {
       await fetch(SHEET_URL, {
         method: "POST",
@@ -794,7 +780,7 @@ const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
     } catch (e) { alert("Erro ao puxar chamado"); }
   }
 
-async function concluirChamado(linha) {
+  async function concluirChamado(linha) {
     if (!confirm("Marcar este chamado como concluído?")) return;
     try {
       await fetch(SHEET_URL, {
@@ -809,9 +795,12 @@ async function concluirChamado(linha) {
     } catch (e) { alert("Erro ao concluir chamado"); }
   }
 
- async function carregarChamados() {
+  async function carregarChamados() {
     try {
-      const res = await fetch(`${SHEET_URL}?chave=${encodeURIComponent(CHAVE)}`, { redirect: "follow" });
+      const res = await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify({ acao: "listar", chave: CHAVE })
+      });
       const data = await res.json();
       const novosChamados = (data.chamados || []).reverse();
 
@@ -822,7 +811,7 @@ async function concluirChamado(linha) {
         if (novos.length > 0) {
           tocarSom();
           novos.forEach(c => mostrarNotificacao(c));
-          document.title = `(${novos.length}) 🔔 Novo Chamado!`;
+          document.title = "(" + novos.length + ") 🔔 Novo Chamado!";
           setTimeout(() => { document.title = "Painel de Chamados - NTI"; }, 10000);
         }
       } else {
@@ -837,6 +826,7 @@ async function concluirChamado(linha) {
     } catch (err) {
       document.getElementById("tabelaChamados").innerHTML = 
         '<tr><td colspan="11" class="empty">❌ Erro ao carregar dados</td></tr>';
+      console.error("Erro ao carregar:", err);
     }
   }
 
@@ -846,7 +836,7 @@ async function concluirChamado(linha) {
     const blocos = [...new Set(todosChamados.map(c => c.bloco))].sort();
     filtroBloco.innerHTML = '<option value="">Todos os Blocos</option>';
     blocos.forEach(b => {
-      filtroBloco.innerHTML += `<option value="${b}">${b}</option>`;
+      filtroBloco.innerHTML += '<option value="' + b + '">' + b + '</option>';
     });
     filtroBloco.value = valorAtual;
   }
@@ -869,9 +859,9 @@ async function concluirChamado(linha) {
     const horas = Math.floor(minutos / 60);
     const dias = Math.floor(horas / 24);
     
-    if (dias > 0) return `${dias}d ${horas % 24}h`;
-    if (horas > 0) return `${horas}h ${minutos % 60}min`;
-    if (minutos > 0) return `${minutos}min`;
+    if (dias > 0) return dias + "d " + (horas % 24) + "h";
+    if (horas > 0) return horas + "h " + (minutos % 60) + "min";
+    if (minutos > 0) return minutos + "min";
     return "menos de 1min";
   }
 
@@ -880,12 +870,12 @@ async function concluirChamado(linha) {
     
     if (status.includes("Concluído") && c.dataConclusao) {
       const tempo = calcularTempo(c.dataHora, c.dataConclusao);
-      return tempo ? `<span class="tempo-badge">⏱️ ${tempo}</span>` : "-";
+      return tempo ? '<span class="tempo-badge">⏱️ ' + tempo + '</span>' : "-";
     }
     
     if (status === "Pendente" || status.includes("Atendimento")) {
       const tempo = calcularTempo(c.dataHora, new Date());
-      return tempo ? `<span class="tempo-atual">⏳ ${tempo}</span>` : "-";
+      return tempo ? '<span class="tempo-atual">⏳ ' + tempo + '</span>' : "-";
     }
     
     return "-";
@@ -906,8 +896,8 @@ async function concluirChamado(linha) {
     const minutos = Math.floor(mediaMs / 60000);
     const horas = Math.floor(minutos / 60);
     
-    if (horas > 0) return `${horas}h ${minutos % 60}min`;
-    if (minutos > 0) return `${minutos}min`;
+    if (horas > 0) return horas + "h " + (minutos % 60) + "min";
+    if (minutos > 0) return minutos + "min";
     return "<1min";
   }
 
@@ -921,15 +911,15 @@ async function concluirChamado(linha) {
   function getBotaoAcao(c) {
     const status = c.status || "Pendente";
     if (status === "Pendente") {
-      return `<button class="btn-acao btn-puxar" onclick="puxarChamado(${c.id})">🙋 Puxar pra mim</button>`;
+      return '<button class="btn-acao btn-puxar" onclick="puxarChamado(' + c.id + ')">🙋 Puxar pra mim</button>';
     }
     if (status.includes("Atendimento")) {
       if (c.atendente === usuarioLogado.nome) {
-        return `<button class="btn-acao btn-concluir" onclick="concluirChamado(${c.id})">✅ Concluir</button>`;
+        return '<button class="btn-acao btn-concluir" onclick="concluirChamado(' + c.id + ')">✅ Concluir</button>';
       }
-      return `<button class="btn-acao" disabled>Em atendimento</button>`;
+      return '<button class="btn-acao" disabled>Em atendimento</button>';
     }
-    return `<span style="color:#10b981;font-weight:700;">✅ Concluído</span>`;
+    return '<span style="color:#10b981;font-weight:700;">✅ Concluído</span>';
   }
 
   function renderizar() {
@@ -948,32 +938,33 @@ async function concluirChamado(linha) {
 
     const tbody = document.getElementById("tabelaChamados");
     if (filtrados.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="11" class="empty">📭 Nenhum chamado para ${predioAtual}</td></tr>`;
+      tbody.innerHTML = '<tr><td colspan="11" class="empty">📭 Nenhum chamado para ' + predioAtual + '</td></tr>';
       return;
     }
 
-    tbody.innerHTML = filtrados.map((c, idx) => {
+    let html = '';
+    filtrados.forEach((c, idx) => {
       const ehNovo = idx === 0 && !primeiraCarga;
-      return `
-        <tr ${ehNovo ? 'class="novo-chamado"' : ''}>
-          <td>${formatarData(c.dataHora)}</td>
-          <td><span class="predio-tag">${c.predio || "-"}</span></td>
-          <td><span class="bloco-badge">${c.bloco}</span></td>
-          <td><strong>${c.sala}</strong></td>
-          <td>${c.professor}</td>
-          <td>${c.problema}</td>
-          <td>${c.observacao || "-"}</td>
-          <td>${getStatusBadge(c.status)}</td>
-          <td>${c.atendente || "-"}</td>
-          <td>${getTempoChamado(c)}</td>
-          <td>${getBotaoAcao(c)}</td>
-        </tr>`;
-    }).join('');
+      html += '<tr ' + (ehNovo ? 'class="novo-chamado"' : '') + '>';
+      html += '<td>' + formatarData(c.dataHora) + '</td>';
+      html += '<td><span class="predio-tag">' + (c.predio || "-") + '</span></td>';
+      html += '<td><span class="bloco-badge">' + c.bloco + '</span></td>';
+      html += '<td><strong>' + c.sala + '</strong></td>';
+      html += '<td>' + c.professor + '</td>';
+      html += '<td>' + c.problema + '</td>';
+      html += '<td>' + (c.observacao || "-") + '</td>';
+      html += '<td>' + getStatusBadge(c.status) + '</td>';
+      html += '<td>' + (c.atendente || "-") + '</td>';
+      html += '<td>' + getTempoChamado(c) + '</td>';
+      html += '<td>' + getBotaoAcao(c) + '</td>';
+      html += '</tr>';
+    });
+    tbody.innerHTML = html;
   }
 
   function atualizarHora() {
     const agora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById("updateInfo").textContent = `Atualizado às ${agora}`;
+    document.getElementById("updateInfo").textContent = "Atualizado às " + agora;
   }
 
   document.getElementById("filtroStatus").addEventListener("change", renderizar);
