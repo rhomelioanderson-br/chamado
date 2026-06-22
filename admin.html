@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - NTI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
+      padding: 20px; color: #1a1a1a;
+    }
+    
+    .container { max-width: 1500px; margin: 0 auto; }
+    
+    .header {
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      padding: 25px 30px; border-radius: 15px;
+      margin-bottom: 25px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .header-title { color: white; }
+    .header-title h1 { font-size: 24px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+    .header-title p { font-size: 13px; opacity: 0.9; margin-top: 3px; }
+    
+    .header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    
+    .admin-badge {
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+      color: #4a0000; padding: 10px 18px;
+      border-radius: 25px; font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+    }
+    
+    .btn-acao-header {
+      background: rgba(255, 255, 255, 0.15);
+      color: white; border: 2px solid rgba(255,255,255,0.3);
+      padding: 10px 18px; border-radius: 25px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    
+    .btn-acao-header:hover { background: rgba(255,255,255,0.25); }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px; margin-bottom: 25px;
+    }
+    
+    .card {
+      background: white; padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative; overflow: hidden;
+    }
+    
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; }
+    .card.total::before { background: #C8102E; }
+    .card.pendente::before { background: #ef4444; }
+    .card.atendimento::before { background: #f59e0b; }
+    .card.concluido::before { background: #10b981; }
+    .card.tempo::before { background: #6366f1; }
+    .card.hoje::before { background: #ec4899; }
+    
+    .card-label {
+      font-size: 11px; color: #6b7280; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .card-value { font-size: 28px; font-weight: 800; color: #1a1a1a; }
+    .card-sub { font-size: 11px; color: #9ca3af; margin-top: 4px; font-weight: 500; }
+    .card-icon {
+      position: absolute; right: 15px; top: 50%;
+      transform: translateY(-50%); font-size: 35px; opacity: 0.15;
+    }
+    
+    .secao {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .secao-titulo {
+      font-size: 18px; font-weight: 800;
+      color: #4a0000; margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #C8102E;
+      display: flex; align-items: center; gap: 10px;
+    }
+    
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    @media (max-width: 968px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    
+    .ranking-item {
+      display: flex; align-items: center; gap: 15px;
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+      border-left: 4px solid #C8102E;
+    }
+    
+    .ranking-item:hover {
+      transform: translateX(5px);
+      background: #fef2f2;
+    }
+    
+    .ranking-item.top1 { border-left-color: #FFD700; background: linear-gradient(90deg, #fffbeb 0%, #fafafa 100%); }
+    .ranking-item.top2 { border-left-color: #C0C0C0; background: linear-gradient(90deg, #f9fafb 0%, #fafafa 100%); }
+    .ranking-item.top3 { border-left-color: #CD7F32; background: linear-gradient(90deg, #fff7ed 0%, #fafafa 100%); }
+    
+    .ranking-pos {
+      font-size: 28px;
+      font-weight: 900;
+      min-width: 50px;
+      text-align: center;
+    }
+    
+    .ranking-pos.top1 { color: #FFD700; }
+    .ranking-pos.top2 { color: #C0C0C0; }
+    .ranking-pos.top3 { color: #CD7F32; }
+    
+    .ranking-info { flex: 1; }
+    .ranking-nome { font-weight: 800; color: #1a1a1a; font-size: 15px; }
+    .ranking-stats { font-size: 12px; color: #6b7280; margin-top: 3px; }
+    
+    .ranking-numero {
+      font-size: 22px;
+      font-weight: 900;
+      color: #C8102E;
+      min-width: 60px;
+      text-align: right;
+    }
+    
+    .barra-progresso {
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    
+    .barra-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #C8102E 0%, #FFC107 100%);
+      transition: width 0.5s ease;
+    }
+    
+    .problema-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 15px;
+      background: #fafafa;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 4px solid #C8102E;
+    }
+    
+    .problema-nome { font-weight: 600; color: #1a1a1a; font-size: 14px; }
+    .problema-qtd { 
+      background: #C8102E; color: white;
+      padding: 4px 10px; border-radius: 12px;
+      font-weight: 800; font-size: 12px;
+    }
+    
+    .filtros {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .filtros label {
+      font-size: 12px; font-weight: 700; color: #4a0000;
+      text-transform: uppercase;
+    }
+    
+    .filtros select, .filtros input {
+      padding: 8px 14px; border: 2px solid #e5e7eb;
+      border-radius: 8px; font-size: 13px; background: #fafafa;
+      font-family: 'Inter', sans-serif; font-weight: 500;
+    }
+    
+    .filtros select:focus, .filtros input:focus { outline: none; border-color: #C8102E; }
+    
+    .btn-exportar {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white; border: none;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer; text-transform: uppercase;
+      letter-spacing: 0.5px; font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    
+    .btn-exportar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+    }
+    
+    .table-container {
+      background: white; border-radius: 15px;
+      overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      margin-bottom: 25px;
+    }
+    
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: linear-gradient(135deg, #4a0000 0%, #2a0000 100%); }
+    
+    th {
+      padding: 14px 12px; text-align: left; color: white;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    td {
+      padding: 12px; border-bottom: 1px solid #f3f4f6;
+      font-size: 13px; color: #374151;
+    }
+    
+    tbody tr:hover { background: #fef2f2; }
+    
+    .status-badge {
+      display: inline-block; padding: 4px 10px; border-radius: 12px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+    }
+    
+    .status-pendente { background: #fee2e2; color: #991b1b; }
+    .status-atendimento { background: #fef3c7; color: #92400e; }
+    .status-concluido { background: #d1fae5; color: #065f46; }
+    
+    .predio-tag {
+      display: inline-block; padding: 3px 8px;
+      background: #FFC107; color: #4a0000;
+      border-radius: 5px; font-size: 10px; font-weight: 700;
+    }
+    
+    .empty { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 14px; }
+    
+    @media (max-width: 768px) {
+      .table-container { overflow-x: auto; }
+      table { min-width: 1000px; }
+      .header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header-title">
+      <h1>👑 PAINEL ADMINISTRATIVO</h1>
+      <p>Visão geral do sistema — NTI / UNINTA</p>
+    </div>
+    <div class="header-controls">
+      <div class="admin-badge">👤 <span id="nomeAdmin">Administrador</span></div>
+      <button class="btn-acao-header" onclick="atualizarTudo()">🔄 Atualizar</button>
+      <button class="btn-acao-header" onclick="sair()">🚪 Sair</button>
+    </div>
+  </div>
+
+  <!-- CARDS DE ESTATÍSTICAS -->
+  <div class="cards">
+    <div class="card total">
+      <div class="card-label">Total Geral</div>
+      <div class="card-value" id="totalGeral">0</div>
+      <div class="card-icon">📋</div>
+    </div>
+    <div class="card hoje">
+      <div class="card-label">Hoje</div>
+      <div class="card-value" id="totalHoje">0</div>
+      <div class="card-icon">📅</div>
+    </div>
+    <div class="card pendente">
+      <div class="card-label">Pendentes</div>
+      <div class="card-value" id="totalPendente">0</div>
+      <div class="card-icon">🔴</div>
+    </div>
+    <div class="card atendimento">
+      <div class="card-label">Em Atendimento</div>
+      <div class="card-value" id="totalAtendimento">0</div>
+      <div class="card-icon">🟡</div>
+    </div>
+    <div class="card concluido">
+      <div class="card-label">Concluídos</div>
+      <div class="card-value" id="totalConcluido">0</div>
+      <div class="card-icon">🟢</div>
+    </div>
+    <div class="card tempo">
+      <div class="card-label">Tempo Médio</div>
+      <div class="card-value" id="tempoMedio">-</div>
+      <div class="card-sub">geral</div>
+      <div class="card-icon">⏱️</div>
+    </div>
+  </div>
+
+  <!-- RANKING E PROBLEMAS -->
+  <div class="grid-2">
+    <div class="secao">
+      <div class="secao-titulo">🏆 RANKING DE ATENDENTES</div>
+      <div id="ranking"></div>
+    </div>
+    
+    <div class="secao">
+      <div class="secao-titulo">🔧 PROBLEMAS MAIS COMUNS</div>
+      <div id="problemas"></div>
+    </div>
+  </div>
+
+  <!-- POR PRÉDIO -->
+  <div class="secao">
+    <div class="secao-titulo">🏢 CHAMADOS POR PRÉDIO</div>
+    <div id="porPredio"></div>
+  </div>
+
+  <!-- FILTROS E TABELA COMPLETA -->
+  <div class="filtros">
+    <label>Filtrar por:</label>
+    <select id="filtroStatus">
+      <option value="">Todos os Status</option>
+      <option value="Pendente">Pendente</option>
+      <option value="Em Atendimento">Em Atendimento</option>
+      <option value="Concluído">Concluído</option>
+    </select>
+    <select id="filtroPredio">
+      <option value="">Todos os Prédios</option>
+      <option value="SEDE">SEDE</option>
+      <option value="CCS">CCS</option>
+      <option value="Clínica Escola">Clínica Escola</option>
+      <option value="Shopping">Shopping</option>
+    </select>
+    <select id="filtroAtendente">
+      <option value="">Todos os Atendentes</option>
+    </select>
+    <button class="btn-exportar" onclick="exportarCSV()">📥 Exportar CSV</button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Data/Hora</th>
+          <th>Prédio</th>
+          <th>Bloco</th>
+          <th>Sala</th>
+          <th>Solicitante</th>
+          <th>Problema</th>
+          <th>Status</th>
+          <th>Atendente</th>
+          <th>Tempo</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaChamados">
+        <tr><td colspan="9" class="empty">⏳ Carregando...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
+  const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
+  
+  let todosChamados = [];
+
+  // Verifica se é admin
+  window.addEventListener("DOMContentLoaded", () => {
+    const salvo = localStorage.getItem("atendente");
+    if (!salvo) {
+      window.location.href = "painel.html";
+      return;
+    }
+    const user = JSON.parse(salvo);
+    if (user.user !== "admin") {
+      window.location.href = "painel.html";
+      return;
+    }
+    document.getElementById("nomeAdmin").textContent = user.nome;
+    carregarChamados();
+    setInterval(carregarChamados, 10000);
+  });
+
+  function sair() {
+    if (confirm("Deseja sair?")) {
+      localStorage.removeItem("atendente");
+      localStorage.removeItem("predioAtual");
+      window.location.href = "painel.html";
+    }
+  }
+
+  function atualizarTudo() {
+    carregarChamados();
+  }
+
+  async function carregarChamados() {
+    try {
+      const res = await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify({ acao: "listar", chave: CHAVE })
+      });
+      const data = await res.json();
+      todosChamados = (data.chamados || []).reverse();
+      atualizarTudoVisual();
+    } catch (err) {
+      console.error("Erro:", err);
+    }
+  }
+
+  function calcularTempo(inicio, fim) {
+    if (!inicio || !fim) return null;
+    const ms = new Date(fim) - new Date(inicio);
+    if (ms < 0) return null;
+    const minutos = Math.floor(ms / 60000);
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
+    if (dias > 0) return dias + "d " + (horas % 24) + "h";
+    if (horas > 0) return horas + "h " + (minutos % 60) + "min";
+    if (minutos > 0) return minutos + "min";
+    return "<1min";
+  }
+
+  function ehHoje(data) {
+    if (!data) return false;
+    const d = new Date(data);
+    const hoje = new Date();
+    return d.toDateString() === hoje.toDateString();
+  }
+
+  function formatarData(data) {
+    if (!data) return "-";
+    const d = new Date(data);
+    return d.toLocaleString('pt-BR', { 
+      day: '2-digit', month: '2-digit', 
+      hour: '2-digit', minute: '2-digit' 
+    });
+  }
+
+  function atualizarTudoVisual() {
+    atualizarCards();
+    atualizarRanking();
+    atualizarProblemas();
+    atualizarPorPredio();
+    atualizarFiltroAtendente();
+    renderizarTabela();
+  }
+
+  function atualizarCards() {
+    document.getElementById("totalGeral").textContent = todosChamados.length;
+    document.getElementById("totalHoje").textContent = todosChamados.filter(c => ehHoje(c.dataHora)).length;
+    document.getElementById("totalPendente").textContent = todosChamados.filter(c => !c.status || c.status === "Pendente").length;
+    document.getElementById("totalAtendimento").textContent = todosChamados.filter(c => c.status && c.status.includes("Atendimento")).length;
+    document.getElementById("totalConcluido").textContent = todosChamados.filter(c => c.status && c.status.includes("Concluído")).length;
+
+    const concluidos = todosChamados.filter(c => c.status && c.status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao);
+    if (concluidos.length === 0) {
+      document.getElementById("tempoMedio").textContent = "-";
+    } else {
+      const totalMs = concluidos.reduce((sum, c) => sum + (new Date(c.dataConclusao) - new Date(c.dataInicioAtendimento)), 0);
+      const mediaMs = totalMs / concluidos.length;
+      const minutos = Math.floor(mediaMs / 60000);
+      const horas = Math.floor(minutos / 60);
+      let texto = "<1min";
+      if (horas > 0) texto = horas + "h " + (minutos % 60) + "min";
+      else if (minutos > 0) texto = minutos + "min";
+      document.getElementById("tempoMedio").textContent = texto;
+    }
+  }
+
+  function atualizarRanking() {
+    const atendentes = {};
+    todosChamados.forEach(c => {
+      if (c.atendente && c.status && c.status.includes("Concluído")) {
+        if (!atendentes[c.atendente]) {
+          atendentes[c.atendente] = { total: 0, tempoTotal: 0, comTempo: 0 };
+        }
+        atendentes[c.atendente].total++;
+        if (c.dataInicioAtendimento && c.dataConclusao) {
+          atendentes[c.atendente].tempoTotal += (new Date(c.dataConclusao) - new Date(c.dataInicioAtendimento));
+          atendentes[c.atendente].comTempo++;
+        }
+      }
+    });
+
+    const ranking = Object.entries(atendentes)
+      .map(([nome, dados]) => ({
+        nome,
+        total: dados.total,
+        tempoMedio: dados.comTempo > 0 ? dados.tempoTotal / dados.comTempo : 0
+      }))
+      .sort((a, b) => b.total - a.total);
+
+    const max = ranking.length > 0 ? ranking[0].total : 1;
+
+    const container = document.getElementById("ranking");
+    if (ranking.length === 0) {
+      container.innerHTML = '<div class="empty">Nenhum chamado concluído ainda</div>';
+      return;
+    }
+
+    let html = '';
+    ranking.forEach((a, idx) => {
+      const pos = idx + 1;
+      const classe = pos <= 3 ? 'top' + pos : '';
+      const medalha = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : pos + 'º';
+      const minutos = Math.floor(a.tempoMedio / 60000);
+      const horas = Math.floor(minutos / 60);
+      let tempoTxt = "-";
+      if (horas > 0) tempoTxt = horas + "h " + (minutos % 60) + "min";
+      else if (minutos > 0) tempoTxt = minutos + "min";
+      else if (a.tempoMedio > 0) tempoTxt = "<1min";
+      
+      const percentual = (a.total / max) * 100;
+      
+      html += '<div class="ranking-item ' + classe + '">';
+      html += '<div class="ranking-pos ' + classe + '">' + medalha + '</div>';
+      html += '<div class="ranking-info">';
+      html += '<div class="ranking-nome">' + a.nome + '</div>';
+      html += '<div class="ranking-stats">⏱️ Tempo médio: ' + tempoTxt + '</div>';
+      html += '<div class="barra-progresso"><div class="barra-fill" style="width:' + percentual + '%"></div></div>';
+      html += '</div>';
+      html += '<div class="ranking-numero">' + a.total + '</div>';
+      html += '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  function atualizarProblemas() {
+    const problemas = {};
+    todosChamados.forEach(c => {
+      if (c.problema) {
+        problemas[c.problema] = (problemas[c.problema] || 0) + 1;
+      }
+    });
+
+    const lista = Object.entries(problemas)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+
+    const container = document.getElementById("problemas");
+    if (lista.length === 0) {
+      container.innerHTML = '<div class="empty">Nenhum chamado registrado</div>';
+      return;
+    }
+
+    let html = '';
+    lista.forEach(([prob, qtd]) => {
+      html += '<div class="problema-item">';
+      html += '<div class="problema-nome">' + prob + '</div>';
+      html += '<div class="problema-qtd">' + qtd + '</div>';
+      html += '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  function atualizarPorPredio() {
+    const predios = {};
+    todosChamados.forEach(c => {
+      const p = c.predio || "Sem prédio";
+      if (!predios[p]) predios[p] = { total: 0, pendente: 0, atendimento: 0, concluido: 0 };
+      predios[p].total++;
+      if (!c.status || c.status === "Pendente") predios[p].pendente++;
+      else if (c.status.includes("Atendimento")) predios[p].atendimento++;
+      else if (c.status.includes("Concluído")) predios[p].concluido++;
+    });
+
+    let html = '<div class="cards">';
+    Object.entries(predios).forEach(([nome, dados]) => {
+      html += '<div class="card total">';
+      html += '<div class="card-label">' + nome + '</div>';
+      html += '<div class="card-value">' + dados.total + '</div>';
+      html += '<div class="card-sub">🔴 ' + dados.pendente + ' • 🟡 ' + dados.atendimento + ' • 🟢 ' + dados.concluido + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    document.getElementById("porPredio").innerHTML = html;
+  }
+
+  function atualizarFiltroAtendente() {
+    const select = document.getElementById("filtroAtendente");
+    const valorAtual = select.value;
+    const atendentes = [...new Set(todosChamados.filter(c => c.atendente).map(c => c.atendente))].sort();
+    select.innerHTML = '<option value="">Todos os Atendentes</option>';
+    atendentes.forEach(a => {
+      select.innerHTML += '<option value="' + a + '">' + a + '</option>';
+    });
+    select.value = valorAtual;
+  }
+
+  function getStatusBadge(status) {
+    if (!status) return '<span class="status-badge status-pendente">Pendente</span>';
+    if (status.includes("Concluído")) return '<span class="status-badge status-concluido">Concluído</span>';
+    if (status.includes("Atendimento")) return '<span class="status-badge status-atendimento">Em Atendimento</span>';
+    return '<span class="status-badge status-pendente">Pendente</span>';
+  }
+
+  function getTempo(c) {
+    const status = c.status || "Pendente";
+    if (status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao) {
+      const t = calcularTempo(c.dataInicioAtendimento, c.dataConclusao);
+      return t || "-";
+    }
+    if (status.includes("Atendimento") && c.dataInicioAtendimento) {
+      const t = calcularTempo(c.dataInicioAtendimento, new Date());
+      return t ? "⏳ " + t : "-";
+    }
+    if (status === "Pendente") {
+      const t = calcularTempo(c.dataHora, new Date());
+      return t ? "🔴 " + t : "-";
+    }
+    return "-";
+  }
+
+  function renderizarTabela() {
+    const filtroStatus = document.getElementById("filtroStatus").value;
+    const filtroPredio = document.getElementById("filtroPredio").value;
+    const filtroAtendente = document.getElementById("filtroAtendente").value;
+
+    let filtrados = todosChamados;
+    if (filtroStatus) filtrados = filtrados.filter(c => (c.status || "Pendente").includes(filtroStatus));
+    if (filtroPredio) filtrados = filtrados.filter(c => c.predio === filtroPredio);
+    if (filtroAtendente) filtrados = filtrados.filter(c => c.atendente === filtroAtendente);
+
+    const tbody = document.getElementById("tabelaChamados");
+    if (filtrados.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="9" class="empty">📭 Nenhum chamado encontrado</td></tr>';
+      return;
+    }
+
+    let html = '';
+    filtrados.forEach(c => {
+      html += '<tr>';
+      html += '<td>' + formatarData(c.dataHora) + '</td>';
+      html += '<td><span class="predio-tag">' + (c.predio || "-") + '</span></td>';
+      html += '<td>' + c.bloco + '</td>';
+      html += '<td><strong>' + c.sala + '</strong></td>';
+      html += '<td>' + c.professor + '</td>';
+      html += '<td>' + c.problema + '</td>';
+      html += '<td>' + getStatusBadge(c.status) + '</td>';
+      html += '<td>' + (c.atendente || "-") + '</td>';
+      html += '<td>' + getTempo(c) + '</td>';
+      html += '</tr>';
+    });
+    tbody.innerHTML = html;
+  }
+
+  function exportarCSV() {
+    const filtroStatus = document.getElementById("filtroStatus").value;
+    const filtroPredio = document.getElementById("filtroPredio").value;
+    const filtroAtendente = document.getElementById("filtroAtendente").value;
+
+    let filtrados = todosChamados;
+    if (filtroStatus) filtrados = filtrados.filter(c => (c.status || "Pendente").includes(filtroStatus));
+    if (filtroPredio) filtrados = filtrados.filter(c => c.predio === filtroPredio);
+    if (filtroAtendente) filtrados = filtrados.filter(c => c.atendente === filtroAtendente);
+
+    let csv = "Data/Hora;Predio;Bloco;Sala;Solicitante;Problema;Observacao;Status;Atendente;Inicio Atendimento;Conclusao;Tempo\n";
+    filtrados.forEach(c => {
+      const tempo = c.dataInicioAtendimento && c.dataConclusao ? calcularTempo(c.dataInicioAtendimento, c.dataConclusao) : "";
+      csv += [
+        formatarData(c.dataHora),
+        c.predio || "",
+        c.bloco || "",
+        c.sala || "",
+        c.professor || "",
+        c.problema || "",
+        c.observacao || "",
+        c.status || "Pendente",
+        c.atendente || "",
+        c.dataInicioAtendimento ? formatarData(c.dataInicioAtendimento) : "",
+        c.dataConclusao ? formatarData(c.dataConclusao) : "",
+        tempo || ""
+      ].map(v => '"' + String(v).replace(/"/g, '""') + '"').join(";") + "\n";
+    });
+
+    const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "chamados_" + new Date().toISOString().split('T')[0] + ".csv";
+    link.click();
+  }
+
+  document.getElementById("filtroStatus").addEventListener("change", renderizarTabela);
+  document.getElementById("filtroPredio").addEventListener("change", renderizarTabela);
+  document.getElementById("filtroAtendente").addEventListener("change", renderizarTabela);
+</script>
+
+</body>
+</html>
