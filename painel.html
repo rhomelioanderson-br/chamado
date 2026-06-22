@@ -392,6 +392,8 @@
     <option value="joab">Joab</option>
     <option value="eglenrique">Eglenrique</option>
     <option value="nestor">Nestor</option>
+    <option value="admin">👑 Administrador</option>
+    
   </select>
   
   <label>Senha</label>
@@ -540,13 +542,14 @@
 </div>
 
 <script>
-  const USUARIOS_PADRAO = {
+const USUARIOS_PADRAO = {
     "rhomelio":   { nome: "Rhomelio" },
     "eudes":      { nome: "Eudes" },
     "william":    { nome: "William" },
     "joab":       { nome: "Joab" },
     "eglenrique": { nome: "Eglenrique" },
-    "nestor":     { nome: "Nestor" }
+    "nestor":     { nome: "Nestor" },
+    "admin":      { nome: "Administrador", admin: true }
   };
   
   const SENHA_PADRAO = "qaz@1234";
@@ -607,11 +610,18 @@
     
     const senhaCorreta = obterSenha(user);
     
-    if (USUARIOS_PADRAO[user] && senhaCorreta === pass) {
+ if (USUARIOS_PADRAO[user] && senhaCorreta === pass) {
       usuarioLogado = { user: user, nome: USUARIOS_PADRAO[user].nome };
       predioAtual = predio;
       localStorage.setItem("atendente", JSON.stringify(usuarioLogado));
       localStorage.setItem("predioAtual", predioAtual);
+      
+      // Se for admin, redireciona para página de admin
+      if (USUARIOS_PADRAO[user].admin) {
+        window.location.href = "admin.html";
+        return;
+      }
+      
       mostrarPainel();
     } else {
       erro.textContent = "❌ Senha incorreta";
