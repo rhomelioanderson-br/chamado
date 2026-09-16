@@ -207,23 +207,20 @@
         <input type="text" id="nome" required placeholder="Ex: Prof. Maria Silva">
       </div>
 
-      <div class="form-group">
-        <label><span class="icon">⚠️</span>Tipo de Problema</label>
-        <select id="problema" required>
-          <option value="">Selecione o problema</option>
-          <option>Projetor</option>
-          <option>Computador</option>
-          <option>Internet</option>
-          <option>Sistemas</option>
-          <option>Impressora</option>
-          <option>Senhas</option>
-          <option>Outro</option>
-        </select>
-      </div>
+ <div class="form-group">
+  <label><span class="icon">📂</span>Categoria</label>
+  <select id="categoria" required>
+    <option value="">Selecione a categoria</option>
+    <option value="Sala de Aula">🏫 Sala de Aula</option>
+    <option value="Administrativo">🏢 Administrativo</option>
+  </select>
+</div>
 
-      <div class="form-group">
-  <label><span class="icon">📝</span>Observação</label>
-  <textarea id="obs" rows="3" required placeholder="Detalhes adicionais (obrigatório)"></textarea>
+<div class="form-group">
+  <label><span class="icon">⚠️</span>Tipo de Problema</label>
+  <select id="problema" required disabled>
+    <option value="">Selecione primeiro a categoria</option>
+  </select>
 </div>
 
 
@@ -310,6 +307,65 @@
 
   const blocoSelect = document.getElementById("bloco");
   const salaSelect = document.getElementById("sala");
+  const categoriaSelect = document.getElementById("categoria");
+const problemaSelect = document.getElementById("problema");
+
+const problemasPorCategoria = {
+  "Sala de Aula": [
+    "Projetor",
+    "Computador",
+    "Internet",
+    "TV/Monitor",
+    "Áudio/Som",
+    "Cabo/Adaptador",
+    "Sistema/Software",
+    "Outro"
+  ],
+
+  "Administrativo": [
+    "Computador",
+    "Impressora",
+    "Internet/Rede",
+    "Sistemas",
+    "E-mail",
+    "Reset de Senhas",
+    "Acesso/Permissão",
+    "Outro"
+  ]
+};
+
+categoriaSelect.addEventListener("change", function() {
+
+  const categoria = this.value;
+
+  problemaSelect.innerHTML =
+    '<option value="">Selecione o problema</option>';
+
+  if (categoria && problemasPorCategoria[categoria]) {
+
+    problemasPorCategoria[categoria].forEach(function(problema) {
+
+      const opt = document.createElement("option");
+
+      opt.value = problema;
+      opt.textContent = problema;
+
+      problemaSelect.appendChild(opt);
+
+    });
+
+    problemaSelect.disabled = false;
+
+  } else {
+
+    problemaSelect.disabled = true;
+
+    problemaSelect.innerHTML =
+      '<option value="">Selecione primeiro a categoria</option>';
+
+  }
+
+});
   let predioAtivo = "SEDE"; // padrão
 
   // 🔍 LÊ OS PARÂMETROS DA URL (vindo do QR Code)
