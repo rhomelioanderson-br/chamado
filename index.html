@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,9 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chamado Técnico - UNINTA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
@@ -18,264 +25,546 @@
       position: relative;
       overflow-x: hidden;
     }
-    
+
     body::before {
-      content: ''; position: absolute;
-      top: -100px; right: -100px;
-      width: 400px; height: 400px;
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
       background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none;
+      border-radius: 50%;
+      pointer-events: none;
     }
-    
+
     body::after {
-      content: ''; position: absolute;
-      bottom: -100px; left: -100px;
-      width: 400px; height: 400px;
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
       background: radial-gradient(circle, rgba(220, 20, 20, 0.2) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none;
+      border-radius: 50%;
+      pointer-events: none;
     }
-    
+
     .container {
-      background: white; padding: 0;
-      border-radius: 20px; width: 100%;
+      background: white;
+      padding: 0;
+      border-radius: 20px;
+      width: 100%;
       max-width: 440px;
       box-shadow: 0 25px 70px rgba(0,0,0,0.5);
       animation: slideUp 0.6s ease;
-      overflow: hidden; position: relative; z-index: 1;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
-    
+
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .header {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       padding: 35px 30px 30px;
-      text-align: center; position: relative; overflow: hidden;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    
+
     .header::before {
-      content: ''; position: absolute;
-      top: -50px; right: -50px;
-      width: 150px; height: 150px;
-      background: rgba(255, 193, 7, 0.15); border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 193, 7, 0.15);
+      border-radius: 50%;
     }
-    
+
     .header::after {
-      content: ''; position: absolute;
-      bottom: -30px; left: -30px;
-      width: 100px; height: 100px;
-      background: rgba(255, 255, 255, 0.05); border-radius: 50%;
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
     }
-    
+
     .header-icon {
-      width: 70px; height: 70px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 15px; font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 32px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
     }
-    
+
     h2 {
-      color: white; font-size: 22px; font-weight: 800;
-      margin-bottom: 5px; position: relative; z-index: 1;
+      color: white;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 1;
       letter-spacing: 0.5px;
     }
-    
+
     .subtitle {
-      color: rgba(255, 255, 255, 0.9); font-size: 13px;
-      position: relative; z-index: 1;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
     }
-    
-    .form-content { padding: 30px; }
-    .form-group { margin-bottom: 18px; }
-    
+
+    .form-content {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
     label {
-      display: block; color: #4a0000;
-      font-size: 12px; font-weight: 700;
-      margin-bottom: 8px; text-transform: uppercase;
+      display: block;
+      color: #4a0000;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
       letter-spacing: 0.8px;
     }
-    
-    label .icon { margin-right: 6px; }
-    
-    input, select, textarea {
-      width: 100%; padding: 13px 15px;
-      border: 2px solid #e5e7eb; border-radius: 10px;
-      font-size: 15px; transition: all 0.3s;
-      background: #fafafa; color: #1a1a1a;
+
+    label .icon {
+      margin-right: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.3s;
+      background: #fafafa;
+      color: #1a1a1a;
       font-family: 'Inter', sans-serif;
     }
-    
-    input:focus, select:focus, textarea:focus {
-      outline: none; border-color: #C8102E;
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #C8102E;
       background: white;
       box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
     }
-    
-    input.bloqueado, select.bloqueado {
-      background: #fef3c7; border-color: #FFC107;
-      color: #4a0000; font-weight: 700; cursor: not-allowed;
+
+    input.bloqueado,
+    select.bloqueado {
+      background: #fef3c7;
+      border-color: #FFC107;
+      color: #4a0000;
+      font-weight: 700;
+      cursor: not-allowed;
     }
-    
+
     .badge-qr {
-      display: inline-block; background: #FFC107;
-      color: #4a0000; font-size: 10px; font-weight: 800;
-      padding: 3px 8px; border-radius: 10px;
-      margin-left: 8px; text-transform: uppercase;
+      display: inline-block;
+      background: #FFC107;
+      color: #4a0000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
-    textarea { resize: vertical; min-height: 80px; }
-    
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
     button {
-      width: 100%; padding: 15px;
+      width: 100%;
+      padding: 15px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white; border: none; border-radius: 10px;
-      font-size: 16px; font-weight: 700;
-      cursor: pointer; margin-top: 10px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
       transition: all 0.3s;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 10px;
       box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
-      letter-spacing: 0.5px; text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    
+
     button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(200, 16, 46, 0.5);
       background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       color: #4a0000;
     }
-    
-    button:active { transform: translateY(0); }
+
+    button:active {
+      transform: translateY(0);
+    }
+
     button:disabled {
-      background: #9ca3af; cursor: not-allowed;
-      transform: none; box-shadow: none; color: white;
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      color: white;
     }
-    
+
     #status {
-      text-align: center; margin-top: 15px;
-      font-size: 14px; font-weight: 600;
-      min-height: 22px; padding: 10px; border-radius: 8px;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 600;
+      min-height: 22px;
+      padding: 10px;
+      border-radius: 8px;
     }
-    
-    .status-success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-    .status-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-    
+
+    .status-success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+    }
+
+    .status-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
     .footer {
-      text-align: center; padding: 15px;
-      background: #f9fafb; font-size: 11px;
-      color: #6b7280; font-weight: 500;
+      text-align: center;
+      padding: 15px;
+      background: #f9fafb;
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 500;
       border-top: 1px solid #e5e7eb;
     }
-    
-    .footer strong { color: #C8102E; }
+
+    .footer strong {
+      color: #C8102E;
+    }
   </style>
 </head>
+
 <body>
 
 <div class="container">
+
   <div class="header">
+
     <div class="header-icon">🔧</div>
+
     <h2>SOLICITAÇÃO DE SUPORTE</h2>
-    <p class="subtitle">Preencha os dados do chamado abaixo</p>
+
+    <p class="subtitle">
+      Preencha os dados do chamado abaixo
+    </p>
+
   </div>
 
   <div class="form-content">
+
     <form id="formChamado">
 
+      <!-- BLOCO -->
+
       <div class="form-group">
-        <label><span class="icon">🏢</span>Bloco<span id="badgeBloco"></span></label>
+
+        <label>
+          <span class="icon">🏢</span>
+          Bloco
+          <span id="badgeBloco"></span>
+        </label>
+
         <select id="bloco" required>
-          <option value="">Selecione o bloco</option>
+
+          <option value="">
+            Selecione o bloco
+          </option>
+
         </select>
+
       </div>
 
+
+      <!-- SALA -->
+
       <div class="form-group">
-        <label><span class="icon">🚪</span>Sala/Setor<span id="badgeSala"></span></label>
+
+        <label>
+          <span class="icon">🚪</span>
+          Sala/Setor
+          <span id="badgeSala"></span>
+        </label>
+
         <select id="sala" required disabled>
-          <option value="">Selecione primeiro o bloco</option>
+
+          <option value="">
+            Selecione primeiro o bloco
+          </option>
+
         </select>
+
       </div>
+
+
+      <!-- NOME -->
 
       <div class="form-group">
-        <label><span class="icon">👨‍🏫</span>Nome do Solicitante</label>
-        <input type="text" id="nome" required placeholder="Ex: Prof. Maria Silva">
+
+        <label>
+          <span class="icon">👨‍🏫</span>
+          Nome do Solicitante
+        </label>
+
+        <input
+          type="text"
+          id="nome"
+          required
+          placeholder="Ex: Prof. Maria Silva"
+        >
+
       </div>
 
-<div class="form-group">
-  <label><span class="icon">📂</span>Categoria</label>
-  <select id="categoria" required>
-    <option value="">Selecione a categoria</option>
-    <option value="Sala de Aula">🏫 Sala de Aula</option>
-    <option value="Administrativo">🏢 Administrativo</option>
-  </select>
-</div>
 
-<div class="form-group">
-  <label><span class="icon">⚠️</span>Tipo de Problema</label>
-  <select id="problema" required disabled>
-    <option value="">Selecione primeiro a categoria</option>
-  </select>
-</div>
+      <!-- CATEGORIA -->
 
-<div class="form-group">
-  <label><span class="icon">📝</span>Observação</label>
-  <textarea id="obs" rows="3" required placeholder="Detalhes adicionais (obrigatório)"></textarea>
-</div>
+      <div class="form-group">
+
+        <label>
+          <span class="icon">📂</span>
+          Categoria
+        </label>
+
+        <select id="categoria" required>
+
+          <option value="">
+            Selecione a categoria
+          </option>
+
+          <option value="Sala de Aula">
+            🏫 Sala de Aula
+          </option>
+
+          <option value="Administrativo">
+            🏢 Administrativo
+          </option>
+
+        </select>
+
+      </div>
 
 
-      <button type="submit" id="btnEnviar">
-        <span>📲</span> Enviar Chamado
+      <!-- PROBLEMA -->
+
+      <div class="form-group">
+
+        <label>
+          <span class="icon">⚠️</span>
+          Tipo de Problema
+        </label>
+
+        <select id="problema" required disabled>
+
+          <option value="">
+            Selecione primeiro a categoria
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- OBSERVAÇÃO -->
+
+      <div class="form-group">
+
+        <label>
+          <span class="icon">📝</span>
+          Observação
+        </label>
+
+        <textarea
+          id="obs"
+          rows="3"
+          required
+          placeholder="Detalhes adicionais (obrigatório)"
+        ></textarea>
+
+      </div>
+
+
+      <!-- BOTÃO -->
+
+      <button
+        type="submit"
+        id="btnEnviar"
+      >
+
+        <span>📲</span>
+        Enviar Chamado
+
       </button>
+
+
       <p id="status"></p>
+
     </form>
+
   </div>
+
 
   <div class="footer">
+
     🔒 <strong>UNINTA</strong> — Sistema de Chamados NTI
+
   </div>
+
 </div>
 
+
 <script>
-  // ESTRUTURA: Prédios → Blocos → Salas
+
+  /*
+   * ==========================================================
+   * ESTRUTURA:
+   * PRÉDIOS → BLOCOS → SALAS/SETORES
+   * ==========================================================
+   */
+
   const estrutura = {
+
+    /*
+     * ========================================================
+     * SEDE
+     * ========================================================
+     */
+
     "SEDE": {
+
       "A": [
-        "SEPAT", "Secretaria Geral", "Tesouraria", "Recepção Diretoria",
-        "RH", "Direção", "Diretoria Acadêmica", "Secretaria Medicina",
-        "Secretaria de Cursos", "Coordenações de Cursos"
+        "SEPAT",
+        "Secretaria Geral",
+        "Tesouraria",
+        "Recepção Diretoria",
+        "RH",
+        "Direção",
+        "Diretoria Acadêmica",
+        "Secretaria Medicina",
+        "Secretaria de Cursos",
+        "Coordenações de Cursos"
       ],
+
       "B": [
-        "Comercial", "Sala de Professores", "Sala de Reuniões",
-        "Marketing", "NAPSI"
+        "Comercial",
+        "Sala de Professores",
+        "Sala de Reuniões",
+        "Marketing",
+        "NAPSI"
       ],
+
       "C": [
-        "Sala 1", "Sala 2", "Sala 3", "Sala 4",
-        "Pequeno Grupo 1", "Pequeno Grupo 2", "Pequeno Grupo 3",
-        "Pequeno Grupo 4", "Pequeno Grupo 5", "Pequeno Grupo 6",
-        "Pequeno Grupo 7", "Pequeno Grupo 8", "Pequeno Grupo 9",
+        "Sala 1",
+        "Sala 2",
+        "Sala 3",
+        "Sala 4",
+        "Pequeno Grupo 1",
+        "Pequeno Grupo 2",
+        "Pequeno Grupo 3",
+        "Pequeno Grupo 4",
+        "Pequeno Grupo 5",
+        "Pequeno Grupo 6",
+        "Pequeno Grupo 7",
+        "Pequeno Grupo 8",
+        "Pequeno Grupo 9",
         "Pós Graduação"
       ],
+
       "D": [
-        "Sala 5", "Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10",
-        "Sala 11", "Sala 12", "Sala 13", "Sala 14", "Sala 15",
-        "Sala 16", "Sala 17", "Sala 18", "Sala 36", "Sala 37",
-        "Brinquedoteca", "Laboratório de Informática 1",
-        "Laboratório de Informática 2", "Biblioteca", "Auditório",
+        "Sala 5",
+        "Sala 6",
+        "Sala 7",
+        "Sala 8",
+        "Sala 9",
+        "Sala 10",
+        "Sala 11",
+        "Sala 12",
+        "Sala 13",
+        "Sala 14",
+        "Sala 15",
+        "Sala 16",
+        "Sala 17",
+        "Sala 18",
+        "Sala 36",
+        "Sala 37",
+        "Brinquedoteca",
+        "Laboratório de Informática 1",
+        "Laboratório de Informática 2",
+        "Biblioteca",
+        "Auditório",
         "Almoxarifado"
       ],
+
       "Arquitetura": [
-        "Sala 19", "Sala 20 - Marqueteria", "Sala 21 - Atêliê de Projetos",
-        "Sala 22 - Lab. Eng. Agrícola", "Sala 23 - Lab. Desenho Técnico",
-        "Sala 24 - Lab. de Habilidades", "Sala 25 - EMAU",
-        "Sala 26 - Lab. de Conforto Ambiental", "Sala 27", "Sala 28",
-        "Sala 29", "Sala 30", "Sala 31", "Sala 32", "Sala 33", "Sala 34"
+        "Sala 19",
+        "Sala 20 - Marqueteria",
+        "Sala 21 - Atêliê de Projetos",
+        "Sala 22 - Lab. Eng. Agrícola",
+        "Sala 23 - Lab. Desenho Técnico",
+        "Sala 24 - Lab. de Habilidades",
+        "Sala 25 - EMAU",
+        "Sala 26 - Lab. de Conforto Ambiental",
+        "Sala 27",
+        "Sala 28",
+        "Sala 29",
+        "Sala 30",
+        "Sala 31",
+        "Sala 32",
+        "Sala 33",
+        "Sala 34"
       ],
+
       "Medicina": [
         "Sala Circuito I",
         "Sala Circuito II",
@@ -294,191 +583,645 @@
         "Laboratório de Microscopia",
         "Laboratório Morfofuncional II"
       ]
+
     },
-    "CCS": {},
+
+
+    /*
+     * ========================================================
+     * CCS
+     * ========================================================
+     */
+
+    "CCS": {
+
+      "SUBSOLO": [
+
+        "Sala de Professores",
+        "Direção",
+        "Sala de Reuniões",
+        "Sec. Odontológica",
+        "Sec. de Fisioterapia",
+        "Sec. de Enfermagem",
+        "Coordenação de Odontologia",
+        "Coordenação de Fisioterapia",
+        "Coordenação de Enfermagem",
+        "Lab. de Habilidades Odontológica",
+        "Lab. de Fisioterapia",
+        "Sala 13",
+        "Sala 15",
+        "Sala 16"
+
+      ],
+
+
+      "TÉRREO": [
+
+        "Auditório",
+        "Sec. Acadêmica",
+        "Lab. de Informática",
+        "Tesouraria/FIES",
+        "Gab. Professor 01",
+        "Gab. Professor 02",
+        "Gab. Professor 03",
+        "NAPSI"
+
+      ],
+
+
+      "PRIMEIRO ANDAR": [
+
+        "Biblioteca",
+        "Lab. de Habilidades Clínica",
+        "Lab. Histologia e Embriologia",
+        "Lab. de Química, Bioquímica e Farmacologia",
+        "Lab. Anatomia Humana",
+        "Lab. de Imunologia",
+        "Sala 01",
+        "Sala 02",
+        "Sala 03",
+        "Sala 04",
+        "Sala 05",
+        "Sala 06",
+        "Sala 07",
+        "Sala 08",
+        "Sala 09",
+        "Sala 10",
+        "Sala 11",
+        "Sala 12",
+        "Lab. Pré-Clínico de Odontologia",
+        "SEPAT",
+        "Almoxarifado"
+
+      ]
+
+    },
+
+
+    /*
+     * ========================================================
+     * OUTROS PRÉDIOS
+     * ========================================================
+     */
+
     "Clínica Escola": {},
+
     "Shopping": {}
+
   };
 
-  // Nomes amigáveis dos blocos
- const NOMES_BLOCOS = {
+
+  /*
+   * ==========================================================
+   * NOMES AMIGÁVEIS DOS BLOCOS
+   * ==========================================================
+   */
+
+  const NOMES_BLOCOS = {
+
     "A": "Bloco A",
+
     "B": "Bloco B",
+
     "C": "Bloco C",
+
     "D": "Bloco D",
+
     "Arquitetura": "Anexo da Arquitetura",
-    "Medicina": "Complexo da Medicina"
+
+    "Medicina": "Complexo da Medicina",
+
+    "SUBSOLO": "Subsolo",
+
+    "TÉRREO": "Térreo",
+
+    "PRIMEIRO ANDAR": "Primeiro Andar"
+
   };
 
-  const blocoSelect = document.getElementById("bloco");
-  const salaSelect = document.getElementById("sala");
-  const categoriaSelect = document.getElementById("categoria");
-const problemaSelect = document.getElementById("problema");
 
-const problemasPorCategoria = {
-  "Sala de Aula": [
-    "Projetor",
-    "Computador",
-    "Internet",
-    "TV/Monitor",
-    "Áudio/Som",
-    "Cabo/Adaptador",
-    "Sistema/Software",
-    "Outro"
-  ],
+  /*
+   * ==========================================================
+   * ELEMENTOS DO FORMULÁRIO
+   * ==========================================================
+   */
 
-  "Administrativo": [
-    "Computador",
-    "Impressora",
-    "Internet/Rede",
-    "Sistemas",
-    "E-mail",
-    "Reset de Senhas",
-    "Acesso/Permissão",
-    "Outro"
-  ]
-};
+  const blocoSelect =
+    document.getElementById("bloco");
 
-categoriaSelect.addEventListener("change", function() {
+  const salaSelect =
+    document.getElementById("sala");
 
-  const categoria = this.value;
+  const categoriaSelect =
+    document.getElementById("categoria");
 
-  problemaSelect.innerHTML =
-    '<option value="">Selecione o problema</option>';
+  const problemaSelect =
+    document.getElementById("problema");
 
-  if (categoria && problemasPorCategoria[categoria]) {
 
-    problemasPorCategoria[categoria].forEach(function(problema) {
+  /*
+   * ==========================================================
+   * PROBLEMAS POR CATEGORIA
+   * ==========================================================
+   */
 
-      const opt = document.createElement("option");
+  const problemasPorCategoria = {
 
-      opt.value = problema;
-      opt.textContent = problema;
+    "Sala de Aula": [
 
-      problemaSelect.appendChild(opt);
+      "Projetor",
+      "Computador",
+      "Internet",
+      "TV/Monitor",
+      "Áudio/Som",
+      "Cabo/Adaptador",
+      "Sistema/Software",
+      "Outro"
 
-    });
+    ],
 
-    problemaSelect.disabled = false;
 
-  } else {
+    "Administrativo": [
 
-    problemaSelect.disabled = true;
+      "Computador",
+      "Impressora",
+      "Internet/Rede",
+      "Sistemas",
+      "E-mail",
+      "Reset de Senhas",
+      "Acesso/Permissão",
+      "Outro"
+
+    ]
+
+  };
+
+
+  /*
+   * ==========================================================
+   * ALTERAÇÃO DA CATEGORIA
+   * ==========================================================
+   */
+
+  categoriaSelect.addEventListener("change", function() {
+
+    const categoria = this.value;
 
     problemaSelect.innerHTML =
-      '<option value="">Selecione primeiro a categoria</option>';
+      '<option value="">Selecione o problema</option>';
 
-  }
+    if (
+      categoria &&
+      problemasPorCategoria[categoria]
+    ) {
 
-});
-  let predioAtivo = "SEDE"; // padrão
+      problemasPorCategoria[categoria]
+        .forEach(function(problema) {
 
-  // 🔍 LÊ OS PARÂMETROS DA URL (vindo do QR Code)
-  const params = new URLSearchParams(window.location.search);
-  const predioURL = params.get("predio");
-  const blocoURL = params.get("bloco");
-  const salaURL = params.get("sala");
+          const opt =
+            document.createElement("option");
 
-  // Define o prédio ativo
-  if (predioURL && estrutura[predioURL]) {
-    predioAtivo = predioURL;
-  }
+          opt.value = problema;
 
-  // Carrega os blocos do prédio ativo no menu
-  function carregarBlocos() {
-    blocoSelect.innerHTML = '<option value="">Selecione o bloco</option>';
-    const blocos = Object.keys(estrutura[predioAtivo] || {});
-    blocos.forEach(b => {
-      const opt = document.createElement("option");
-      opt.value = b;
-      opt.textContent = NOMES_BLOCOS[b] || b;
-      blocoSelect.appendChild(opt);
-    });
-  }
+          opt.textContent = problema;
 
-  function carregarSalas(bloco, salaPreSelecionada) {
-    salaSelect.innerHTML = '<option value="">Selecione a sala</option>';
-    if (bloco && estrutura[predioAtivo] && estrutura[predioAtivo][bloco]) {
-      estrutura[predioAtivo][bloco].forEach(sala => {
-        const opt = document.createElement("option");
-        opt.value = sala;
-        opt.textContent = sala;
-        if (salaPreSelecionada && sala === salaPreSelecionada) opt.selected = true;
-        salaSelect.appendChild(opt);
-      });
-      salaSelect.disabled = false;
+          problemaSelect.appendChild(opt);
+
+        });
+
+      problemaSelect.disabled = false;
+
     } else {
-      salaSelect.disabled = true;
+
+      problemaSelect.disabled = true;
+
+      problemaSelect.innerHTML =
+        '<option value="">Selecione primeiro a categoria</option>';
+
     }
+
+  });
+
+
+  /*
+   * ==========================================================
+   * PRÉDIO PADRÃO
+   * ==========================================================
+   */
+
+  let predioAtivo = "SEDE";
+
+
+  /*
+   * ==========================================================
+   * LÊ OS PARÂMETROS DA URL
+   *
+   * Exemplo:
+   *
+   * ?predio=CCS&bloco=SUBSOLO&sala=Direção
+   * ==========================================================
+   */
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  const predioURL =
+    params.get("predio");
+
+  const blocoURL =
+    params.get("bloco");
+
+  const salaURL =
+    params.get("sala");
+
+
+  /*
+   * ==========================================================
+   * DEFINE O PRÉDIO ATIVO
+   * ==========================================================
+   */
+
+  if (
+    predioURL &&
+    estrutura[predioURL]
+  ) {
+
+    predioAtivo = predioURL;
+
   }
 
-  // Inicializa os blocos
+
+  /*
+   * ==========================================================
+   * CARREGA OS BLOCOS DO PRÉDIO
+   * ==========================================================
+   */
+
+  function carregarBlocos() {
+
+    blocoSelect.innerHTML =
+      '<option value="">Selecione o bloco</option>';
+
+    const blocos =
+      Object.keys(
+        estrutura[predioAtivo] || {}
+      );
+
+
+    blocos.forEach(b => {
+
+      const opt =
+        document.createElement("option");
+
+      opt.value = b;
+
+      opt.textContent =
+        NOMES_BLOCOS[b] || b;
+
+      blocoSelect.appendChild(opt);
+
+    });
+
+  }
+
+
+  /*
+   * ==========================================================
+   * CARREGA AS SALAS
+   * ==========================================================
+   */
+
+  function carregarSalas(
+    bloco,
+    salaPreSelecionada
+  ) {
+
+    salaSelect.innerHTML =
+      '<option value="">Selecione a sala</option>';
+
+
+    if (
+      bloco &&
+      estrutura[predioAtivo] &&
+      estrutura[predioAtivo][bloco]
+    ) {
+
+      estrutura[predioAtivo][bloco]
+        .forEach(sala => {
+
+          const opt =
+            document.createElement("option");
+
+          opt.value = sala;
+
+          opt.textContent = sala;
+
+
+          if (
+            salaPreSelecionada &&
+            sala === salaPreSelecionada
+          ) {
+
+            opt.selected = true;
+
+          }
+
+
+          salaSelect.appendChild(opt);
+
+        });
+
+
+      salaSelect.disabled = false;
+
+    } else {
+
+      salaSelect.disabled = true;
+
+    }
+
+  }
+
+
+  /*
+   * ==========================================================
+   * INICIALIZA OS BLOCOS
+   * ==========================================================
+   */
+
   carregarBlocos();
 
-  // Se veio com bloco pelo QR Code
-  if (blocoURL && estrutura[predioAtivo] && estrutura[predioAtivo][blocoURL]) {
-    blocoSelect.value = blocoURL;
-    blocoSelect.classList.add("bloqueado");
+
+  /*
+   * ==========================================================
+   * QR CODE
+   *
+   * Se vier bloco pela URL, bloqueia o campo.
+   * ==========================================================
+   */
+
+  if (
+    blocoURL &&
+    estrutura[predioAtivo] &&
+    estrutura[predioAtivo][blocoURL]
+  ) {
+
+    blocoSelect.value =
+      blocoURL;
+
+    blocoSelect.classList.add(
+      "bloqueado"
+    );
+
     blocoSelect.disabled = true;
-    document.getElementById("badgeBloco").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
-    carregarSalas(blocoURL, salaURL);
-    
+
+    document.getElementById(
+      "badgeBloco"
+    ).innerHTML =
+      '<span class="badge-qr">📱 QR Code</span>';
+
+
+    carregarSalas(
+      blocoURL,
+      salaURL
+    );
+
+
     if (salaURL) {
-      salaSelect.value = salaURL;
-      salaSelect.classList.add("bloqueado");
+
+      salaSelect.value =
+        salaURL;
+
+      salaSelect.classList.add(
+        "bloqueado"
+      );
+
       salaSelect.disabled = true;
-      document.getElementById("badgeSala").innerHTML = '<span class="badge-qr">📱 QR Code</span>';
+
+      document.getElementById(
+        "badgeSala"
+      ).innerHTML =
+        '<span class="badge-qr">📱 QR Code</span>';
+
     }
+
   }
 
-  blocoSelect.addEventListener("change", function() {
-    carregarSalas(this.value);
-  });
 
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
-  const NUMERO_WHATSAPP = "5588993751792";
+  /*
+   * ==========================================================
+   * ALTERAÇÃO MANUAL DO BLOCO
+   * ==========================================================
+   */
 
-  document.getElementById("formChamado").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById("btnEnviar");
-    const status = document.getElementById("status");
+  blocoSelect.addEventListener(
+    "change",
+    function() {
 
-    btn.disabled = true;
-    btn.innerHTML = "⏳ Salvando...";
-    status.textContent = "";
-    status.className = "";
+      carregarSalas(
+        this.value
+      );
 
-    const dados = {
-      predio: predioAtivo,
-      bloco: blocoSelect.value,
-      sala: salaSelect.value,
-      nome: document.getElementById("nome").value,
-      problema: document.getElementById("problema").value,
-      obs: document.getElementById("obs").value
-    };
-
-    console.log("📤 Enviando chamado:", dados);
-
-    try {
-      await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(dados) });
-
-      const msg = `📢 *Chamado Técnico - NTI*\n🏛️ Prédio: ${dados.predio}\n🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}\n👨‍🏫 Solicitante: ${dados.nome}\n🔧 Problema: ${dados.problema}\n📝 Observação: ${dados.obs || "Nenhuma"}`;
-
-      window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
-
-      status.textContent = "✅ Chamado registrado com sucesso!";
-      status.className = "status-success";
-      btn.innerHTML = "<span>📲</span> Enviar Chamado";
-      btn.disabled = false;
-    } catch (err) {
-      status.textContent = "❌ Erro ao salvar. Verifique sua internet.";
-      status.className = "status-error";
-      btn.disabled = false;
-      btn.innerHTML = "<span>📲</span> Enviar Chamado";
-      console.error("Erro:", err);
     }
-  });
+  );
+
+
+  /*
+   * ==========================================================
+   * GOOGLE APPS SCRIPT
+   * ==========================================================
+   */
+
+  const SHEET_URL =
+    "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
+
+
+  /*
+   * ==========================================================
+   * WHATSAPP
+   * ==========================================================
+   */
+
+  const NUMERO_WHATSAPP =
+    "5588993751792";
+
+
+  /*
+   * ==========================================================
+   * ENVIO DO CHAMADO
+   * ==========================================================
+   */
+
+  document
+    .getElementById("formChamado")
+    .addEventListener(
+      "submit",
+      async function(e) {
+
+        e.preventDefault();
+
+
+        const btn =
+          document.getElementById(
+            "btnEnviar"
+          );
+
+
+        const status =
+          document.getElementById(
+            "status"
+          );
+
+
+        btn.disabled = true;
+
+        btn.innerHTML =
+          "⏳ Salvando...";
+
+
+        status.textContent = "";
+
+        status.className = "";
+
+
+        /*
+         * ====================================================
+         * DADOS DO CHAMADO
+         * ====================================================
+         */
+
+        const dados = {
+
+          predio:
+            predioAtivo,
+
+          bloco:
+            blocoSelect.value,
+
+          sala:
+            salaSelect.value,
+
+          nome:
+            document.getElementById(
+              "nome"
+            ).value,
+
+          problema:
+            document.getElementById(
+              "problema"
+            ).value,
+
+          obs:
+            document.getElementById(
+              "obs"
+            ).value
+
+        };
+
+
+        console.log(
+          "📤 Enviando chamado:",
+          dados
+        );
+
+
+        try {
+
+          /*
+           * ================================================
+           * SALVA NA PLANILHA
+           * ================================================
+           */
+
+          await fetch(
+            SHEET_URL,
+            {
+              method: "POST",
+              body: JSON.stringify(dados)
+            }
+          );
+
+
+          /*
+           * ================================================
+           * MENSAGEM DO WHATSAPP
+           * ================================================
+           */
+
+          const msg =
+
+`📢 *Chamado Técnico - NTI*
+🏛️ Prédio: ${dados.predio}
+🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}
+👨‍🏫 Solicitante: ${dados.nome}
+🔧 Problema: ${dados.problema}
+📝 Observação: ${dados.obs || "Nenhuma"}`;
+
+
+          /*
+           * ================================================
+           * ABRE O WHATSAPP
+           * ================================================
+           */
+
+          window.open(
+            `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,
+            "_blank"
+          );
+
+
+          /*
+           * ================================================
+           * SUCESSO
+           * ================================================
+           */
+
+          status.textContent =
+            "✅ Chamado registrado com sucesso!";
+
+          status.className =
+            "status-success";
+
+
+          btn.innerHTML =
+            "<span>📲</span> Enviar Chamado";
+
+          btn.disabled = false;
+
+
+        } catch (err) {
+
+          /*
+           * ================================================
+           * ERRO
+           * ================================================
+           */
+
+          status.textContent =
+            "❌ Erro ao salvar. Verifique sua internet.";
+
+          status.className =
+            "status-error";
+
+
+          btn.disabled = false;
+
+          btn.innerHTML =
+            "<span>📲</span> Enviar Chamado";
+
+
+          console.error(
+            "Erro:",
+            err
+          );
+
+        }
+
+      }
+    );
+
 </script>
 
 </body>
 </html>
+```
