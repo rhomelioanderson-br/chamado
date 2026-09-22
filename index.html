@@ -5,11 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chamado Técnico - UNINTA</title>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -21,13 +17,7 @@
 
     body {
       min-height: 100vh;
-      background: radial-gradient(
-        circle at top left,
-        #8B0000 0%,
-        #1a0000 50%,
-        #000000 100%
-      );
-
+      background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -43,11 +33,7 @@
       right: -100px;
       width: 400px;
       height: 400px;
-      background: radial-gradient(
-        circle,
-        rgba(255, 193, 7, 0.15) 0%,
-        transparent 70%
-      );
+      background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -59,11 +45,7 @@
       left: -100px;
       width: 400px;
       height: 400px;
-      background: radial-gradient(
-        circle,
-        rgba(220, 20, 20, 0.2) 0%,
-        transparent 70%
-      );
+      background: radial-gradient(circle, rgba(220, 20, 20, 0.2) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -94,12 +76,7 @@
     }
 
     .header {
-      background: linear-gradient(
-        135deg,
-        #C8102E 0%,
-        #8B0000 100%
-      );
-
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       padding: 35px 30px 30px;
       text-align: center;
       position: relative;
@@ -131,12 +108,7 @@
     .header-icon {
       width: 70px;
       height: 70px;
-      background: linear-gradient(
-        135deg,
-        #FFC107 0%,
-        #FF8F00 100%
-      );
-
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -240,12 +212,7 @@
     button {
       width: 100%;
       padding: 15px;
-      background: linear-gradient(
-        135deg,
-        #C8102E 0%,
-        #8B0000 100%
-      );
-
+      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       color: white;
       border: none;
       border-radius: 10px;
@@ -266,13 +233,7 @@
     button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(200, 16, 46, 0.5);
-
-      background: linear-gradient(
-        135deg,
-        #FFC107 0%,
-        #FF8F00 100%
-      );
-
+      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
       color: #4a0000;
     }
 
@@ -346,48 +307,7 @@
 
     <form id="formChamado">
 
-      <!-- =====================================================
-           PRÉDIO
-           ===================================================== -->
-
-      <div class="form-group">
-
-        <label>
-          <span class="icon">🏢</span>
-          Prédio
-          <span id="badgePredio"></span>
-        </label>
-
-        <select id="predio" required>
-
-          <option value="">
-            Selecione o prédio
-          </option>
-
-          <option value="SEDE">
-            SEDE
-          </option>
-
-          <option value="CCS">
-            CCS
-          </option>
-
-          <option value="Clínica Escola">
-            Clínica Escola
-          </option>
-
-          <option value="Shopping">
-            Shopping
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- =====================================================
-           BLOCO
-           ===================================================== -->
+      <!-- BLOCO -->
 
       <div class="form-group">
 
@@ -408,9 +328,7 @@
       </div>
 
 
-      <!-- =====================================================
-           SALA
-           ===================================================== -->
+      <!-- SALA -->
 
       <div class="form-group">
 
@@ -431,9 +349,7 @@
       </div>
 
 
-      <!-- =====================================================
-           NOME
-           ===================================================== -->
+      <!-- NOME -->
 
       <div class="form-group">
 
@@ -452,9 +368,7 @@
       </div>
 
 
-      <!-- =====================================================
-           CATEGORIA
-           ===================================================== -->
+      <!-- CATEGORIA -->
 
       <div class="form-group">
 
@@ -482,9 +396,7 @@
       </div>
 
 
-      <!-- =====================================================
-           PROBLEMA
-           ===================================================== -->
+      <!-- PROBLEMA -->
 
       <div class="form-group">
 
@@ -504,9 +416,7 @@
       </div>
 
 
-      <!-- =====================================================
-           OBSERVAÇÃO
-           ===================================================== -->
+      <!-- OBSERVAÇÃO -->
 
       <div class="form-group">
 
@@ -525,9 +435,7 @@
       </div>
 
 
-      <!-- =====================================================
-           BOTÃO
-           ===================================================== -->
+      <!-- BOTÃO -->
 
       <button
         type="submit"
@@ -566,6 +474,12 @@
    */
 
   const estrutura = {
+
+    /*
+     * ========================================================
+     * SEDE
+     * ========================================================
+     */
 
     "SEDE": {
 
@@ -673,9 +587,16 @@
     },
 
 
+    /*
+     * ========================================================
+     * CCS
+     * ========================================================
+     */
+
     "CCS": {
 
       "SUBSOLO": [
+
         "Sala de Professores",
         "Direção",
         "Sala de Reuniões",
@@ -690,9 +611,12 @@
         "Sala 13",
         "Sala 15",
         "Sala 16"
+
       ],
 
+
       "TÉRREO": [
+
         "Auditório",
         "Sec. Acadêmica",
         "Lab. de Informática",
@@ -701,9 +625,12 @@
         "Gab. Professor 02",
         "Gab. Professor 03",
         "NAPSI"
+
       ],
 
+
       "PRIMEIRO ANDAR": [
+
         "Biblioteca",
         "Lab. de Habilidades Clínica",
         "Lab. Histologia e Embriologia",
@@ -725,10 +652,17 @@
         "Lab. Pré-Clínico de Odontologia",
         "SEPAT",
         "Almoxarifado"
+
       ]
 
     },
 
+
+    /*
+     * ========================================================
+     * OUTROS PRÉDIOS
+     * ========================================================
+     */
 
     "Clínica Escola": {},
 
@@ -739,43 +673,38 @@
 
   /*
    * ==========================================================
-   * NOMES AMIGÁVEIS
+   * NOMES AMIGÁVEIS DOS BLOCOS
    * ==========================================================
    */
 
   const NOMES_BLOCOS = {
 
     "A": "Bloco A",
+
     "B": "Bloco B",
+
     "C": "Bloco C",
+
     "D": "Bloco D",
 
-    "Arquitetura":
-      "Anexo da Arquitetura",
+    "Arquitetura": "Anexo da Arquitetura",
 
-    "Medicina":
-      "Complexo da Medicina",
+    "Medicina": "Complexo da Medicina",
 
-    "SUBSOLO":
-      "Subsolo",
+    "SUBSOLO": "Subsolo",
 
-    "TÉRREO":
-      "Térreo",
+    "TÉRREO": "Térreo",
 
-    "PRIMEIRO ANDAR":
-      "Primeiro Andar"
+    "PRIMEIRO ANDAR": "Primeiro Andar"
 
   };
 
 
   /*
    * ==========================================================
-   * ELEMENTOS
+   * ELEMENTOS DO FORMULÁRIO
    * ==========================================================
    */
-
-  const predioSelect =
-    document.getElementById("predio");
 
   const blocoSelect =
     document.getElementById("bloco");
@@ -792,13 +721,14 @@
 
   /*
    * ==========================================================
-   * PROBLEMAS
+   * PROBLEMAS POR CATEGORIA
    * ==========================================================
    */
 
   const problemasPorCategoria = {
 
     "Sala de Aula": [
+
       "Projetor",
       "Computador",
       "Internet",
@@ -807,9 +737,12 @@
       "Cabo/Adaptador",
       "Sistema/Software",
       "Outro"
+
     ],
 
+
     "Administrativo": [
+
       "Computador",
       "Impressora",
       "Internet/Rede",
@@ -818,6 +751,7 @@
       "Reset de Senhas",
       "Acesso/Permissão",
       "Outro"
+
     ]
 
   };
@@ -825,63 +759,71 @@
 
   /*
    * ==========================================================
-   * CATEGORIA
+   * ALTERAÇÃO DA CATEGORIA
    * ==========================================================
    */
 
-  categoriaSelect.addEventListener(
-    "change",
-    function() {
+  categoriaSelect.addEventListener("change", function() {
 
-      const categoria = this.value;
+    const categoria = this.value;
+
+    problemaSelect.innerHTML =
+      '<option value="">Selecione o problema</option>';
+
+    if (
+      categoria &&
+      problemasPorCategoria[categoria]
+    ) {
+
+      problemasPorCategoria[categoria]
+        .forEach(function(problema) {
+
+          const opt =
+            document.createElement("option");
+
+          opt.value = problema;
+
+          opt.textContent = problema;
+
+          problemaSelect.appendChild(opt);
+
+        });
+
+      problemaSelect.disabled = false;
+
+    } else {
+
+      problemaSelect.disabled = true;
 
       problemaSelect.innerHTML =
-        '<option value="">Selecione o problema</option>';
-
-      if (
-        categoria &&
-        problemasPorCategoria[categoria]
-      ) {
-
-        problemasPorCategoria[categoria]
-          .forEach(function(problema) {
-
-            const opt =
-              document.createElement("option");
-
-            opt.value = problema;
-
-            opt.textContent = problema;
-
-            problemaSelect.appendChild(opt);
-
-          });
-
-        problemaSelect.disabled = false;
-
-      } else {
-
-        problemaSelect.disabled = true;
-
-        problemaSelect.innerHTML =
-          '<option value="">Selecione primeiro a categoria</option>';
-
-      }
+        '<option value="">Selecione primeiro a categoria</option>';
 
     }
-  );
+
+  });
 
 
   /*
    * ==========================================================
-   * PARÂMETROS DO QR CODE
+   * PRÉDIO PADRÃO
+   * ==========================================================
+   */
+
+  let predioAtivo = "SEDE";
+
+
+  /*
+   * ==========================================================
+   * LÊ OS PARÂMETROS DA URL
+   *
+   * Exemplo:
+   *
+   * ?predio=CCS&bloco=SUBSOLO&sala=Direção
    * ==========================================================
    */
 
   const params =
-    new URLSearchParams(
-      window.location.search
-    );
+    new URLSearchParams(window.location.search);
 
   const predioURL =
     params.get("predio");
@@ -895,34 +837,14 @@
 
   /*
    * ==========================================================
-   * PRÉDIO ATIVO
-   * ==========================================================
-   */
-
-  let predioAtivo = "SEDE";
-
-
-  /*
-   * ==========================================================
-   * VERIFICA SE O PRÉDIO DO QR CODE EXISTE
-   * ==========================================================
-   */
-
-  const qrPredioValido =
-    predioURL &&
-    Object.prototype.hasOwnProperty.call(
-      estrutura,
-      predioURL
-    );
-
-
-  /*
-   * ==========================================================
    * DEFINE O PRÉDIO ATIVO
    * ==========================================================
    */
 
-  if (qrPredioValido) {
+  if (
+    predioURL &&
+    estrutura[predioURL]
+  ) {
 
     predioAtivo = predioURL;
 
@@ -931,7 +853,7 @@
 
   /*
    * ==========================================================
-   * CARREGA BLOCOS
+   * CARREGA OS BLOCOS DO PRÉDIO
    * ==========================================================
    */
 
@@ -946,28 +868,26 @@
       );
 
 
-    blocos.forEach(
-      b => {
+    blocos.forEach(b => {
 
-        const opt =
-          document.createElement("option");
+      const opt =
+        document.createElement("option");
 
-        opt.value = b;
+      opt.value = b;
 
-        opt.textContent =
-          NOMES_BLOCOS[b] || b;
+      opt.textContent =
+        NOMES_BLOCOS[b] || b;
 
-        blocoSelect.appendChild(opt);
+      blocoSelect.appendChild(opt);
 
-      }
-    );
+    });
 
   }
 
 
   /*
    * ==========================================================
-   * CARREGA SALAS
+   * CARREGA AS SALAS
    * ==========================================================
    */
 
@@ -987,33 +907,29 @@
     ) {
 
       estrutura[predioAtivo][bloco]
-        .forEach(
-          sala => {
+        .forEach(sala => {
 
-            const opt =
-              document.createElement(
-                "option"
-              );
+          const opt =
+            document.createElement("option");
 
-            opt.value = sala;
+          opt.value = sala;
 
-            opt.textContent = sala;
+          opt.textContent = sala;
 
 
-            if (
-              salaPreSelecionada &&
-              sala === salaPreSelecionada
-            ) {
+          if (
+            salaPreSelecionada &&
+            sala === salaPreSelecionada
+          ) {
 
-              opt.selected = true;
-
-            }
-
-
-            salaSelect.appendChild(opt);
+            opt.selected = true;
 
           }
-        );
+
+
+          salaSelect.appendChild(opt);
+
+        });
 
 
       salaSelect.disabled = false;
@@ -1029,73 +945,7 @@
 
   /*
    * ==========================================================
-   * ALTERAÇÃO MANUAL DO PRÉDIO
-   * ==========================================================
-   */
-
-  predioSelect.addEventListener(
-    "change",
-    function() {
-
-      /*
-       * Se o prédio veio de QR Code,
-       * não permite alteração.
-       */
-
-      if (qrPredioValido) {
-
-        this.value = predioAtivo;
-
-        return;
-
-      }
-
-
-      predioAtivo =
-        this.value;
-
-      carregarBlocos();
-
-
-      salaSelect.innerHTML =
-        '<option value="">Selecione primeiro o bloco</option>';
-
-      salaSelect.disabled = true;
-
-
-      blocoSelect.disabled = false;
-
-      blocoSelect.classList.remove(
-        "bloqueado"
-      );
-
-
-      salaSelect.classList.remove(
-        "bloqueado"
-      );
-
-
-      document.getElementById(
-        "badgePredio"
-      ).innerHTML = "";
-
-
-      document.getElementById(
-        "badgeBloco"
-      ).innerHTML = "";
-
-
-      document.getElementById(
-        "badgeSala"
-      ).innerHTML = "";
-
-    }
-  );
-
-
-  /*
-   * ==========================================================
-   * INICIALIZA BLOCOS
+   * INICIALIZA OS BLOCOS
    * ==========================================================
    */
 
@@ -1104,143 +954,50 @@
 
   /*
    * ==========================================================
-   * QR CODE:
-   * TRAVA PRÉDIO
+   * QR CODE
+   *
+   * Se vier bloco pela URL, bloqueia o campo.
    * ==========================================================
    */
 
-  if (qrPredioValido) {
-
-    /*
-     * Define o valor do prédio
-     */
-    predioSelect.value =
-      predioURL;
-
-
-    /*
-     * Adiciona aparência de bloqueado
-     */
-    predioSelect.classList.add(
-      "bloqueado"
-    );
-
-
-    /*
-     * DESABILITA O SELECT
-     */
-    predioSelect.disabled = true;
-
-
-    /*
-     * Mostra identificação do QR Code
-     */
-    document.getElementById(
-      "badgePredio"
-    ).innerHTML =
-      '<span class="badge-qr">📱 QR Code</span>';
-
-  }
-
-
-  /*
-   * ==========================================================
-   * QR CODE:
-   * BLOCO
-   * ==========================================================
-   */
-
-  const qrBlocoValido =
-    qrPredioValido &&
+  if (
     blocoURL &&
     estrutura[predioAtivo] &&
-    Object.prototype.hasOwnProperty.call(
-      estrutura[predioAtivo],
-      blocoURL
-    );
+    estrutura[predioAtivo][blocoURL]
+  ) {
 
-
-  if (qrBlocoValido) {
-
-    /*
-     * Define o bloco
-     */
     blocoSelect.value =
       blocoURL;
 
-
-    /*
-     * Aparência de bloqueado
-     */
     blocoSelect.classList.add(
       "bloqueado"
     );
 
-
-    /*
-     * Bloqueia o bloco
-     */
     blocoSelect.disabled = true;
 
-
-    /*
-     * Badge
-     */
     document.getElementById(
       "badgeBloco"
     ).innerHTML =
       '<span class="badge-qr">📱 QR Code</span>';
 
 
-    /*
-     * Carrega as salas do bloco
-     */
     carregarSalas(
       blocoURL,
       salaURL
     );
 
 
-    /*
-     * ========================================================
-     * QR CODE:
-     * SALA
-     * ========================================================
-     */
+    if (salaURL) {
 
-    const qrSalaValida =
-      salaURL &&
-      estrutura[predioAtivo][blocoURL].includes(
-        salaURL
-      );
-
-
-    if (qrSalaValida) {
-
-      /*
-       * Define a sala
-       */
       salaSelect.value =
         salaURL;
 
-
-      /*
-       * Aparência de bloqueado
-       */
       salaSelect.classList.add(
         "bloqueado"
       );
 
-
-      /*
-       * Bloqueia a sala
-       */
       salaSelect.disabled = true;
 
-
-      /*
-       * Badge
-       */
       document.getElementById(
         "badgeSala"
       ).innerHTML =
@@ -1260,20 +1017,6 @@
   blocoSelect.addEventListener(
     "change",
     function() {
-
-      /*
-       * Se o bloco veio do QR Code,
-       * não permite alteração.
-       */
-
-      if (qrBlocoValido) {
-
-        this.value = blocoURL;
-
-        return;
-
-      }
-
 
       carregarSalas(
         this.value
@@ -1323,6 +1066,7 @@
             "btnEnviar"
           );
 
+
         const status =
           document.getElementById(
             "status"
@@ -1334,6 +1078,7 @@
         btn.innerHTML =
           "⏳ Salvando...";
 
+
         status.textContent = "";
 
         status.className = "";
@@ -1341,7 +1086,7 @@
 
         /*
          * ====================================================
-         * DADOS
+         * DADOS DO CHAMADO
          * ====================================================
          */
 
@@ -1392,16 +1137,14 @@
             SHEET_URL,
             {
               method: "POST",
-              body: JSON.stringify(
-                dados
-              )
+              body: JSON.stringify(dados)
             }
           );
 
 
           /*
            * ================================================
-           * WHATSAPP
+           * MENSAGEM DO WHATSAPP
            * ================================================
            */
 
@@ -1409,12 +1152,17 @@
 
 `📢 *Chamado Técnico - NTI*
 🏛️ Prédio: ${dados.predio}
-🏢 Bloco: ${dados.bloco}
-🚪 Sala/Setor: ${dados.sala}
+🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}
 👨‍🏫 Solicitante: ${dados.nome}
 🔧 Problema: ${dados.problema}
-📝 Observação: ${dados.obs || "Nenhuma}`;
+📝 Observação: ${dados.obs || "Nenhuma"}`;
 
+
+          /*
+           * ================================================
+           * ABRE O WHATSAPP
+           * ================================================
+           */
 
           window.open(
             `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,
@@ -1442,6 +1190,12 @@
 
 
         } catch (err) {
+
+          /*
+           * ================================================
+           * ERRO
+           * ================================================
+           */
 
           status.textContent =
             "❌ Erro ao salvar. Verifique sua internet.";
