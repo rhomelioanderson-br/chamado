@@ -307,7 +307,49 @@
 
     <form id="formChamado">
 
-      <!-- BLOCO -->
+
+      <!-- =====================================================
+           PRÉDIO
+           ===================================================== -->
+
+      <div class="form-group">
+
+        <label>
+          <span class="icon">🏢</span>
+          Prédio
+          <span id="badgePredio"></span>
+        </label>
+
+        <select id="predio" required>
+
+          <option value="">
+            Selecione o prédio
+          </option>
+
+          <option value="SEDE">
+            SEDE
+          </option>
+
+          <option value="CCS">
+            CCS
+          </option>
+
+          <option value="Clínica Escola">
+            Clínica Escola
+          </option>
+
+          <option value="Shopping">
+            Shopping
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- =====================================================
+           BLOCO
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -328,7 +370,9 @@
       </div>
 
 
-      <!-- SALA -->
+      <!-- =====================================================
+           SALA
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -349,7 +393,9 @@
       </div>
 
 
-      <!-- NOME -->
+      <!-- =====================================================
+           NOME
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -368,7 +414,9 @@
       </div>
 
 
-      <!-- CATEGORIA -->
+      <!-- =====================================================
+           CATEGORIA
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -396,7 +444,9 @@
       </div>
 
 
-      <!-- PROBLEMA -->
+      <!-- =====================================================
+           PROBLEMA
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -416,7 +466,9 @@
       </div>
 
 
-      <!-- OBSERVAÇÃO -->
+      <!-- =====================================================
+           OBSERVAÇÃO
+           ===================================================== -->
 
       <div class="form-group">
 
@@ -435,7 +487,9 @@
       </div>
 
 
-      <!-- BOTÃO -->
+      <!-- =====================================================
+           BOTÃO
+           ===================================================== -->
 
       <button
         type="submit"
@@ -474,12 +528,6 @@
    */
 
   const estrutura = {
-
-    /*
-     * ========================================================
-     * SEDE
-     * ========================================================
-     */
 
     "SEDE": {
 
@@ -587,16 +635,9 @@
     },
 
 
-    /*
-     * ========================================================
-     * CCS
-     * ========================================================
-     */
-
     "CCS": {
 
       "SUBSOLO": [
-
         "Sala de Professores",
         "Direção",
         "Sala de Reuniões",
@@ -611,12 +652,9 @@
         "Sala 13",
         "Sala 15",
         "Sala 16"
-
       ],
 
-
       "TÉRREO": [
-
         "Auditório",
         "Sec. Acadêmica",
         "Lab. de Informática",
@@ -625,12 +663,9 @@
         "Gab. Professor 02",
         "Gab. Professor 03",
         "NAPSI"
-
       ],
 
-
       "PRIMEIRO ANDAR": [
-
         "Biblioteca",
         "Lab. de Habilidades Clínica",
         "Lab. Histologia e Embriologia",
@@ -652,17 +687,10 @@
         "Lab. Pré-Clínico de Odontologia",
         "SEPAT",
         "Almoxarifado"
-
       ]
 
     },
 
-
-    /*
-     * ========================================================
-     * OUTROS PRÉDIOS
-     * ========================================================
-     */
 
     "Clínica Escola": {},
 
@@ -673,38 +701,43 @@
 
   /*
    * ==========================================================
-   * NOMES AMIGÁVEIS DOS BLOCOS
+   * NOMES AMIGÁVEIS
    * ==========================================================
    */
 
   const NOMES_BLOCOS = {
 
     "A": "Bloco A",
-
     "B": "Bloco B",
-
     "C": "Bloco C",
-
     "D": "Bloco D",
 
-    "Arquitetura": "Anexo da Arquitetura",
+    "Arquitetura":
+      "Anexo da Arquitetura",
 
-    "Medicina": "Complexo da Medicina",
+    "Medicina":
+      "Complexo da Medicina",
 
-    "SUBSOLO": "Subsolo",
+    "SUBSOLO":
+      "Subsolo",
 
-    "TÉRREO": "Térreo",
+    "TÉRREO":
+      "Térreo",
 
-    "PRIMEIRO ANDAR": "Primeiro Andar"
+    "PRIMEIRO ANDAR":
+      "Primeiro Andar"
 
   };
 
 
   /*
    * ==========================================================
-   * ELEMENTOS DO FORMULÁRIO
+   * ELEMENTOS
    * ==========================================================
    */
+
+  const predioSelect =
+    document.getElementById("predio");
 
   const blocoSelect =
     document.getElementById("bloco");
@@ -721,14 +754,13 @@
 
   /*
    * ==========================================================
-   * PROBLEMAS POR CATEGORIA
+   * PROBLEMAS
    * ==========================================================
    */
 
   const problemasPorCategoria = {
 
     "Sala de Aula": [
-
       "Projetor",
       "Computador",
       "Internet",
@@ -737,12 +769,9 @@
       "Cabo/Adaptador",
       "Sistema/Software",
       "Outro"
-
     ],
 
-
     "Administrativo": [
-
       "Computador",
       "Impressora",
       "Internet/Rede",
@@ -751,7 +780,6 @@
       "Reset de Senhas",
       "Acesso/Permissão",
       "Outro"
-
     ]
 
   };
@@ -759,48 +787,51 @@
 
   /*
    * ==========================================================
-   * ALTERAÇÃO DA CATEGORIA
+   * CATEGORIA
    * ==========================================================
    */
 
-  categoriaSelect.addEventListener("change", function() {
+  categoriaSelect.addEventListener(
+    "change",
+    function() {
 
-    const categoria = this.value;
-
-    problemaSelect.innerHTML =
-      '<option value="">Selecione o problema</option>';
-
-    if (
-      categoria &&
-      problemasPorCategoria[categoria]
-    ) {
-
-      problemasPorCategoria[categoria]
-        .forEach(function(problema) {
-
-          const opt =
-            document.createElement("option");
-
-          opt.value = problema;
-
-          opt.textContent = problema;
-
-          problemaSelect.appendChild(opt);
-
-        });
-
-      problemaSelect.disabled = false;
-
-    } else {
-
-      problemaSelect.disabled = true;
+      const categoria = this.value;
 
       problemaSelect.innerHTML =
-        '<option value="">Selecione primeiro a categoria</option>';
+        '<option value="">Selecione o problema</option>';
+
+      if (
+        categoria &&
+        problemasPorCategoria[categoria]
+      ) {
+
+        problemasPorCategoria[categoria]
+          .forEach(function(problema) {
+
+            const opt =
+              document.createElement("option");
+
+            opt.value = problema;
+
+            opt.textContent = problema;
+
+            problemaSelect.appendChild(opt);
+
+          });
+
+        problemaSelect.disabled = false;
+
+      } else {
+
+        problemaSelect.disabled = true;
+
+        problemaSelect.innerHTML =
+          '<option value="">Selecione primeiro a categoria</option>';
+
+      }
 
     }
-
-  });
+  );
 
 
   /*
@@ -814,16 +845,14 @@
 
   /*
    * ==========================================================
-   * LÊ OS PARÂMETROS DA URL
-   *
-   * Exemplo:
-   *
-   * ?predio=CCS&bloco=SUBSOLO&sala=Direção
+   * PARÂMETROS DO QR CODE
    * ==========================================================
    */
 
   const params =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+      window.location.search
+    );
 
   const predioURL =
     params.get("predio");
@@ -837,7 +866,7 @@
 
   /*
    * ==========================================================
-   * DEFINE O PRÉDIO ATIVO
+   * DEFINE O PRÉDIO
    * ==========================================================
    */
 
@@ -846,14 +875,15 @@
     estrutura[predioURL]
   ) {
 
-    predioAtivo = predioURL;
+    predioAtivo =
+      predioURL;
 
   }
 
 
   /*
    * ==========================================================
-   * CARREGA OS BLOCOS DO PRÉDIO
+   * CARREGA BLOCOS
    * ==========================================================
    */
 
@@ -868,26 +898,28 @@
       );
 
 
-    blocos.forEach(b => {
+    blocos.forEach(
+      b => {
 
-      const opt =
-        document.createElement("option");
+        const opt =
+          document.createElement("option");
 
-      opt.value = b;
+        opt.value = b;
 
-      opt.textContent =
-        NOMES_BLOCOS[b] || b;
+        opt.textContent =
+          NOMES_BLOCOS[b] || b;
 
-      blocoSelect.appendChild(opt);
+        blocoSelect.appendChild(opt);
 
-    });
+      }
+    );
 
   }
 
 
   /*
    * ==========================================================
-   * CARREGA AS SALAS
+   * CARREGA SALAS
    * ==========================================================
    */
 
@@ -907,29 +939,33 @@
     ) {
 
       estrutura[predioAtivo][bloco]
-        .forEach(sala => {
+        .forEach(
+          sala => {
 
-          const opt =
-            document.createElement("option");
+            const opt =
+              document.createElement(
+                "option"
+              );
 
-          opt.value = sala;
+            opt.value = sala;
 
-          opt.textContent = sala;
+            opt.textContent = sala;
 
 
-          if (
-            salaPreSelecionada &&
-            sala === salaPreSelecionada
-          ) {
+            if (
+              salaPreSelecionada &&
+              sala === salaPreSelecionada
+            ) {
 
-            opt.selected = true;
+              opt.selected = true;
+
+            }
+
+
+            salaSelect.appendChild(opt);
 
           }
-
-
-          salaSelect.appendChild(opt);
-
-        });
+        );
 
 
       salaSelect.disabled = false;
@@ -945,7 +981,53 @@
 
   /*
    * ==========================================================
-   * INICIALIZA OS BLOCOS
+   * ALTERAÇÃO MANUAL DO PRÉDIO
+   * ==========================================================
+   */
+
+  predioSelect.addEventListener(
+    "change",
+    function() {
+
+      predioAtivo =
+        this.value;
+
+      carregarBlocos();
+
+      salaSelect.innerHTML =
+        '<option value="">Selecione primeiro o bloco</option>';
+
+      salaSelect.disabled = true;
+
+      blocoSelect.disabled = false;
+
+      blocoSelect.classList.remove(
+        "bloqueado"
+      );
+
+      salaSelect.classList.remove(
+        "bloqueado"
+      );
+
+      document.getElementById(
+        "badgePredio"
+      ).innerHTML = "";
+
+      document.getElementById(
+        "badgeBloco"
+      ).innerHTML = "";
+
+      document.getElementById(
+        "badgeSala"
+      ).innerHTML = "";
+
+    }
+  );
+
+
+  /*
+   * ==========================================================
+   * INICIALIZA
    * ==========================================================
    */
 
@@ -954,9 +1036,37 @@
 
   /*
    * ==========================================================
-   * QR CODE
-   *
-   * Se vier bloco pela URL, bloqueia o campo.
+   * MOSTRA O PRÉDIO SELECIONADO
+   * PELO QR CODE
+   * ==========================================================
+   */
+
+  if (
+    predioURL &&
+    estrutura[predioURL]
+  ) {
+
+    predioSelect.value =
+      predioURL;
+
+    predioSelect.classList.add(
+      "bloqueado"
+    );
+
+    predioSelect.disabled = true;
+
+    document.getElementById(
+      "badgePredio"
+    ).innerHTML =
+      '<span class="badge-qr">📱 QR Code</span>';
+
+  }
+
+
+  /*
+   * ==========================================================
+   * QR CODE:
+   * BLOCO
    * ==========================================================
    */
 
@@ -986,6 +1096,13 @@
       salaURL
     );
 
+
+    /*
+     * ========================================================
+     * QR CODE:
+     * SALA
+     * ========================================================
+     */
 
     if (salaURL) {
 
@@ -1066,7 +1183,6 @@
             "btnEnviar"
           );
 
-
         const status =
           document.getElementById(
             "status"
@@ -1078,7 +1194,6 @@
         btn.innerHTML =
           "⏳ Salvando...";
 
-
         status.textContent = "";
 
         status.className = "";
@@ -1086,7 +1201,7 @@
 
         /*
          * ====================================================
-         * DADOS DO CHAMADO
+         * DADOS
          * ====================================================
          */
 
@@ -1137,14 +1252,16 @@
             SHEET_URL,
             {
               method: "POST",
-              body: JSON.stringify(dados)
+              body: JSON.stringify(
+                dados
+              )
             }
           );
 
 
           /*
            * ================================================
-           * MENSAGEM DO WHATSAPP
+           * WHATSAPP
            * ================================================
            */
 
@@ -1152,17 +1269,12 @@
 
 `📢 *Chamado Técnico - NTI*
 🏛️ Prédio: ${dados.predio}
-🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}
+🏢 Bloco: ${dados.bloco}
+🚪 Sala/Setor: ${dados.sala}
 👨‍🏫 Solicitante: ${dados.nome}
 🔧 Problema: ${dados.problema}
 📝 Observação: ${dados.obs || "Nenhuma"}`;
 
-
-          /*
-           * ================================================
-           * ABRE O WHATSAPP
-           * ================================================
-           */
 
           window.open(
             `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,
@@ -1190,12 +1302,6 @@
 
 
         } catch (err) {
-
-          /*
-           * ================================================
-           * ERRO
-           * ================================================
-           */
 
           status.textContent =
             "❌ Erro ao salvar. Verifique sua internet.";
