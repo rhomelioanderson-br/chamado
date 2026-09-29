@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -727,17 +726,9 @@
 
 const estrutura = {
 
-
-  /*
-   * ========================================================
-   * SEDE
-   * ========================================================
-   */
-
   "SEDE": {
 
     "A": [
-
       "SEPAT",
       "Secretaria Geral",
       "Tesouraria",
@@ -748,23 +739,17 @@ const estrutura = {
       "Secretaria Medicina",
       "Secretaria de Cursos",
       "Coordenações de Cursos"
-
     ],
 
-
     "B": [
-
       "Comercial",
       "Sala de Professores",
       "Sala de Reuniões",
       "Marketing",
       "NAPSI"
-
     ],
 
-
     "C": [
-
       "Sala 1",
       "Sala 2",
       "Sala 3",
@@ -779,12 +764,9 @@ const estrutura = {
       "Pequeno Grupo 8",
       "Pequeno Grupo 9",
       "Pós Graduação"
-
     ],
 
-
     "D": [
-
       "Sala 5",
       "Sala 6",
       "Sala 7",
@@ -807,12 +789,9 @@ const estrutura = {
       "Biblioteca",
       "Auditório",
       "Almoxarifado"
-
     ],
 
-
     "Arquitetura": [
-
       "Sala 19",
       "Sala 20 - Marqueteria",
       "Sala 21 - Atêliê de Projetos",
@@ -829,12 +808,9 @@ const estrutura = {
       "Sala 32",
       "Sala 33",
       "Sala 34"
-
     ],
 
-
     "Medicina": [
-
       "Sala Circuito I",
       "Sala Circuito II",
       "Sala 360",
@@ -851,22 +827,14 @@ const estrutura = {
       "Laboratório de Neuroanatomia e Anatomia Humana",
       "Laboratório de Microscopia",
       "Laboratório Morfofuncional II"
-
     ]
 
   },
 
 
-  /*
-   * ========================================================
-   * CCS
-   * ========================================================
-   */
-
   "CCS": {
 
     "SUBSOLO": [
-
       "Sala de Professores",
       "Direção",
       "Sala de Reuniões",
@@ -881,12 +849,9 @@ const estrutura = {
       "Sala 13",
       "Sala 15",
       "Sala 16"
-
     ],
 
-
     "TÉRREO": [
-
       "Auditório",
       "Sec. Acadêmica",
       "Lab. de Informática",
@@ -895,12 +860,9 @@ const estrutura = {
       "Gab. Professor 02",
       "Gab. Professor 03",
       "NAPSI"
-
     ],
 
-
     "PRIMEIRO ANDAR": [
-
       "Biblioteca",
       "Lab. de Habilidades Clínica",
       "Lab. Histologia e Embriologia",
@@ -922,17 +884,10 @@ const estrutura = {
       "Lab. Pré-Clínico de Odontologia",
       "SEPAT",
       "Almoxarifado"
-
     ]
 
   },
 
-
-  /*
-   * ========================================================
-   * OUTROS PRÉDIOS
-   * ========================================================
-   */
 
   "Clínica Escola": {},
 
@@ -981,21 +936,18 @@ const NOMES_BLOCOS = {
 
 /*
  * ==========================================================
- * ELEMENTOS DO FORMULÁRIO
+ * ELEMENTOS
  * ==========================================================
  */
 
 const blocoSelect =
   document.getElementById("bloco");
 
-
 const salaSelect =
   document.getElementById("sala");
 
-
 const categoriaSelect =
   document.getElementById("categoria");
-
 
 const problemaSelect =
   document.getElementById("problema");
@@ -1010,7 +962,6 @@ const problemaSelect =
 const problemasPorCategoria = {
 
   "Sala de Aula": [
-
     "Projetor",
     "Computador",
     "Internet",
@@ -1019,12 +970,9 @@ const problemasPorCategoria = {
     "Cabo/Adaptador",
     "Sistema/Software",
     "Outro"
-
   ],
 
-
   "Administrativo": [
-
     "Computador",
     "Impressora",
     "Internet/Rede",
@@ -1033,7 +981,6 @@ const problemasPorCategoria = {
     "Reset de Senhas",
     "Acesso/Permissão",
     "Outro"
-
   ]
 
 };
@@ -1041,7 +988,7 @@ const problemasPorCategoria = {
 
 /*
  * ==========================================================
- * ALTERAÇÃO DA CATEGORIA
+ * CATEGORIA → PROBLEMA
  * ==========================================================
  */
 
@@ -1052,10 +999,8 @@ categoriaSelect.addEventListener(
     const categoria =
       this.value;
 
-
     problemaSelect.innerHTML =
       '<option value="">Selecione o problema</option>';
-
 
     if (
       categoria &&
@@ -1069,14 +1014,11 @@ categoriaSelect.addEventListener(
             const opt =
               document.createElement("option");
 
-
             opt.value =
               problema;
 
-
             opt.textContent =
               problema;
-
 
             problemaSelect.appendChild(
               opt
@@ -1084,7 +1026,6 @@ categoriaSelect.addEventListener(
 
           }
         );
-
 
       problemaSelect.disabled =
         false;
@@ -1095,7 +1036,6 @@ categoriaSelect.addEventListener(
 
       problemaSelect.disabled =
         true;
-
 
       problemaSelect.innerHTML =
         '<option value="">Selecione primeiro a categoria</option>';
@@ -1118,18 +1058,7 @@ let predioAtivo =
 
 /*
  * ==========================================================
- * LÊ OS PARÂMETROS DA URL
- *
- * Exemplos aceitos:
- *
- * ?predio=SEDE&bloco=Arquitetura&sala=Sala%2019
- *
- * ?predio=SEDE&bloco=Anexo%20da%20Arquitetura&sala=Sala%2019
- *
- * ?predio=SEDE&bloco=Medicina&sala=Sala%2035
- *
- * ?predio=SEDE&bloco=Complexo%20da%20Medicina&sala=Sala%2035
- *
+ * PARÂMETROS DO QR CODE
  * ==========================================================
  */
 
@@ -1154,15 +1083,6 @@ const salaURL =
 /*
  * ==========================================================
  * NORMALIZA TEXTO
- *
- * Permite comparar:
- *
- * Arquitetura
- * arquitetura
- * ARQUITETURA
- * Anexo da Arquitetura
- * ANEXO DA ARQUITETURA
- *
  * ==========================================================
  */
 
@@ -1182,20 +1102,89 @@ function normalizarTexto(valor) {
 
 /*
  * ==========================================================
+ * ALIASES DOS QR CODES
+ *
+ * Permite que QR CODES antigos continuem funcionando.
+ *
+ * Exemplos:
+ *
+ * ARQ → Arquitetura
+ * MED → Medicina
+ * SUB → SUBSOLO
+ * TER → TÉRREO
+ * 1AND → PRIMEIRO ANDAR
+ *
+ * Também aceita os nomes amigáveis.
+ * ==========================================================
+ */
+
+const ALIASES_BLOCOS = {
+
+  "ARQ":
+    "Arquitetura",
+
+  "ARQUITETURA":
+    "Arquitetura",
+
+  "ANEXO DA ARQUITETURA":
+    "Arquitetura",
+
+  "MED":
+    "Medicina",
+
+  "MEDICINA":
+    "Medicina",
+
+  "COMPLEXO DA MEDICINA":
+    "Medicina",
+
+  "SUB":
+    "SUBSOLO",
+
+  "SUBSOLO":
+    "SUBSOLO",
+
+  "TER":
+    "TÉRREO",
+
+  "TERREO":
+    "TÉRREO",
+
+  "TÉRREO":
+    "TÉRREO",
+
+  "1AND":
+    "PRIMEIRO ANDAR",
+
+  "PRIMEIRO ANDAR":
+    "PRIMEIRO ANDAR"
+
+};
+
+
+/*
+ * ==========================================================
+ * DEFINE O PRÉDIO
+ * ==========================================================
+ */
+
+if (
+  predioURL &&
+  estrutura[predioURL]
+) {
+
+  predioAtivo =
+    predioURL;
+
+}
+
+
+/*
+ * ==========================================================
  * ENCONTRA O BLOCO REAL
  *
- * O QR pode enviar:
- *
- * Arquitetura
- *
- * ou
- *
- * Anexo da Arquitetura
- *
- * O sistema sempre converte para:
- *
- * Arquitetura
- *
+ * Retorna sempre o nome usado internamente
+ * pela estrutura.
  * ==========================================================
  */
 
@@ -1216,6 +1205,51 @@ function encontrarBloco(
     );
 
 
+  /*
+   * --------------------------------------------------------
+   * 1. Verifica alias conhecido
+   * --------------------------------------------------------
+   */
+
+  const alias =
+    Object.keys(
+      ALIASES_BLOCOS
+    ).find(
+      function(chave) {
+
+        return (
+          normalizarTexto(chave) ===
+          informado
+        );
+
+      }
+    );
+
+
+  if (alias) {
+
+    const blocoConvertido =
+      ALIASES_BLOCOS[alias];
+
+
+    if (
+      estrutura[predioAtivo] &&
+      estrutura[predioAtivo][blocoConvertido]
+    ) {
+
+      return blocoConvertido;
+
+    }
+
+  }
+
+
+  /*
+   * --------------------------------------------------------
+   * 2. Verifica diretamente o código interno
+   * --------------------------------------------------------
+   */
+
   const blocos =
     Object.keys(
       estrutura[predioAtivo] || {}
@@ -1226,11 +1260,6 @@ function encontrarBloco(
     const bloco of blocos
   ) {
 
-
-    /*
-     * Verifica o código interno
-     */
-
     if (
       normalizarTexto(bloco) ===
       informado
@@ -1240,15 +1269,25 @@ function encontrarBloco(
 
     }
 
+  }
 
-    /*
-     * Verifica o nome amigável
-     */
+
+  /*
+   * --------------------------------------------------------
+   * 3. Verifica o nome amigável
+   * --------------------------------------------------------
+   */
+
+  for (
+    const bloco of blocos
+  ) {
+
+    const nomeAmigavel =
+      NOMES_BLOCOS[bloco] || bloco;
+
 
     if (
-      normalizarTexto(
-        NOMES_BLOCOS[bloco] || ""
-      ) ===
+      normalizarTexto(nomeAmigavel) ===
       informado
     ) {
 
@@ -1266,24 +1305,7 @@ function encontrarBloco(
 
 /*
  * ==========================================================
- * DEFINE O PRÉDIO ATIVO
- * ==========================================================
- */
-
-if (
-  predioURL &&
-  estrutura[predioURL]
-) {
-
-  predioAtivo =
-    predioURL;
-
-}
-
-
-/*
- * ==========================================================
- * CARREGA OS BLOCOS DO PRÉDIO
+ * CARREGA OS BLOCOS
  * ==========================================================
  */
 
@@ -1300,7 +1322,7 @@ function carregarBlocos() {
 
 
   blocos.forEach(
-    function(b) {
+    function(bloco) {
 
       const opt =
         document.createElement(
@@ -1309,11 +1331,11 @@ function carregarBlocos() {
 
 
       opt.value =
-        b;
+        bloco;
 
 
       opt.textContent =
-        NOMES_BLOCOS[b] || b;
+        NOMES_BLOCOS[bloco] || bloco;
 
 
       blocoSelect.appendChild(
@@ -1341,71 +1363,68 @@ function carregarSalas(
     '<option value="">Selecione a sala</option>';
 
 
+  salaSelect.disabled =
+    true;
+
+
   if (
-    bloco &&
-    estrutura[predioAtivo] &&
-    estrutura[predioAtivo][bloco]
+    !bloco ||
+    !estrutura[predioAtivo] ||
+    !estrutura[predioAtivo][bloco]
   ) {
 
+    return;
 
-    estrutura[predioAtivo][bloco]
-      .forEach(
-        function(sala) {
-
-          const opt =
-            document.createElement(
-              "option"
-            );
+  }
 
 
-          opt.value =
-            sala;
+  estrutura[predioAtivo][bloco]
+    .forEach(
+      function(sala) {
 
-
-          opt.textContent =
-            sala;
-
-
-          if (
-            salaPreSelecionada &&
-            normalizarTexto(sala) ===
-            normalizarTexto(
-              salaPreSelecionada
-            )
-          ) {
-
-            opt.selected =
-              true;
-
-          }
-
-
-          salaSelect.appendChild(
-            opt
+        const opt =
+          document.createElement(
+            "option"
           );
 
+
+        opt.value =
+          sala;
+
+
+        opt.textContent =
+          sala;
+
+
+        if (
+          salaPreSelecionada &&
+          normalizarTexto(sala) ===
+          normalizarTexto(salaPreSelecionada)
+        ) {
+
+          opt.selected =
+            true;
+
         }
-      );
 
 
-    salaSelect.disabled =
-      false;
+        salaSelect.appendChild(
+          opt
+        );
 
-  }
+      }
+    );
 
-  else {
 
-    salaSelect.disabled =
-      true;
-
-  }
+  salaSelect.disabled =
+    false;
 
 }
 
 
 /*
  * ==========================================================
- * INICIALIZA OS BLOCOS
+ * INICIALIZAÇÃO
  * ==========================================================
  */
 
@@ -1414,22 +1433,16 @@ carregarBlocos();
 
 /*
  * ==========================================================
- * QR CODE
+ * PROCESSAMENTO DO QR CODE
  *
- * ESTA É A PARTE CORRIGIDA.
+ * ORDEM IMPORTANTE:
  *
- * O sistema aceita tanto:
- *
- * Arquitetura
- *
- * quanto:
- *
- * Anexo da Arquitetura
- *
- * E converte ambos para:
- *
- * Arquitetura
- *
+ * 1. Identifica bloco
+ * 2. Seleciona bloco
+ * 3. Carrega salas
+ * 4. Identifica sala
+ * 5. Seleciona sala
+ * 6. Bloqueia os campos
  * ==========================================================
  */
 
@@ -1445,9 +1458,10 @@ if (
   estrutura[predioAtivo][blocoReal]
 ) {
 
-
   /*
-   * Define o valor real do bloco
+   * --------------------------------------------------------
+   * BLOCO
+   * --------------------------------------------------------
    */
 
   blocoSelect.value =
@@ -1455,30 +1469,33 @@ if (
 
 
   /*
-   * Bloqueia o bloco
+   * Confirma que realmente foi selecionado.
    */
 
-  blocoSelect.classList.add(
-    "bloqueado"
-  );
+  if (
+    blocoSelect.value ===
+    blocoReal
+  ) {
 
+    blocoSelect.classList.add(
+      "bloqueado"
+    );
 
-  blocoSelect.disabled =
-    true;
+    blocoSelect.disabled =
+      true;
+
+    document.getElementById(
+      "badgeBloco"
+    ).innerHTML =
+      '<span class="badge-qr">📱 QR Code</span>';
+
+  }
 
 
   /*
-   * Mostra identificação do QR
-   */
-
-  document.getElementById(
-    "badgeBloco"
-  ).innerHTML =
-    '<span class="badge-qr">📱 QR Code</span>';
-
-
-  /*
-   * Carrega as salas
+   * --------------------------------------------------------
+   * SALAS
+   * --------------------------------------------------------
    */
 
   carregarSalas(
@@ -1488,51 +1505,63 @@ if (
 
 
   /*
-   * ========================================================
-   * LOCALIZA A SALA EXATA
-   * ========================================================
+   * --------------------------------------------------------
+   * ENCONTRA A SALA
+   * --------------------------------------------------------
    */
 
   if (salaURL) {
 
+    const salasDoBloco =
+      estrutura[predioAtivo][blocoReal];
+
 
     const salaReal =
-      estrutura[predioAtivo][blocoReal]
-        .find(
-          function(sala) {
+      salasDoBloco.find(
+        function(sala) {
 
-            return (
-              normalizarTexto(sala) ===
-              normalizarTexto(salaURL)
-            );
+          return (
+            normalizarTexto(sala) ===
+            normalizarTexto(salaURL)
+          );
 
-          }
-        );
+        }
+      );
 
-
-    /*
-     * Se a sala existir, bloqueia
-     */
 
     if (salaReal) {
+
+      /*
+       * Seleciona a sala
+       */
 
       salaSelect.value =
         salaReal;
 
 
-      salaSelect.classList.add(
-        "bloqueado"
-      );
+      /*
+       * Confirma que a sala realmente
+       * foi encontrada no SELECT.
+       */
 
+      if (
+        salaSelect.value ===
+        salaReal
+      ) {
 
-      salaSelect.disabled =
-        true;
+        salaSelect.classList.add(
+          "bloqueado"
+        );
 
+        salaSelect.disabled =
+          true;
 
-      document.getElementById(
-        "badgeSala"
-      ).innerHTML =
-        '<span class="badge-qr">📱 QR Code</span>';
+        document.getElementById(
+          "badgeSala"
+        ).innerHTML =
+          '<span class="badge-qr">📱 QR Code</span>';
+
+      }
 
     }
 
@@ -1551,14 +1580,37 @@ blocoSelect.addEventListener(
   "change",
   function() {
 
-    /*
-     * Se o bloco não veio pelo QR,
-     * permite alteração normalmente.
-     */
-
     if (
       !this.disabled
     ) {
+
+      /*
+       * Remove eventual estado de QR
+       */
+
+      blocoSelect.classList.remove(
+        "bloqueado"
+      );
+
+      document.getElementById(
+        "badgeBloco"
+      ).innerHTML =
+        "";
+
+
+      /*
+       * Limpa estado anterior da sala
+       */
+
+      salaSelect.classList.remove(
+        "bloqueado"
+      );
+
+      document.getElementById(
+        "badgeSala"
+      ).innerHTML =
+        "";
+
 
       carregarSalas(
         this.value
@@ -1657,6 +1709,9 @@ document
             "nome"
           ).value,
 
+        categoria:
+          categoriaSelect.value,
+
         problema:
           document.getElementById(
             "problema"
@@ -1677,7 +1732,6 @@ document
 
 
       try {
-
 
         /*
          * ================================================
@@ -1704,14 +1758,20 @@ document
          * ================================================
          */
 
+        const blocoExibicao =
+          NOMES_BLOCOS[dados.bloco] ||
+          dados.bloco;
+
+
         const msg =
 
 `📢 *Chamado Técnico - NTI*
 🏛️ Prédio: ${dados.predio}
-🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}
+🏢 Bloco: ${blocoExibicao} | Sala: ${dados.sala}
 👨‍🏫 Solicitante: ${dados.nome}
+📂 Categoria: ${dados.categoria}
 🔧 Problema: ${dados.problema}
-📝 Observação: ${dados.obs || "Nenhuma}`;
+📝 Observação: ${dados.obs || "Nenhuma"}`;
 
 
         /*
@@ -1751,7 +1811,6 @@ document
 
       catch (err) {
 
-
         /*
          * ================================================
          * ERRO
@@ -1788,4 +1847,3 @@ document
 
 </body>
 </html>
-```
