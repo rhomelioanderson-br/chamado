@@ -28,13 +28,9 @@ body {
 }
 
 body {
-
     font-family: 'Inter', sans-serif;
-
     background: #3a0000;
-
     color: #1a0000;
-
     padding: 20px;
 }
 
@@ -82,7 +78,6 @@ body {
 }
 
 label {
-
     font-weight: 700;
 }
 
@@ -103,7 +98,6 @@ input {
 }
 
 select {
-
     min-width: 220px;
 }
 
@@ -127,17 +121,14 @@ button {
 }
 
 button:hover {
-
     background: #b00000;
 }
 
 button.secundario {
-
     background: #444;
 }
 
 button.verde {
-
     background: #176b2c;
 }
 
@@ -200,17 +191,15 @@ button.verde {
 }
 
 .sala-item input {
-
     width: 70px;
 }
 
 
 /* =========================================================
-   ÁREA DAS PÁGINAS
+   PÁGINAS A4
    ========================================================= */
 
 #paginas {
-
     width: 100%;
 }
 
@@ -247,7 +236,7 @@ button.verde {
 
 
 /* =========================================================
-   GRADE FIXA — 6 POSIÇÕES
+   GRADE 2 × 3
    ========================================================= */
 
 .grid {
@@ -321,9 +310,9 @@ button.verde {
 
     gap: 6px;
 
-    min-height: 34px;
+    min-height: 32px;
 
-    padding: 5px 6px;
+    padding: 4px 6px;
 
     background:
         linear-gradient(
@@ -344,13 +333,12 @@ button.verde {
 }
 
 .card-top .icone {
-
     font-size: 18px;
 }
 
 
 /* =========================================================
-   CORPO DO CARD
+   CORPO
    ========================================================= */
 
 .card-body {
@@ -367,7 +355,7 @@ button.verde {
 
     justify-content: center;
 
-    padding: 3px 5px;
+    padding: 1px 3px;
 
     text-align: center;
 
@@ -376,16 +364,24 @@ button.verde {
 
 
 /* =========================================================
-   QR CODE — ÁREA AMPLIADA
+   QR CODE GRANDE
    ========================================================= */
+
+/*
+ * QR aumentado para 190 × 190.
+ *
+ * A área total reservada é 204 × 204,
+ * permitindo que o QR fique praticamente
+ * encostado nas laterais do espaço central.
+ */
 
 .qrcode {
 
     flex: 0 0 auto;
 
-    width: 174px;
+    width: 204px;
 
-    height: 174px;
+    height: 204px;
 
     display: flex;
 
@@ -398,33 +394,22 @@ button.verde {
     margin: 0 auto;
 }
 
-
-/*
- * QR aumentado:
- *
- * Antes: 125 × 125
- * Agora: 160 × 160
- *
- * A borda e o padding fazem a área
- * visual ocupar aproximadamente 170px.
- */
-
 .qrcode img,
 .qrcode canvas {
 
-    width: 160px !important;
+    width: 190px !important;
 
-    height: 160px !important;
+    height: 190px !important;
 
-    max-width: 160px !important;
+    max-width: 190px !important;
 
-    max-height: 160px !important;
+    max-height: 190px !important;
 
     border: 2px solid #000;
 
     border-radius: 6px;
 
-    padding: 4px;
+    padding: 3px;
 
     box-sizing: content-box;
 }
@@ -438,9 +423,9 @@ button.verde {
 
     flex: 0 0 auto;
 
-    margin-top: 3px;
+    margin-top: 1px;
 
-    padding: 4px 7px;
+    padding: 3px 7px;
 
     border-radius: 5px;
 
@@ -452,7 +437,7 @@ button.verde {
 
     font-weight: 800;
 
-    line-height: 1.15;
+    line-height: 1.1;
 
     text-align: center;
 }
@@ -466,9 +451,9 @@ button.verde {
 
     flex: 0 0 auto;
 
-    min-height: 38px;
+    min-height: 37px;
 
-    padding: 5px 6px;
+    padding: 4px 6px;
 
     background: #3a0000;
 
@@ -503,7 +488,7 @@ button.verde {
 
 .card-sala {
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     font-size: 9px;
 
@@ -581,7 +566,6 @@ button.verde {
     }
 
     #paginas {
-
         width: 210mm;
     }
 
@@ -654,15 +638,14 @@ button.verde {
     }
 
     .card-body {
-
         overflow: hidden;
     }
 
     .qrcode {
 
-        width: 174px !important;
+        width: 204px !important;
 
-        height: 174px !important;
+        height: 204px !important;
 
         break-inside: avoid !important;
 
@@ -672,15 +655,14 @@ button.verde {
     .qrcode img,
     .qrcode canvas {
 
-        width: 160px !important;
+        width: 190px !important;
 
-        height: 160px !important;
+        height: 190px !important;
 
-        max-width: 160px !important;
+        max-width: 190px !important;
 
-        max-height: 160px !important;
+        max-height: 190px !important;
     }
-
 }
 
 
@@ -691,7 +673,6 @@ button.verde {
 @media screen and (max-width: 700px) {
 
     body {
-
         padding: 10px;
     }
 
@@ -818,6 +799,7 @@ button.verde {
 
 <script>
 
+
 /* =========================================================
    CONFIGURAÇÕES
    ========================================================= */
@@ -858,6 +840,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "B",
 
@@ -874,6 +857,7 @@ const predios = {
 
             ]
         },
+
 
         {
             codigo: "C",
@@ -900,6 +884,7 @@ const predios = {
 
             ]
         },
+
 
         {
             codigo: "D",
@@ -935,6 +920,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "ARQ",
 
@@ -962,6 +948,7 @@ const predios = {
 
             ]
         },
+
 
         {
             codigo: "MED",
@@ -1022,6 +1009,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "TER",
 
@@ -1041,6 +1029,7 @@ const predios = {
 
             ]
         },
+
 
         {
             codigo: "1AND",
@@ -1098,18 +1087,23 @@ function carregarSalasDoPredio() {
             "predioSelect"
         ).value;
 
+
     const lista =
         document.getElementById(
             "listaSalas"
         );
 
+
     lista.innerHTML = "";
+
 
     if (!predio) {
         return;
     }
 
+
     quantidades[predio] = {};
+
 
     predios[predio].forEach(
         bloco => {
@@ -1136,6 +1130,7 @@ function carregarSalasDoPredio() {
                     "div"
                 );
 
+
             titulo.style.gridColumn =
                 "1 / -1";
 
@@ -1151,6 +1146,7 @@ function carregarSalasDoPredio() {
             titulo.textContent =
                 bloco.nome;
 
+
             lista.appendChild(
                 titulo
             );
@@ -1162,13 +1158,16 @@ function carregarSalasDoPredio() {
                     const chave =
                         `${bloco.codigo}|${sala}`;
 
+
                     const item =
                         document.createElement(
                             "div"
                         );
 
+
                     item.className =
                         "sala-item";
+
 
                     item.innerHTML = `
 
@@ -1245,6 +1244,7 @@ function definirTodas(valor) {
             "predioSelect"
         ).value;
 
+
     if (!predio) {
 
         alert(
@@ -1265,8 +1265,10 @@ function definirTodas(valor) {
                 input.value =
                     valor;
 
+
                 const chave =
                     input.dataset.chave;
+
 
                 quantidades[predio][
                     chave
@@ -1290,6 +1292,7 @@ function zerarTodas() {
             "predioSelect"
         ).value;
 
+
     if (!predio) {
 
         alert(
@@ -1310,8 +1313,10 @@ function zerarTodas() {
                 input.value =
                     0;
 
+
                 const chave =
                     input.dataset.chave;
+
 
                 quantidades[predio][
                     chave
@@ -1356,11 +1361,7 @@ function gerarQRCodes() {
 
 
     /*
-     * =====================================================
      * LISTA ÚNICA
-     *
-     * Todos os blocos entram na mesma sequência.
-     * =====================================================
      */
 
     const todosOsQRCodes = [];
@@ -1374,6 +1375,7 @@ function gerarQRCodes() {
 
                     const chave =
                         `${bloco.codigo}|${sala}`;
+
 
                     const quantidade =
                         parseInt(
@@ -1427,12 +1429,7 @@ function gerarQRCodes() {
 
 
     /*
-     * =====================================================
      * PAGINAÇÃO GLOBAL
-     *
-     * Sempre 6 QR por página.
-     * A troca de bloco NÃO reinicia a página.
-     * =====================================================
      */
 
     for (
@@ -1456,6 +1453,7 @@ function gerarQRCodes() {
                 "div"
             );
 
+
         pagina.className =
             "pagina";
 
@@ -1465,6 +1463,7 @@ function gerarQRCodes() {
                 "div"
             );
 
+
         grid.className =
             "grid";
 
@@ -1472,10 +1471,12 @@ function gerarQRCodes() {
         grupo.forEach(
             item => {
 
+
                 const card =
                     document.createElement(
                         "div"
                     );
+
 
                 card.className =
                     "card";
@@ -1490,8 +1491,10 @@ function gerarQRCodes() {
                         "div"
                     );
 
+
                 top.className =
                     "card-top";
+
 
                 top.innerHTML = `
 
@@ -1515,12 +1518,13 @@ function gerarQRCodes() {
                         "div"
                     );
 
+
                 body.className =
                     "card-body";
 
 
                 /* =========================================
-                   QR
+                   QR CODE
                    ========================================= */
 
                 const qr =
@@ -1528,12 +1532,13 @@ function gerarQRCodes() {
                         "div"
                     );
 
+
                 qr.className =
                     "qrcode";
 
 
                 /*
-                 * URL COMPLETA
+                 * URL COMPLETA:
                  *
                  * PRÉDIO + BLOCO + SALA
                  */
@@ -1555,10 +1560,6 @@ function gerarQRCodes() {
                     )}`;
 
 
-                /*
-                 * QR 160 × 160
-                 */
-
                 new QRCode(
                     qr,
                     {
@@ -1567,10 +1568,10 @@ function gerarQRCodes() {
                             url,
 
                         width:
-                            160,
+                            190,
 
                         height:
-                            160,
+                            190,
 
                         colorDark:
                             "#1a0000",
@@ -1594,8 +1595,10 @@ function gerarQRCodes() {
                         "div"
                     );
 
+
                 instrucao.className =
                     "card-instrucao";
+
 
                 instrucao.textContent =
                     "📱 Aponte a câmera do celular";
@@ -1604,6 +1607,7 @@ function gerarQRCodes() {
                 body.appendChild(
                     qr
                 );
+
 
                 body.appendChild(
                     instrucao
@@ -1618,6 +1622,7 @@ function gerarQRCodes() {
                     document.createElement(
                         "div"
                     );
+
 
                 bottom.className =
                     "card-bottom";
@@ -1681,6 +1686,7 @@ function gerarQRCodes() {
             grid
         );
 
+
         container.appendChild(
             pagina
         );
@@ -1702,7 +1708,7 @@ function gerarQRCodes() {
 
 
     /* =====================================================
-       AGUARDA RENDERIZAÇÃO
+       ESPERA RENDERIZAÇÃO
        ===================================================== */
 
     setTimeout(
@@ -1729,6 +1735,7 @@ document.addEventListener(
             document.getElementById(
                 "predioSelect"
             );
+
 
         if (select.value) {
 
