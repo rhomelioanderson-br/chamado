@@ -216,78 +216,66 @@
 
     .pagina {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;
       background: white;
       margin: 0 auto 30px;
-      padding: 12mm;
+      padding: 8mm;
       box-shadow: 0 10px 40px rgba(0,0,0,0.4);
       page-break-after: always;
+      break-after: page;
       position: relative;
       overflow: hidden;
     }
+
+    /* =====================================================
+       CABEÇALHO COMPACTO DA PÁGINA
+       ===================================================== */
 
     .pagina-titulo {
       text-align: center;
       background: linear-gradient(135deg,#C8102E 0%,#8B0000 100%);
       color: white;
-      padding: 18px 25px;
-      border-radius: 12px;
-      margin-bottom: 15px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 6px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(200,16,46,0.3);
+      box-shadow: 0 3px 8px rgba(200,16,46,0.2);
     }
 
-    .pagina-titulo::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 150px;
-      height: 150px;
-      background: rgba(255,193,7,0.2);
-      border-radius: 50%;
-    }
-
+    .pagina-titulo::before,
     .pagina-titulo::after {
-      content: '';
-      position: absolute;
-      bottom: -30px;
-      left: -30px;
-      width: 100px;
-      height: 100px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
+      display: none;
     }
 
     .pagina-titulo h2 {
-      font-size: 22px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       position: relative;
       z-index: 1;
+      line-height: 1.2;
     }
 
     .pagina-titulo p {
-      font-size: 11px;
-      opacity: 0.95;
-      margin-top: 4px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
+      display: none;
     }
 
     /* =====================================================
-       GRID
+       GRID — 6 CARDS POR PÁGINA
        ===================================================== */
 
     .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
       gap: 12px;
+      height: calc(100% - 32px);
     }
+
+    /* =====================================================
+       CARD
+       ===================================================== */
 
     .card {
       background: white;
@@ -295,10 +283,12 @@
       padding: 0;
       text-align: center;
       page-break-inside: avoid;
+      break-inside: avoid;
       position: relative;
       overflow: hidden;
       border: 3px solid #1a1a1a;
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      min-height: 0;
     }
 
     /* =====================================================
@@ -379,6 +369,10 @@
       padding: 6px;
       background: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+      /* Mantém o QR Code no mesmo tamanho */
+      width: 140px !important;
+      height: 140px !important;
     }
 
     .card-instrucao {
@@ -470,12 +464,15 @@
 
       .pagina {
         width: 100%;
+        height: auto;
         min-height: auto;
         padding: 15px;
       }
 
       .grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
       }
 
     }
@@ -484,11 +481,17 @@
        IMPRESSÃO
        ===================================================== */
 
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
     @media print {
 
       body {
         background: white;
         padding: 0;
+        margin: 0;
       }
 
       .controls,
@@ -498,13 +501,33 @@
       }
 
       .pagina {
-        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
         margin: 0;
-        padding: 10mm;
+        padding: 8mm;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+      }
+
+      .pagina-titulo {
+        padding: 4px 10px;
+        margin-bottom: 6px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 12px;
+        height: calc(100% - 32px);
       }
 
       .card {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: none;
       }
 
     }
@@ -513,7 +536,6 @@
 </head>
 
 <body>
-
 
 <!-- =====================================================
      CONTROLES
@@ -528,7 +550,6 @@
   <div class="subtitulo">
     Selecione o prédio para configurar os QR Codes.
   </div>
-
 
   <!-- ===================================================
        SELEÇÃO DO PRÉDIO
@@ -558,9 +579,8 @@
 
   </div>
 
-
   <!-- ===================================================
-       ÁREA QUE SERÁ PREENCHIDA APÓS ESCOLHER O PRÉDIO
+       ÁREA DE CONFIGURAÇÃO
        =================================================== -->
 
   <div id="areaConfiguracao" style="display:none;">
@@ -585,9 +605,7 @@
 
     </div>
 
-
     <div id="configuracaoSalas"></div>
-
 
     <button
       class="botao-gerar"
@@ -599,7 +617,6 @@
   </div>
 
 </div>
-
 
 <!-- =====================================================
      INFORMAÇÃO
@@ -615,16 +632,13 @@
 
 </div>
 
-
 <!-- =====================================================
      PÁGINAS GERADAS
      ===================================================== -->
 
 <div id="paginas"></div>
 
-
 <script>
-
 
 /* ========================================================
    URL DO SISTEMA DE CHAMADOS
@@ -664,7 +678,6 @@ const paginasDiv =
 
 const predios = {
 
-
   /* ======================================================
      SEDE
      ====================================================== */
@@ -680,7 +693,6 @@ const predios = {
         cor: "A",
 
         salas: [
-
           "SEPAT",
           "Secretaria Geral",
           "Tesouraria",
@@ -691,33 +703,27 @@ const predios = {
           "Secretaria Medicina",
           "Secretaria de Cursos",
           "Coordenações de Cursos"
-
         ]
       },
-
 
       "B": {
         nome: "BLOCO B - ADMINISTRATIVO",
         cor: "B",
 
         salas: [
-
           "Comercial",
           "Sala de Professores",
           "Sala de Reuniões",
           "Marketing",
           "NAPSI"
-
         ]
       },
-
 
       "C": {
         nome: "BLOCO C - SALAS DE AULA",
         cor: "C",
 
         salas: [
-
           "Sala 1",
           "Sala 2",
           "Sala 3",
@@ -732,17 +738,14 @@ const predios = {
           "Pequeno Grupo 8",
           "Pequeno Grupo 9",
           "Pós Graduação"
-
         ]
       },
-
 
       "D": {
         nome: "BLOCO D - SALAS E LABORATÓRIOS",
         cor: "D",
 
         salas: [
-
           "Sala 5",
           "Sala 6",
           "Sala 7",
@@ -765,17 +768,14 @@ const predios = {
           "Biblioteca",
           "Auditório",
           "Almoxarifado"
-
         ]
       },
-
 
       "Arquitetura": {
         nome: "ANEXO DA ARQUITETURA",
         cor: "Arquitetura",
 
         salas: [
-
           "Sala 19",
           "Sala 20 - Marqueteria",
           "Sala 21 - Atêliê de Projetos",
@@ -792,17 +792,14 @@ const predios = {
           "Sala 32",
           "Sala 33",
           "Sala 34"
-
         ]
       },
-
 
       "Medicina": {
         nome: "COMPLEXO DA MEDICINA",
         cor: "Medicina",
 
         salas: [
-
           "Sala Circuito I",
           "Sala Circuito II",
           "Sala 360",
@@ -819,14 +816,12 @@ const predios = {
           "Laboratório de Neuroanatomia e Anatomia Humana",
           "Laboratório de Microscopia",
           "Laboratório Morfofuncional II"
-
         ]
       }
 
     }
 
   },
-
 
   /* ======================================================
      CCS
@@ -838,7 +833,6 @@ const predios = {
 
     blocos: {
 
-
       "SUBSOLO": {
 
         nome: "CCS - SUBSOLO",
@@ -846,7 +840,6 @@ const predios = {
         cor: "SUBSOLO",
 
         salas: [
-
           "Sala de Professores",
           "Direção",
           "Sala de Reuniões",
@@ -861,10 +854,8 @@ const predios = {
           "Sala 13",
           "Sala 15",
           "Sala 16"
-
         ]
       },
-
 
       "TÉRREO": {
 
@@ -873,7 +864,6 @@ const predios = {
         cor: "TÉRREO",
 
         salas: [
-
           "Auditório",
           "Sec. Acadêmica",
           "Lab. de Informática",
@@ -882,10 +872,8 @@ const predios = {
           "Gab. Professor 02",
           "Gab. Professor 03",
           "NAPSI"
-
         ]
       },
-
 
       "PRIMEIRO ANDAR": {
 
@@ -894,7 +882,6 @@ const predios = {
         cor: "PRIMEIRO ANDAR",
 
         salas: [
-
           "Biblioteca",
           "Lab. de Habilidades Clínica",
           "Lab. Histologia e Embriologia",
@@ -916,7 +903,6 @@ const predios = {
           "Lab. Pré-Clínico de Odontologia",
           "SEPAT",
           "Almoxarifado"
-
         ]
       }
 
@@ -961,9 +947,7 @@ predioSelect.addEventListener(
     const predio =
       this.value;
 
-
     paginasDiv.innerHTML = "";
-
 
     if (!predio) {
 
@@ -977,14 +961,10 @@ predioSelect.addEventListener(
 
     }
 
-
     areaConfiguracao.style.display =
       "block";
 
-
-    carregarSalasDoPredio(
-      predio
-    );
+    carregarSalasDoPredio(predio);
 
   }
 );
@@ -994,22 +974,17 @@ predioSelect.addEventListener(
    CARREGAR BLOCOS DO PRÉDIO
    ======================================================== */
 
-function carregarSalasDoPredio(
-  predio
-) {
+function carregarSalasDoPredio(predio) {
 
   configuracaoSalas.innerHTML =
     "";
 
-
   const dadosPredio =
     predios[predio];
-
 
   if (!dadosPredio) {
     return;
   }
-
 
   Object.keys(
     dadosPredio.blocos
@@ -1017,10 +992,7 @@ function carregarSalasDoPredio(
     blocoCodigo => {
 
       const bloco =
-        dadosPredio.blocos[
-          blocoCodigo
-        ];
-
+        dadosPredio.blocos[blocoCodigo];
 
       const blocoDiv =
         document.createElement("div");
@@ -1028,30 +1000,24 @@ function carregarSalasDoPredio(
       blocoDiv.className =
         "bloco-config";
 
-
       blocoDiv.innerHTML = `
 
         <div class="bloco-config-titulo">
-
           📍 ${esc(bloco.nome)}
-
         </div>
 
         <div class="lista-salas"></div>
 
       `;
 
-
       configuracaoSalas.appendChild(
         blocoDiv
       );
-
 
       const lista =
         blocoDiv.querySelector(
           ".lista-salas"
         );
-
 
       bloco.salas.forEach(
         sala => {
@@ -1059,17 +1025,14 @@ function carregarSalasDoPredio(
           const chave =
             `${predio}|||${blocoCodigo}|||${sala}`;
 
-
           quantidades[chave] =
             1;
-
 
           const linha =
             document.createElement("div");
 
           linha.className =
             "linha-sala";
-
 
           linha.innerHTML = `
 
@@ -1088,7 +1051,6 @@ function carregarSalasDoPredio(
 
           `;
 
-
           lista.appendChild(
             linha
           );
@@ -1098,7 +1060,6 @@ function carregarSalasDoPredio(
 
     }
   );
-
 
   /* ======================================================
      EVENTO DAS QUANTIDADES
@@ -1121,7 +1082,6 @@ function carregarSalasDoPredio(
                 10
               );
 
-
             if (
               isNaN(valor) ||
               valor < 0
@@ -1131,17 +1091,14 @@ function carregarSalasDoPredio(
 
             }
 
-
             if (valor > 999) {
 
               valor = 999;
 
             }
 
-
             input.value =
               valor;
-
 
             quantidades[
               input.dataset.chave
@@ -1160,9 +1117,7 @@ function carregarSalasDoPredio(
    DEFINIR TODAS
    ======================================================== */
 
-function definirTodas(
-  valor
-) {
+function definirTodas(valor) {
 
   document
     .querySelectorAll(
@@ -1201,10 +1156,8 @@ function zerarTodas() {
 
 function gerarQRCodes() {
 
-
   const predio =
     predioSelect.value;
-
 
   if (!predio) {
 
@@ -1215,7 +1168,6 @@ function gerarQRCodes() {
     return;
 
   }
-
 
   /* ======================================================
      ATUALIZA QUANTIDADES
@@ -1234,7 +1186,6 @@ function gerarQRCodes() {
             10
           );
 
-
         if (
           isNaN(valor) ||
           valor < 0
@@ -1244,17 +1195,14 @@ function gerarQRCodes() {
 
         }
 
-
         if (valor > 999) {
 
           valor = 999;
 
         }
 
-
         input.value =
           valor;
-
 
         quantidades[
           input.dataset.chave
@@ -1263,7 +1211,6 @@ function gerarQRCodes() {
       }
     );
 
-
   /* ======================================================
      LIMPA RESULTADO ANTERIOR
      ====================================================== */
@@ -1271,12 +1218,10 @@ function gerarQRCodes() {
   paginasDiv.innerHTML =
     "";
 
-
   const antiga =
     document.getElementById(
       "barraImpressao"
     );
-
 
   if (antiga) {
 
@@ -1284,14 +1229,11 @@ function gerarQRCodes() {
 
   }
 
-
   const dadosPredio =
     predios[predio];
 
-
   let totalQR =
     0;
-
 
   /* ======================================================
      CADA BLOCO
@@ -1307,10 +1249,8 @@ function gerarQRCodes() {
           blocoCodigo
         ];
 
-
       const itens =
         [];
-
 
       /* ==================================================
          MONTA A LISTA DE CÓPIAS
@@ -1322,10 +1262,8 @@ function gerarQRCodes() {
           const chave =
             `${predio}|||${blocoCodigo}|||${sala}`;
 
-
           const quantidade =
             quantidades[chave] || 0;
-
 
           for (
             let i = 0;
@@ -1342,17 +1280,14 @@ function gerarQRCodes() {
         }
       );
 
-
       totalQR +=
         itens.length;
-
 
       if (!itens.length) {
 
         return;
 
       }
-
 
       /* ==================================================
          CRIA PÁGINAS
@@ -1364,19 +1299,16 @@ function gerarQRCodes() {
         i += CARDS_POR_PAGINA
       ) {
 
-
         const grupo =
           itens.slice(
             i,
             i + CARDS_POR_PAGINA
           );
 
-
         const numPagina =
           Math.floor(
             i / CARDS_POR_PAGINA
           ) + 1;
-
 
         const totalPaginas =
           Math.ceil(
@@ -1384,36 +1316,32 @@ function gerarQRCodes() {
             CARDS_POR_PAGINA
           );
 
-
         const pagina =
           document.createElement(
             "div"
           );
 
-
         pagina.className =
           "pagina";
 
+        /* ==================================================
+           CABEÇALHO MINIMALISTA
+           ================================================== */
 
         pagina.innerHTML = `
 
           <div class="pagina-titulo">
 
             <h2>
-              ${
-                esc(bloco.nome)
-              }
+              ${esc(blocoCodigo)}
 
               ${
                 totalPaginas > 1
-                ? ` (${numPagina}/${totalPaginas})`
+                ? ` — ${numPagina}/${totalPaginas}`
                 : ""
               }
-            </h2>
 
-            <p>
-              Sistema de Chamados Técnicos — NTI
-            </p>
+            </h2>
 
           </div>
 
@@ -1421,21 +1349,18 @@ function gerarQRCodes() {
 
         `;
 
-
         paginasDiv.appendChild(
           pagina
         );
-
 
         const grid =
           pagina.querySelector(
             ".grid"
           );
 
-
-        /* ================================================
+        /* =================================================
            CADA CARD
-           ================================================ */
+           ================================================= */
 
         grupo.forEach(
           (sala, idx) => {
@@ -1445,14 +1370,11 @@ function gerarQRCodes() {
                 "div"
               );
 
-
             card.className =
               "card";
 
-
             const qrId =
               `qr-${predio}-${blocoCodigo}-${numPagina}-${idx}-${Date.now()}`;
-
 
             card.innerHTML = `
 
@@ -1468,7 +1390,6 @@ function gerarQRCodes() {
 
               </div>
 
-
               <div class="card-body">
 
                 <div
@@ -1483,7 +1404,6 @@ function gerarQRCodes() {
                 </div>
 
               </div>
-
 
               <div class="card-bottom">
 
@@ -1511,19 +1431,12 @@ function gerarQRCodes() {
 
             `;
 
-
             grid.appendChild(
               card
             );
 
-
             /* ============================================
                URL DO QR CODE
-               
-               AGORA ENVIA:
-               prédio
-               bloco
-               sala
                ============================================ */
 
             const url =
@@ -1532,12 +1445,10 @@ function gerarQRCodes() {
               `&bloco=${encodeURIComponent(blocoCodigo)}` +
               `&sala=${encodeURIComponent(sala)}`;
 
-
             console.log(
               "QR Code:",
               url
             );
-
 
             new QRCode(
               document.getElementById(
@@ -1568,7 +1479,6 @@ function gerarQRCodes() {
 
     }
   );
-
 
   /* ======================================================
      NENHUM QR CODE
@@ -1609,7 +1519,6 @@ function gerarQRCodes() {
 
   }
 
-
   /* ======================================================
      BARRA DE IMPRESSÃO
      ====================================================== */
@@ -1619,10 +1528,8 @@ function gerarQRCodes() {
       "div"
     );
 
-
   barra.id =
     "barraImpressao";
-
 
   barra.style.cssText =
 
@@ -1638,7 +1545,6 @@ function gerarQRCodes() {
     "gap:15px;" +
     "flex-wrap:wrap";
 
-
   barra.innerHTML = `
 
     <div style="font-weight:700;color:#333">
@@ -1651,7 +1557,6 @@ function gerarQRCodes() {
 
     </div>
 
-
     <button onclick="window.print()">
 
       🖨️ Imprimir / Salvar PDF
@@ -1660,12 +1565,10 @@ function gerarQRCodes() {
 
   `;
 
-
   paginasDiv.parentNode.insertBefore(
     barra,
     paginasDiv
   );
-
 
   /* ======================================================
      MOSTRA O RESULTADO
