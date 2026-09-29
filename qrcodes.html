@@ -25,9 +25,10 @@ body {
     color: #1a0000;
 }
 
-/* =========================
+
+/* =====================================================
    CONTROLES
-   ========================= */
+   ===================================================== */
 
 .controls {
     max-width: 1200px;
@@ -113,14 +114,16 @@ button.verde {
     font-size: 13px;
 }
 
-/* =========================
+
+/* =====================================================
    SALAS
-   ========================= */
+   ===================================================== */
 
 #listaSalas {
     display: grid;
 
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns:
+        repeat(auto-fill, minmax(260px, 1fr));
 
     gap: 10px;
 
@@ -151,15 +154,17 @@ button.verde {
     width: 70px;
 }
 
-/* =========================
-   ÁREA DE IMPRESSÃO
-   ========================= */
+
+/* =====================================================
+   ÁREA DAS PÁGINAS
+   ===================================================== */
 
 #paginas {
     width: 100%;
 }
 
 .pagina {
+
     width: 210mm;
     min-height: 297mm;
 
@@ -175,13 +180,13 @@ button.verde {
     break-after: page;
 
     /*
-     * IMPORTANTE:
-     * Não usar overflow:hidden.
-     * Isso evita que os últimos cards sejam cortados.
+     * Nunca esconder conteúdo.
+     * Isso evita corte dos cards.
      */
     overflow: visible;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
 }
 
 .pagina:last-child {
@@ -189,14 +194,17 @@ button.verde {
     break-after: auto;
 }
 
-/* =========================
+
+/* =====================================================
    GRADE
-   ========================= */
+   ===================================================== */
 
 .grid {
+
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     column-gap: 8px;
     row-gap: 8px;
@@ -204,11 +212,13 @@ button.verde {
     width: 100%;
 }
 
-/* =========================
+
+/* =====================================================
    CARD
-   ========================= */
+   ===================================================== */
 
 .card {
+
     width: 100%;
 
     box-sizing: border-box;
@@ -216,22 +226,31 @@ button.verde {
     background: white;
 
     border: 3px solid #000;
+
     border-radius: 16px;
 
     overflow: visible;
 
+    /*
+     * Nunca permitir que um card
+     * seja dividido entre duas páginas.
+     */
     break-inside: avoid;
     page-break-inside: avoid;
 
-    box-shadow: 0 3px 8px rgba(0,0,0,.2);
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.20);
 }
 
-/* =========================
+
+/* =====================================================
    TOPO DO CARD
-   ========================= */
+   ===================================================== */
 
 .card-top {
+
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -239,7 +258,12 @@ button.verde {
 
     padding: 10px 8px;
 
-    background: linear-gradient(135deg, #8b0000, #c40000);
+    background:
+        linear-gradient(
+            135deg,
+            #8b0000,
+            #c40000
+        );
 
     color: white;
 
@@ -255,21 +279,26 @@ button.verde {
     font-size: 24px;
 }
 
-/* =========================
+
+/* =====================================================
    CORPO
-   ========================= */
+   ===================================================== */
 
 .card-body {
-    padding: 14px 8px 10px;
+
+    padding:
+        14px 8px 10px;
 
     text-align: center;
 }
 
-/* =========================
+
+/* =====================================================
    QR CODE
-   ========================= */
+   ===================================================== */
 
 .qrcode {
+
     display: flex;
 
     align-items: center;
@@ -285,6 +314,11 @@ button.verde {
 
 .qrcode img,
 .qrcode canvas {
+
+    /*
+     * TAMANHO ORIGINAL.
+     * Não reduzir.
+     */
     width: 140px !important;
     height: 140px !important;
 
@@ -292,20 +326,24 @@ button.verde {
     max-height: none !important;
 
     border: 3px solid #000;
+
     border-radius: 8px;
 
     padding: 6px;
 
     box-sizing: content-box;
 
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.2);
 }
 
-/* =========================
+
+/* =====================================================
    INSTRUÇÃO
-   ========================= */
+   ===================================================== */
 
 .card-instrucao {
+
     margin-top: 8px;
 
     padding: 7px 10px;
@@ -322,11 +360,13 @@ button.verde {
     text-align: center;
 }
 
-/* =========================
-   RODAPÉ DO CARD
-   ========================= */
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
 
 .card-bottom {
+
     padding: 12px 10px;
 
     background: #3a0000;
@@ -340,6 +380,7 @@ button.verde {
 
 .card-predio-badge,
 .card-bloco-badge {
+
     display: inline-block;
 
     margin: 2px;
@@ -357,6 +398,7 @@ button.verde {
 }
 
 .card-sala {
+
     margin-top: 7px;
 
     font-size: 13px;
@@ -365,11 +407,13 @@ button.verde {
     line-height: 1.25;
 }
 
-/* =========================
+
+/* =====================================================
    BARRA DE IMPRESSÃO
-   ========================= */
+   ===================================================== */
 
 #barraImpressao {
+
     position: fixed;
 
     right: 20px;
@@ -388,7 +432,8 @@ button.verde {
     font-size: 13px;
     font-weight: 700;
 
-    box-shadow: 0 5px 20px rgba(0,0,0,.4);
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.4);
 }
 
 
@@ -405,6 +450,7 @@ button.verde {
 
     html,
     body {
+
         width: 210mm;
 
         margin: 0;
@@ -416,6 +462,7 @@ button.verde {
     .controls,
     .info,
     #barraImpressao {
+
         display: none !important;
     }
 
@@ -424,6 +471,7 @@ button.verde {
     }
 
     .pagina {
+
         width: 210mm;
         min-height: 297mm;
 
@@ -447,14 +495,17 @@ button.verde {
     }
 
     .pagina:last-child {
+
         page-break-after: auto;
         break-after: auto;
     }
 
     .grid {
+
         display: grid;
 
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
 
         column-gap: 8px;
         row-gap: 8px;
@@ -463,6 +514,7 @@ button.verde {
     }
 
     .card {
+
         width: 100%;
 
         break-inside: avoid !important;
@@ -474,12 +526,14 @@ button.verde {
     }
 
     .qrcode {
+
         break-inside: avoid !important;
         page-break-inside: avoid !important;
     }
 
     .qrcode img,
     .qrcode canvas {
+
         width: 140px !important;
         height: 140px !important;
 
@@ -491,11 +545,20 @@ button.verde {
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     CONTROLES
+     ===================================================== -->
 
 <div class="controls">
 
-    <h1>🔧 Gerador de QR Codes — Chamados NTI</h1>
+    <h1>
+        🔧 Gerador de QR Codes — Chamados NTI
+    </h1>
+
 
     <div class="linha-controle">
 
@@ -503,7 +566,10 @@ button.verde {
             Prédio:
         </label>
 
-        <select id="predioSelect" onchange="carregarSalasDoPredio()">
+        <select
+            id="predioSelect"
+            onchange="carregarSalasDoPredio()"
+        >
 
             <option value="">
                 Selecione o prédio
@@ -521,6 +587,7 @@ button.verde {
 
     </div>
 
+
     <div class="linha-controle">
 
         <button onclick="definirTodas(1)">
@@ -537,30 +604,44 @@ button.verde {
 
         <button
             class="secundario"
-            onclick="zerarTodas()">
+            onclick="zerarTodas()"
+        >
             Zerar
         </button>
 
         <button
             class="verde"
-            onclick="gerarQRCodes()">
+            onclick="gerarQRCodes()"
+        >
             🚀 Gerar QR Codes
         </button>
 
     </div>
 
+
     <div id="listaSalas"></div>
 
+
     <div class="info">
+
         <strong>Importante:</strong>
-        o QR Code continuará contendo as informações de
+
+        todos os QR Codes são organizados
+        continuamente nas páginas.
+
+        A mudança de bloco não cria uma nova página.
+
+        O QR Code mantém as informações de
         <strong>prédio, bloco e sala</strong>.
-        O tamanho do QR Code será mantido em
-        <strong>140 × 140 px</strong>.
+
     </div>
 
 </div>
 
+
+<!-- =====================================================
+     PÁGINAS
+     ===================================================== -->
 
 <div id="paginas"></div>
 
@@ -572,6 +653,7 @@ button.verde {
 
 <script>
 
+
 /* =====================================================
    CONFIGURAÇÕES
    ===================================================== */
@@ -579,17 +661,22 @@ button.verde {
 const URL_BASE =
     "https://sistemadechamados.pages.dev/";
 
+
 /*
- * Mantido em 6 para preservar o tamanho
- * dos cards e dos QR Codes.
+ * 6 QR Codes por página:
  *
- * 2 colunas × 3 linhas = 6 por página.
+ * 2 colunas
+ * ×
+ * 3 linhas
+ *
+ * O tamanho dos cards e QR Codes
+ * não é alterado.
  */
 const CARDS_POR_PAGINA = 6;
 
 
 /* =====================================================
-   ESTRUTURA DOS PRÉDIOS
+   PRÉDIOS
    ===================================================== */
 
 const predios = {
@@ -614,6 +701,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "B",
             nome: "B - ADMINISTRATIVO",
@@ -626,6 +714,7 @@ const predios = {
                 "NAPSI"
             ]
         },
+
 
         {
             codigo: "C",
@@ -648,6 +737,7 @@ const predios = {
                 "Pós Graduação"
             ]
         },
+
 
         {
             codigo: "D",
@@ -679,6 +769,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "ARQ",
             nome: "ARQUITETURA",
@@ -702,6 +793,7 @@ const predios = {
                 "Sala 34"
             ]
         },
+
 
         {
             codigo: "MED",
@@ -754,6 +846,7 @@ const predios = {
             ]
         },
 
+
         {
             codigo: "TER",
             nome: "TÉRREO",
@@ -769,6 +862,7 @@ const predios = {
                 "NAPSI"
             ]
         },
+
 
         {
             codigo: "1AND",
@@ -818,18 +912,27 @@ const quantidades = {};
 function carregarSalasDoPredio() {
 
     const predio =
-        document.getElementById("predioSelect").value;
+        document.getElementById(
+            "predioSelect"
+        ).value;
+
 
     const lista =
-        document.getElementById("listaSalas");
+        document.getElementById(
+            "listaSalas"
+        );
+
 
     lista.innerHTML = "";
+
 
     if (!predio) {
         return;
     }
 
+
     quantidades[predio] = {};
+
 
     predios[predio].forEach(bloco => {
 
@@ -843,29 +946,47 @@ function carregarSalasDoPredio() {
 
     });
 
+
     predios[predio].forEach(bloco => {
+
 
         const titulo =
             document.createElement("div");
 
-        titulo.style.gridColumn = "1 / -1";
-        titulo.style.marginTop = "12px";
-        titulo.style.fontWeight = "800";
-        titulo.style.color = "#8b0000";
-        titulo.textContent = bloco.nome;
+
+        titulo.style.gridColumn =
+            "1 / -1";
+
+        titulo.style.marginTop =
+            "12px";
+
+        titulo.style.fontWeight =
+            "800";
+
+        titulo.style.color =
+            "#8b0000";
+
+        titulo.textContent =
+            bloco.nome;
+
 
         lista.appendChild(titulo);
 
 
         bloco.salas.forEach(sala => {
 
+
             const chave =
                 `${bloco.codigo}|${sala}`;
+
 
             const item =
                 document.createElement("div");
 
-            item.className = "sala-item";
+
+            item.className =
+                "sala-item";
+
 
             item.innerHTML = `
 
@@ -879,13 +1000,25 @@ function carregarSalasDoPredio() {
                     max="999"
                     value="1"
                     data-chave="${chave}"
-                    onchange="
-                        quantidades['${predio}']['${chave}'] =
-                        parseInt(this.value) || 0
-                    "
                 >
 
             `;
+
+
+            const input =
+                item.querySelector("input");
+
+
+            input.addEventListener(
+                "change",
+                function() {
+
+                    quantidades[predio][chave] =
+                        parseInt(this.value) || 0;
+
+                }
+            );
+
 
             lista.appendChild(item);
 
@@ -903,25 +1036,36 @@ function carregarSalasDoPredio() {
 function definirTodas(valor) {
 
     const predio =
-        document.getElementById("predioSelect").value;
+        document.getElementById(
+            "predioSelect"
+        ).value;
+
 
     if (!predio) {
 
-        alert("Selecione um prédio primeiro.");
+        alert(
+            "Selecione um prédio primeiro."
+        );
 
         return;
     }
 
+
     document
-        .querySelectorAll("#listaSalas input")
+        .querySelectorAll(
+            "#listaSalas input"
+        )
         .forEach(input => {
 
             input.value = valor;
 
+
             const chave =
                 input.dataset.chave;
 
-            quantidades[predio][chave] = valor;
+
+            quantidades[predio][chave] =
+                valor;
 
         });
 
@@ -935,25 +1079,36 @@ function definirTodas(valor) {
 function zerarTodas() {
 
     const predio =
-        document.getElementById("predioSelect").value;
+        document.getElementById(
+            "predioSelect"
+        ).value;
+
 
     if (!predio) {
 
-        alert("Selecione um prédio primeiro.");
+        alert(
+            "Selecione um prédio primeiro."
+        );
 
         return;
     }
 
+
     document
-        .querySelectorAll("#listaSalas input")
+        .querySelectorAll(
+            "#listaSalas input"
+        )
         .forEach(input => {
 
             input.value = 0;
 
+
             const chave =
                 input.dataset.chave;
 
-            quantidades[predio][chave] = 0;
+
+            quantidades[predio][chave] =
+                0;
 
         });
 
@@ -966,77 +1121,66 @@ function zerarTodas() {
 
 function gerarQRCodes() {
 
+
     const predio =
-        document.getElementById("predioSelect").value;
+        document.getElementById(
+            "predioSelect"
+        ).value;
+
 
     if (!predio) {
 
-        alert("Selecione um prédio primeiro.");
-
-        return;
-    }
-
-    const container =
-        document.getElementById("paginas");
-
-    container.innerHTML = "";
-
-
-    let totalSelecionado = 0;
-
-
-    predios[predio].forEach(bloco => {
-
-        bloco.salas.forEach(sala => {
-
-            const chave =
-                `${bloco.codigo}|${sala}`;
-
-            const quantidade =
-                parseInt(
-                    quantidades[predio]?.[chave] || 0
-                );
-
-            totalSelecionado += quantidade;
-
-        });
-
-    });
-
-
-    if (totalSelecionado === 0) {
-
         alert(
-            "Nenhum QR Code foi selecionado."
+            "Selecione um prédio primeiro."
         );
 
         return;
     }
 
 
+    const container =
+        document.getElementById(
+            "paginas"
+        );
+
+
+    container.innerHTML = "";
+
+
     /*
-     * Junta os itens de todos os blocos.
+     * =================================================
+     * PASSO 1
      *
-     * Isso permite aproveitar completamente
-     * cada página, em vez de obrigatoriamente
-     * iniciar uma nova página a cada bloco.
+     * Criamos UMA ÚNICA lista com todos os QR Codes.
+     *
+     * Aqui NÃO existe nenhuma separação de página
+     * por bloco.
+     * =================================================
      */
 
-    const itens = [];
+    const todosOsQRCodes = [];
 
 
     predios[predio].forEach(bloco => {
 
+
         bloco.salas.forEach(sala => {
+
 
             const chave =
                 `${bloco.codigo}|${sala}`;
+
 
             const quantidade =
                 parseInt(
                     quantidades[predio]?.[chave] || 0
                 );
 
+
+            /*
+             * Cria a quantidade solicitada
+             * daquele local.
+             */
 
             for (
                 let i = 0;
@@ -1044,7 +1188,7 @@ function gerarQRCodes() {
                 i++
             ) {
 
-                itens.push({
+                todosOsQRCodes.push({
 
                     predio: predio,
 
@@ -1066,105 +1210,228 @@ function gerarQRCodes() {
 
 
     /*
-     * Cria exatamente 6 cards por página.
+     * Nenhum QR selecionado.
+     */
+
+    if (
+        todosOsQRCodes.length === 0
+    ) {
+
+        alert(
+            "Nenhum QR Code foi selecionado."
+        );
+
+        return;
+    }
+
+
+    /*
+     * =================================================
+     * PASSO 2
      *
-     * 2 colunas × 3 linhas.
+     * Agora sim dividimos a lista em páginas.
      *
-     * O tamanho do card e do QR não é reduzido.
+     * IMPORTANTE:
+     *
+     * A lista NÃO sabe mais nada sobre blocos.
+     *
+     * Portanto:
+     *
+     * QR 1
+     * QR 2
+     * QR 3
+     * QR 4
+     * QR 5
+     * QR 6
+     *
+     * formam a primeira página.
+     *
+     * QR 7
+     * QR 8
+     * QR 9...
+     *
+     * formam a segunda.
+     *
+     * Se o QR 6 for do bloco A e o QR 7
+     * for do bloco B, não tem problema.
+     * =================================================
      */
 
     for (
         let inicio = 0;
-        inicio < itens.length;
+
+        inicio < todosOsQRCodes.length;
+
         inicio += CARDS_POR_PAGINA
     ) {
 
+
         const grupo =
-            itens.slice(
+            todosOsQRCodes.slice(
                 inicio,
                 inicio + CARDS_POR_PAGINA
             );
 
 
+        /*
+         * Cria a página A4.
+         */
+
         const pagina =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        pagina.className = "pagina";
+        pagina.className =
+            "pagina";
 
+
+        /*
+         * Cria a grade de 2 colunas.
+         */
 
         const grid =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        grid.className = "grid";
+        grid.className =
+            "grid";
 
+
+        /*
+         * =================================================
+         * TODOS os QR Codes desse grupo entram aqui,
+         * independentemente do bloco.
+         * =================================================
+         */
 
         grupo.forEach(item => {
 
+
             const card =
-                document.createElement("div");
-
-            card.className = "card";
-
-
-            const top =
-                document.createElement("div");
-
-            top.className = "card-top";
-
-            top.innerHTML = `
-                <span class="icone">🔧</span>
-                <span>CHAMADOS NTI</span>
-            `;
+                document.createElement(
+                    "div"
+                );
 
 
-            const body =
-                document.createElement("div");
-
-            body.className = "card-body";
-
-
-            const qr =
-                document.createElement("div");
-
-            qr.className = "qrcode";
+            card.className =
+                "card";
 
 
             /*
+             * TOPO
+             */
+
+            const top =
+                document.createElement(
+                    "div"
+                );
+
+            top.className =
+                "card-top";
+
+
+            top.innerHTML = `
+
+                <span class="icone">
+                    🔧
+                </span>
+
+                <span>
+                    CHAMADOS NTI
+                </span>
+
+            `;
+
+
+            /*
+             * CORPO
+             */
+
+            const body =
+                document.createElement(
+                    "div"
+                );
+
+            body.className =
+                "card-body";
+
+
+            /*
+             * QR CODE
+             */
+
+            const qr =
+                document.createElement(
+                    "div"
+                );
+
+            qr.className =
+                "qrcode";
+
+
+            /*
+             * =================================================
              * IMPORTANTE:
              *
-             * O conteúdo original do QR permanece
-             * completo:
+             * NÃO removemos nenhuma informação.
+             *
+             * O QR continua contendo:
              *
              * predio
              * bloco
              * sala
+             * =================================================
              */
 
             const url =
                 `${URL_BASE}` +
-                `?predio=${encodeURIComponent(item.predio)}` +
-                `&bloco=${encodeURIComponent(item.blocoCodigo)}` +
-                `&sala=${encodeURIComponent(item.sala)}`;
+
+                `?predio=${encodeURIComponent(
+                    item.predio
+                )}` +
+
+                `&bloco=${encodeURIComponent(
+                    item.blocoCodigo
+                )}` +
+
+                `&sala=${encodeURIComponent(
+                    item.sala
+                )}`;
 
 
-            new QRCode(qr, {
+            new QRCode(
+                qr,
+                {
 
-                text: url,
+                    text: url,
 
-                width: 140,
-                height: 140,
+                    width: 140,
 
-                colorDark: "#1a0000",
-                colorLight: "#ffffff",
+                    height: 140,
 
-                correctLevel:
-                    QRCode.CorrectLevel.H
+                    colorDark:
+                        "#1a0000",
 
-            });
+                    colorLight:
+                        "#ffffff",
 
+                    correctLevel:
+                        QRCode.CorrectLevel.H
+
+                }
+            );
+
+
+            /*
+             * INSTRUÇÃO
+             */
 
             const instrucao =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             instrucao.className =
                 "card-instrucao";
@@ -1175,11 +1442,19 @@ function gerarQRCodes() {
 
             body.appendChild(qr);
 
-            body.appendChild(instrucao);
+            body.appendChild(
+                instrucao
+            );
 
+
+            /*
+             * RODAPÉ
+             */
 
             const bottom =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             bottom.className =
                 "card-bottom";
@@ -1189,22 +1464,34 @@ function gerarQRCodes() {
 
                 <div>
 
-                    <span class="card-predio-badge">
-                        PRÉDIO: ${item.predio}
+                    <span
+                        class="card-predio-badge"
+                    >
+                        PRÉDIO:
+                        ${item.predio}
                     </span>
 
-                    <span class="card-bloco-badge">
-                        BLOCO: ${item.blocoCodigo}
+                    <span
+                        class="card-bloco-badge"
+                    >
+                        BLOCO:
+                        ${item.blocoCodigo}
                     </span>
 
                 </div>
 
-                <div class="card-sala">
+                <div
+                    class="card-sala"
+                >
                     ${item.sala}
                 </div>
 
             `;
 
+
+            /*
+             * Monta card.
+             */
 
             card.appendChild(top);
 
@@ -1213,12 +1500,25 @@ function gerarQRCodes() {
             card.appendChild(bottom);
 
 
+            /*
+             * Adiciona à página.
+             */
+
             grid.appendChild(card);
 
         });
 
 
+        /*
+         * Adiciona grade à página.
+         */
+
         pagina.appendChild(grid);
+
+
+        /*
+         * Adiciona página ao documento.
+         */
 
         container.appendChild(pagina);
 
@@ -1229,25 +1529,28 @@ function gerarQRCodes() {
      * Atualiza contador.
      */
 
-    const barra =
-        document.getElementById(
-            "barraImpressao"
-        );
+    document.getElementById(
+        "barraImpressao"
+    ).textContent =
 
-    barra.textContent =
-        `${totalSelecionado} QR Code(s) gerado(s) — pronto para impressão`;
+        `${todosOsQRCodes.length}` +
+        ` QR Code(s) gerado(s) — ` +
+        `pronto para impressão`;
 
 
     /*
-     * Aguarda os QR Codes serem renderizados
-     * antes de abrir a impressão.
+     * Aguarda o QRCode.js terminar
+     * de desenhar os QR Codes.
      */
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        window.print();
+            window.print();
 
-    }, 500);
+        },
+        500
+    );
 
 }
 
@@ -1265,8 +1568,11 @@ document.addEventListener(
                 "predioSelect"
             );
 
+
         if (select.value) {
+
             carregarSalasDoPredio();
+
         }
 
     }
