@@ -5,9 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chamado Técnico - UNINTA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -17,53 +22,92 @@
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
+      background: radial-gradient(
+        circle at top left,
+        #8B0000 0%,
+        #1a0000 50%,
+        #000000 100%
+      );
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding: 20px;
+
       position: relative;
+
       overflow-x: hidden;
     }
 
     body::before {
       content: '';
+
       position: absolute;
+
       top: -100px;
       right: -100px;
+
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
+
+      background: radial-gradient(
+        circle,
+        rgba(255, 193, 7, 0.15) 0%,
+        transparent 70%
+      );
+
       border-radius: 50%;
+
       pointer-events: none;
     }
 
     body::after {
       content: '';
+
       position: absolute;
+
       bottom: -100px;
       left: -100px;
+
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(220, 20, 20, 0.2) 0%, transparent 70%);
+
+      background: radial-gradient(
+        circle,
+        rgba(220, 20, 20, 0.2) 0%,
+        transparent 70%
+      );
+
       border-radius: 50%;
+
       pointer-events: none;
     }
 
     .container {
       background: white;
+
       padding: 0;
+
       border-radius: 20px;
+
       width: 100%;
       max-width: 440px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.5);
+
       animation: slideUp 0.6s ease;
+
       overflow: hidden;
+
       position: relative;
+
       z-index: 1;
     }
 
     @keyframes slideUp {
+
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -73,67 +117,113 @@
         opacity: 1;
         transform: translateY(0);
       }
+
     }
 
     .header {
-      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+      background:
+        linear-gradient(
+          135deg,
+          #C8102E 0%,
+          #8B0000 100%
+        );
+
       padding: 35px 30px 30px;
+
       text-align: center;
+
       position: relative;
+
       overflow: hidden;
     }
 
     .header::before {
       content: '';
+
       position: absolute;
+
       top: -50px;
       right: -50px;
+
       width: 150px;
       height: 150px;
-      background: rgba(255, 193, 7, 0.15);
+
+      background:
+        rgba(255, 193, 7, 0.15);
+
       border-radius: 50%;
     }
 
     .header::after {
       content: '';
+
       position: absolute;
+
       bottom: -30px;
       left: -30px;
+
       width: 100px;
       height: 100px;
-      background: rgba(255, 255, 255, 0.05);
+
+      background:
+        rgba(255, 255, 255, 0.05);
+
       border-radius: 50%;
     }
 
     .header-icon {
       width: 70px;
       height: 70px;
-      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+
+      background:
+        linear-gradient(
+          135deg,
+          #FFC107 0%,
+          #FF8F00 100%
+        );
+
       border-radius: 50%;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       margin: 0 auto 15px;
+
       font-size: 32px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.3);
+
       position: relative;
+
       z-index: 1;
     }
 
     h2 {
       color: white;
+
       font-size: 22px;
+
       font-weight: 800;
+
       margin-bottom: 5px;
+
       position: relative;
+
       z-index: 1;
+
       letter-spacing: 0.5px;
     }
 
     .subtitle {
-      color: rgba(255, 255, 255, 0.9);
+      color:
+        rgba(255, 255, 255, 0.9);
+
       font-size: 13px;
+
       position: relative;
+
       z-index: 1;
     }
 
@@ -147,11 +237,17 @@
 
     label {
       display: block;
+
       color: #4a0000;
+
       font-size: 12px;
+
       font-weight: 700;
+
       margin-bottom: 8px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.8px;
     }
 
@@ -163,13 +259,21 @@
     select,
     textarea {
       width: 100%;
+
       padding: 13px 15px;
+
       border: 2px solid #e5e7eb;
+
       border-radius: 10px;
+
       font-size: 15px;
+
       transition: all 0.3s;
+
       background: #fafafa;
+
       color: #1a1a1a;
+
       font-family: 'Inter', sans-serif;
     }
 
@@ -177,63 +281,113 @@
     select:focus,
     textarea:focus {
       outline: none;
+
       border-color: #C8102E;
+
       background: white;
-      box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
+
+      box-shadow:
+        0 0 0 4px rgba(200, 16, 46, 0.1);
     }
 
     input.bloqueado,
     select.bloqueado {
       background: #fef3c7;
+
       border-color: #FFC107;
+
       color: #4a0000;
+
       font-weight: 700;
+
       cursor: not-allowed;
     }
 
     .badge-qr {
       display: inline-block;
+
       background: #FFC107;
+
       color: #4a0000;
+
       font-size: 10px;
+
       font-weight: 800;
+
       padding: 3px 8px;
+
       border-radius: 10px;
+
       margin-left: 8px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.5px;
     }
 
     textarea {
       resize: vertical;
+
       min-height: 80px;
     }
 
     button {
       width: 100%;
+
       padding: 15px;
-      background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+
+      background:
+        linear-gradient(
+          135deg,
+          #C8102E 0%,
+          #8B0000 100%
+        );
+
       color: white;
+
       border: none;
+
       border-radius: 10px;
+
       font-size: 16px;
+
       font-weight: 700;
+
       cursor: pointer;
+
       margin-top: 10px;
+
       transition: all 0.3s;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 10px;
-      box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
+
+      box-shadow:
+        0 6px 20px rgba(200, 16, 46, 0.4);
+
       letter-spacing: 0.5px;
+
       text-transform: uppercase;
     }
 
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(200, 16, 46, 0.5);
-      background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+
+      box-shadow:
+        0 10px 30px rgba(200, 16, 46, 0.5);
+
+      background:
+        linear-gradient(
+          135deg,
+          #FFC107 0%,
+          #FF8F00 100%
+        );
+
       color: #4a0000;
     }
 
@@ -243,47 +397,68 @@
 
     button:disabled {
       background: #9ca3af;
+
       cursor: not-allowed;
+
       transform: none;
+
       box-shadow: none;
+
       color: white;
     }
 
     #status {
       text-align: center;
+
       margin-top: 15px;
+
       font-size: 14px;
+
       font-weight: 600;
+
       min-height: 22px;
+
       padding: 10px;
+
       border-radius: 8px;
     }
 
     .status-success {
       background: #d1fae5;
+
       color: #065f46;
+
       border: 1px solid #6ee7b7;
     }
 
     .status-error {
       background: #fee2e2;
+
       color: #991b1b;
+
       border: 1px solid #fca5a5;
     }
 
     .footer {
       text-align: center;
+
       padding: 15px;
+
       background: #f9fafb;
+
       font-size: 11px;
+
       color: #6b7280;
+
       font-weight: 500;
+
       border-top: 1px solid #e5e7eb;
     }
 
     .footer strong {
       color: #C8102E;
     }
+
   </style>
 </head>
 
@@ -293,9 +468,13 @@
 
   <div class="header">
 
-    <div class="header-icon">🔧</div>
+    <div class="header-icon">
+      🔧
+    </div>
 
-    <h2>SOLICITAÇÃO DE SUPORTE</h2>
+    <h2>
+      SOLICITAÇÃO DE SUPORTE
+    </h2>
 
     <p class="subtitle">
       Preencha os dados do chamado abaixo
@@ -303,21 +482,35 @@
 
   </div>
 
+
   <div class="form-content">
 
     <form id="formChamado">
 
-      <!-- BLOCO -->
+
+      <!-- =====================================================
+           BLOCO
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">🏢</span>
+
+          <span class="icon">
+            🏢
+          </span>
+
           Bloco
+
           <span id="badgeBloco"></span>
+
         </label>
 
-        <select id="bloco" required>
+
+        <select
+          id="bloco"
+          required
+        >
 
           <option value="">
             Selecione o bloco
@@ -328,17 +521,30 @@
       </div>
 
 
-      <!-- SALA -->
+      <!-- =====================================================
+           SALA
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">🚪</span>
+
+          <span class="icon">
+            🚪
+          </span>
+
           Sala/Setor
+
           <span id="badgeSala"></span>
+
         </label>
 
-        <select id="sala" required disabled>
+
+        <select
+          id="sala"
+          required
+          disabled
+        >
 
           <option value="">
             Selecione primeiro o bloco
@@ -349,14 +555,22 @@
       </div>
 
 
-      <!-- NOME -->
+      <!-- =====================================================
+           NOME
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">👨‍🏫</span>
+
+          <span class="icon">
+            👨‍🏫
+          </span>
+
           Nome do Solicitante
+
         </label>
+
 
         <input
           type="text"
@@ -368,16 +582,27 @@
       </div>
 
 
-      <!-- CATEGORIA -->
+      <!-- =====================================================
+           CATEGORIA
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">📂</span>
+
+          <span class="icon">
+            📂
+          </span>
+
           Categoria
+
         </label>
 
-        <select id="categoria" required>
+
+        <select
+          id="categoria"
+          required
+        >
 
           <option value="">
             Selecione a categoria
@@ -396,16 +621,28 @@
       </div>
 
 
-      <!-- PROBLEMA -->
+      <!-- =====================================================
+           PROBLEMA
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">⚠️</span>
+
+          <span class="icon">
+            ⚠️
+          </span>
+
           Tipo de Problema
+
         </label>
 
-        <select id="problema" required disabled>
+
+        <select
+          id="problema"
+          required
+          disabled
+        >
 
           <option value="">
             Selecione primeiro a categoria
@@ -416,14 +653,22 @@
       </div>
 
 
-      <!-- OBSERVAÇÃO -->
+      <!-- =====================================================
+           OBSERVAÇÃO
+           ===================================================== -->
 
       <div class="form-group">
 
         <label>
-          <span class="icon">📝</span>
+
+          <span class="icon">
+            📝
+          </span>
+
           Observação
+
         </label>
+
 
         <textarea
           id="obs"
@@ -435,14 +680,19 @@
       </div>
 
 
-      <!-- BOTÃO -->
+      <!-- =====================================================
+           BOTÃO
+           ===================================================== -->
 
       <button
         type="submit"
         id="btnEnviar"
       >
 
-        <span>📲</span>
+        <span>
+          📲
+        </span>
+
         Enviar Chamado
 
       </button>
@@ -457,7 +707,8 @@
 
   <div class="footer">
 
-    🔒 <strong>UNINTA</strong> — Sistema de Chamados NTI
+    🔒 <strong>UNINTA</strong>
+    — Sistema de Chamados NTI
 
   </div>
 
@@ -466,309 +717,345 @@
 
 <script>
 
-  /*
-   * ==========================================================
-   * ESTRUTURA:
-   * PRÉDIOS → BLOCOS → SALAS/SETORES
-   * ==========================================================
-   */
 
-  const estrutura = {
+/*
+ * ==========================================================
+ * ESTRUTURA:
+ * PRÉDIOS → BLOCOS → SALAS/SETORES
+ * ==========================================================
+ */
 
-    /*
-     * ========================================================
-     * SEDE
-     * ========================================================
-     */
-
-    "SEDE": {
-
-      "A": [
-        "SEPAT",
-        "Secretaria Geral",
-        "Tesouraria",
-        "Recepção Diretoria",
-        "RH",
-        "Direção",
-        "Diretoria Acadêmica",
-        "Secretaria Medicina",
-        "Secretaria de Cursos",
-        "Coordenações de Cursos"
-      ],
-
-      "B": [
-        "Comercial",
-        "Sala de Professores",
-        "Sala de Reuniões",
-        "Marketing",
-        "NAPSI"
-      ],
-
-      "C": [
-        "Sala 1",
-        "Sala 2",
-        "Sala 3",
-        "Sala 4",
-        "Pequeno Grupo 1",
-        "Pequeno Grupo 2",
-        "Pequeno Grupo 3",
-        "Pequeno Grupo 4",
-        "Pequeno Grupo 5",
-        "Pequeno Grupo 6",
-        "Pequeno Grupo 7",
-        "Pequeno Grupo 8",
-        "Pequeno Grupo 9",
-        "Pós Graduação"
-      ],
-
-      "D": [
-        "Sala 5",
-        "Sala 6",
-        "Sala 7",
-        "Sala 8",
-        "Sala 9",
-        "Sala 10",
-        "Sala 11",
-        "Sala 12",
-        "Sala 13",
-        "Sala 14",
-        "Sala 15",
-        "Sala 16",
-        "Sala 17",
-        "Sala 18",
-        "Sala 36",
-        "Sala 37",
-        "Brinquedoteca",
-        "Laboratório de Informática 1",
-        "Laboratório de Informática 2",
-        "Biblioteca",
-        "Auditório",
-        "Almoxarifado"
-      ],
-
-      "Arquitetura": [
-        "Sala 19",
-        "Sala 20 - Marqueteria",
-        "Sala 21 - Atêliê de Projetos",
-        "Sala 22 - Lab. Eng. Agrícola",
-        "Sala 23 - Lab. Desenho Técnico",
-        "Sala 24 - Lab. de Habilidades",
-        "Sala 25 - EMAU",
-        "Sala 26 - Lab. de Conforto Ambiental",
-        "Sala 27",
-        "Sala 28",
-        "Sala 29",
-        "Sala 30",
-        "Sala 31",
-        "Sala 32",
-        "Sala 33",
-        "Sala 34"
-      ],
-
-      "Medicina": [
-        "Sala Circuito I",
-        "Sala Circuito II",
-        "Sala 360",
-        "Sala Harvard I",
-        "Sala Harvard II",
-        "Sala 35",
-        "Sala 38",
-        "Laboratório de Bioquímica e Biologia Molecular",
-        "NUCIM",
-        "Laboratório de Imunologia",
-        "Laboratório de Habilidades em Saúde",
-        "Laboratório de Fisiologia Humana",
-        "Técnicas Cirúrgicas",
-        "Laboratório de Neuroanatomia e Anatomia Humana",
-        "Laboratório de Microscopia",
-        "Laboratório Morfofuncional II"
-      ]
-
-    },
-
-
-    /*
-     * ========================================================
-     * CCS
-     * ========================================================
-     */
-
-    "CCS": {
-
-      "SUBSOLO": [
-
-        "Sala de Professores",
-        "Direção",
-        "Sala de Reuniões",
-        "Sec. Odontológica",
-        "Sec. de Fisioterapia",
-        "Sec. de Enfermagem",
-        "Coordenação de Odontologia",
-        "Coordenação de Fisioterapia",
-        "Coordenação de Enfermagem",
-        "Lab. de Habilidades Odontológica",
-        "Lab. de Fisioterapia",
-        "Sala 13",
-        "Sala 15",
-        "Sala 16"
-
-      ],
-
-
-      "TÉRREO": [
-
-        "Auditório",
-        "Sec. Acadêmica",
-        "Lab. de Informática",
-        "Tesouraria/FIES",
-        "Gab. Professor 01",
-        "Gab. Professor 02",
-        "Gab. Professor 03",
-        "NAPSI"
-
-      ],
-
-
-      "PRIMEIRO ANDAR": [
-
-        "Biblioteca",
-        "Lab. de Habilidades Clínica",
-        "Lab. Histologia e Embriologia",
-        "Lab. de Química, Bioquímica e Farmacologia",
-        "Lab. Anatomia Humana",
-        "Lab. de Imunologia",
-        "Sala 01",
-        "Sala 02",
-        "Sala 03",
-        "Sala 04",
-        "Sala 05",
-        "Sala 06",
-        "Sala 07",
-        "Sala 08",
-        "Sala 09",
-        "Sala 10",
-        "Sala 11",
-        "Sala 12",
-        "Lab. Pré-Clínico de Odontologia",
-        "SEPAT",
-        "Almoxarifado"
-
-      ]
-
-    },
-
-
-    /*
-     * ========================================================
-     * OUTROS PRÉDIOS
-     * ========================================================
-     */
-
-    "Clínica Escola": {},
-
-    "Shopping": {}
-
-  };
+const estrutura = {
 
 
   /*
-   * ==========================================================
-   * NOMES AMIGÁVEIS DOS BLOCOS
-   * ==========================================================
+   * ========================================================
+   * SEDE
+   * ========================================================
    */
 
-  const NOMES_BLOCOS = {
+  "SEDE": {
 
-    "A": "Bloco A",
+    "A": [
 
-    "B": "Bloco B",
-
-    "C": "Bloco C",
-
-    "D": "Bloco D",
-
-    "Arquitetura": "Anexo da Arquitetura",
-
-    "Medicina": "Complexo da Medicina",
-
-    "SUBSOLO": "Subsolo",
-
-    "TÉRREO": "Térreo",
-
-    "PRIMEIRO ANDAR": "Primeiro Andar"
-
-  };
-
-
-  /*
-   * ==========================================================
-   * ELEMENTOS DO FORMULÁRIO
-   * ==========================================================
-   */
-
-  const blocoSelect =
-    document.getElementById("bloco");
-
-  const salaSelect =
-    document.getElementById("sala");
-
-  const categoriaSelect =
-    document.getElementById("categoria");
-
-  const problemaSelect =
-    document.getElementById("problema");
-
-
-  /*
-   * ==========================================================
-   * PROBLEMAS POR CATEGORIA
-   * ==========================================================
-   */
-
-  const problemasPorCategoria = {
-
-    "Sala de Aula": [
-
-      "Projetor",
-      "Computador",
-      "Internet",
-      "TV/Monitor",
-      "Áudio/Som",
-      "Cabo/Adaptador",
-      "Sistema/Software",
-      "Outro"
+      "SEPAT",
+      "Secretaria Geral",
+      "Tesouraria",
+      "Recepção Diretoria",
+      "RH",
+      "Direção",
+      "Diretoria Acadêmica",
+      "Secretaria Medicina",
+      "Secretaria de Cursos",
+      "Coordenações de Cursos"
 
     ],
 
 
-    "Administrativo": [
+    "B": [
 
-      "Computador",
-      "Impressora",
-      "Internet/Rede",
-      "Sistemas",
-      "E-mail",
-      "Reset de Senhas",
-      "Acesso/Permissão",
-      "Outro"
+      "Comercial",
+      "Sala de Professores",
+      "Sala de Reuniões",
+      "Marketing",
+      "NAPSI"
+
+    ],
+
+
+    "C": [
+
+      "Sala 1",
+      "Sala 2",
+      "Sala 3",
+      "Sala 4",
+      "Pequeno Grupo 1",
+      "Pequeno Grupo 2",
+      "Pequeno Grupo 3",
+      "Pequeno Grupo 4",
+      "Pequeno Grupo 5",
+      "Pequeno Grupo 6",
+      "Pequeno Grupo 7",
+      "Pequeno Grupo 8",
+      "Pequeno Grupo 9",
+      "Pós Graduação"
+
+    ],
+
+
+    "D": [
+
+      "Sala 5",
+      "Sala 6",
+      "Sala 7",
+      "Sala 8",
+      "Sala 9",
+      "Sala 10",
+      "Sala 11",
+      "Sala 12",
+      "Sala 13",
+      "Sala 14",
+      "Sala 15",
+      "Sala 16",
+      "Sala 17",
+      "Sala 18",
+      "Sala 36",
+      "Sala 37",
+      "Brinquedoteca",
+      "Laboratório de Informática 1",
+      "Laboratório de Informática 2",
+      "Biblioteca",
+      "Auditório",
+      "Almoxarifado"
+
+    ],
+
+
+    "Arquitetura": [
+
+      "Sala 19",
+      "Sala 20 - Marqueteria",
+      "Sala 21 - Atêliê de Projetos",
+      "Sala 22 - Lab. Eng. Agrícola",
+      "Sala 23 - Lab. Desenho Técnico",
+      "Sala 24 - Lab. de Habilidades",
+      "Sala 25 - EMAU",
+      "Sala 26 - Lab. de Conforto Ambiental",
+      "Sala 27",
+      "Sala 28",
+      "Sala 29",
+      "Sala 30",
+      "Sala 31",
+      "Sala 32",
+      "Sala 33",
+      "Sala 34"
+
+    ],
+
+
+    "Medicina": [
+
+      "Sala Circuito I",
+      "Sala Circuito II",
+      "Sala 360",
+      "Sala Harvard I",
+      "Sala Harvard II",
+      "Sala 35",
+      "Sala 38",
+      "Laboratório de Bioquímica e Biologia Molecular",
+      "NUCIM",
+      "Laboratório de Imunologia",
+      "Laboratório de Habilidades em Saúde",
+      "Laboratório de Fisiologia Humana",
+      "Técnicas Cirúrgicas",
+      "Laboratório de Neuroanatomia e Anatomia Humana",
+      "Laboratório de Microscopia",
+      "Laboratório Morfofuncional II"
 
     ]
 
-  };
+  },
 
 
   /*
-   * ==========================================================
-   * ALTERAÇÃO DA CATEGORIA
-   * ==========================================================
+   * ========================================================
+   * CCS
+   * ========================================================
    */
 
-  categoriaSelect.addEventListener("change", function() {
+  "CCS": {
 
-    const categoria = this.value;
+    "SUBSOLO": [
+
+      "Sala de Professores",
+      "Direção",
+      "Sala de Reuniões",
+      "Sec. Odontológica",
+      "Sec. de Fisioterapia",
+      "Sec. de Enfermagem",
+      "Coordenação de Odontologia",
+      "Coordenação de Fisioterapia",
+      "Coordenação de Enfermagem",
+      "Lab. de Habilidades Odontológica",
+      "Lab. de Fisioterapia",
+      "Sala 13",
+      "Sala 15",
+      "Sala 16"
+
+    ],
+
+
+    "TÉRREO": [
+
+      "Auditório",
+      "Sec. Acadêmica",
+      "Lab. de Informática",
+      "Tesouraria/FIES",
+      "Gab. Professor 01",
+      "Gab. Professor 02",
+      "Gab. Professor 03",
+      "NAPSI"
+
+    ],
+
+
+    "PRIMEIRO ANDAR": [
+
+      "Biblioteca",
+      "Lab. de Habilidades Clínica",
+      "Lab. Histologia e Embriologia",
+      "Lab. de Química, Bioquímica e Farmacologia",
+      "Lab. Anatomia Humana",
+      "Lab. de Imunologia",
+      "Sala 01",
+      "Sala 02",
+      "Sala 03",
+      "Sala 04",
+      "Sala 05",
+      "Sala 06",
+      "Sala 07",
+      "Sala 08",
+      "Sala 09",
+      "Sala 10",
+      "Sala 11",
+      "Sala 12",
+      "Lab. Pré-Clínico de Odontologia",
+      "SEPAT",
+      "Almoxarifado"
+
+    ]
+
+  },
+
+
+  /*
+   * ========================================================
+   * OUTROS PRÉDIOS
+   * ========================================================
+   */
+
+  "Clínica Escola": {},
+
+  "Shopping": {}
+
+};
+
+
+/*
+ * ==========================================================
+ * NOMES AMIGÁVEIS DOS BLOCOS
+ * ==========================================================
+ */
+
+const NOMES_BLOCOS = {
+
+  "A":
+    "Bloco A",
+
+  "B":
+    "Bloco B",
+
+  "C":
+    "Bloco C",
+
+  "D":
+    "Bloco D",
+
+  "Arquitetura":
+    "Anexo da Arquitetura",
+
+  "Medicina":
+    "Complexo da Medicina",
+
+  "SUBSOLO":
+    "Subsolo",
+
+  "TÉRREO":
+    "Térreo",
+
+  "PRIMEIRO ANDAR":
+    "Primeiro Andar"
+
+};
+
+
+/*
+ * ==========================================================
+ * ELEMENTOS DO FORMULÁRIO
+ * ==========================================================
+ */
+
+const blocoSelect =
+  document.getElementById("bloco");
+
+
+const salaSelect =
+  document.getElementById("sala");
+
+
+const categoriaSelect =
+  document.getElementById("categoria");
+
+
+const problemaSelect =
+  document.getElementById("problema");
+
+
+/*
+ * ==========================================================
+ * PROBLEMAS POR CATEGORIA
+ * ==========================================================
+ */
+
+const problemasPorCategoria = {
+
+  "Sala de Aula": [
+
+    "Projetor",
+    "Computador",
+    "Internet",
+    "TV/Monitor",
+    "Áudio/Som",
+    "Cabo/Adaptador",
+    "Sistema/Software",
+    "Outro"
+
+  ],
+
+
+  "Administrativo": [
+
+    "Computador",
+    "Impressora",
+    "Internet/Rede",
+    "Sistemas",
+    "E-mail",
+    "Reset de Senhas",
+    "Acesso/Permissão",
+    "Outro"
+
+  ]
+
+};
+
+
+/*
+ * ==========================================================
+ * ALTERAÇÃO DA CATEGORIA
+ * ==========================================================
+ */
+
+categoriaSelect.addEventListener(
+  "change",
+  function() {
+
+    const categoria =
+      this.value;
+
 
     problemaSelect.innerHTML =
       '<option value="">Selecione o problema</option>';
+
 
     if (
       categoria &&
@@ -776,227 +1063,471 @@
     ) {
 
       problemasPorCategoria[categoria]
-        .forEach(function(problema) {
+        .forEach(
+          function(problema) {
 
-          const opt =
-            document.createElement("option");
+            const opt =
+              document.createElement("option");
 
-          opt.value = problema;
 
-          opt.textContent = problema;
+            opt.value =
+              problema;
 
-          problemaSelect.appendChild(opt);
 
-        });
+            opt.textContent =
+              problema;
 
-      problemaSelect.disabled = false;
 
-    } else {
+            problemaSelect.appendChild(
+              opt
+            );
 
-      problemaSelect.disabled = true;
+          }
+        );
+
+
+      problemaSelect.disabled =
+        false;
+
+    }
+
+    else {
+
+      problemaSelect.disabled =
+        true;
+
 
       problemaSelect.innerHTML =
         '<option value="">Selecione primeiro a categoria</option>';
 
     }
 
-  });
+  }
+);
 
 
-  /*
-   * ==========================================================
-   * PRÉDIO PADRÃO
-   * ==========================================================
-   */
+/*
+ * ==========================================================
+ * PRÉDIO PADRÃO
+ * ==========================================================
+ */
 
-  let predioAtivo = "SEDE";
-
-
-  /*
-   * ==========================================================
-   * LÊ OS PARÂMETROS DA URL
-   *
-   * Exemplo:
-   *
-   * ?predio=CCS&bloco=SUBSOLO&sala=Direção
-   * ==========================================================
-   */
-
-  const params =
-    new URLSearchParams(window.location.search);
-
-  const predioURL =
-    params.get("predio");
-
-  const blocoURL =
-    params.get("bloco");
-
-  const salaURL =
-    params.get("sala");
+let predioAtivo =
+  "SEDE";
 
 
-  /*
-   * ==========================================================
-   * DEFINE O PRÉDIO ATIVO
-   * ==========================================================
-   */
+/*
+ * ==========================================================
+ * LÊ OS PARÂMETROS DA URL
+ *
+ * Exemplos aceitos:
+ *
+ * ?predio=SEDE&bloco=Arquitetura&sala=Sala%2019
+ *
+ * ?predio=SEDE&bloco=Anexo%20da%20Arquitetura&sala=Sala%2019
+ *
+ * ?predio=SEDE&bloco=Medicina&sala=Sala%2035
+ *
+ * ?predio=SEDE&bloco=Complexo%20da%20Medicina&sala=Sala%2035
+ *
+ * ==========================================================
+ */
 
-  if (
-    predioURL &&
-    estrutura[predioURL]
-  ) {
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
-    predioAtivo = predioURL;
+
+const predioURL =
+  params.get("predio");
+
+
+const blocoURL =
+  params.get("bloco");
+
+
+const salaURL =
+  params.get("sala");
+
+
+/*
+ * ==========================================================
+ * NORMALIZA TEXTO
+ *
+ * Permite comparar:
+ *
+ * Arquitetura
+ * arquitetura
+ * ARQUITETURA
+ * Anexo da Arquitetura
+ * ANEXO DA ARQUITETURA
+ *
+ * ==========================================================
+ */
+
+function normalizarTexto(valor) {
+
+  return String(valor || "")
+    .trim()
+    .normalize("NFD")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .toLowerCase();
+
+}
+
+
+/*
+ * ==========================================================
+ * ENCONTRA O BLOCO REAL
+ *
+ * O QR pode enviar:
+ *
+ * Arquitetura
+ *
+ * ou
+ *
+ * Anexo da Arquitetura
+ *
+ * O sistema sempre converte para:
+ *
+ * Arquitetura
+ *
+ * ==========================================================
+ */
+
+function encontrarBloco(
+  blocoInformado
+) {
+
+  if (!blocoInformado) {
+
+    return null;
 
   }
 
 
-  /*
-   * ==========================================================
-   * CARREGA OS BLOCOS DO PRÉDIO
-   * ==========================================================
-   */
-
-  function carregarBlocos() {
-
-    blocoSelect.innerHTML =
-      '<option value="">Selecione o bloco</option>';
-
-    const blocos =
-      Object.keys(
-        estrutura[predioAtivo] || {}
-      );
+  const informado =
+    normalizarTexto(
+      blocoInformado
+    );
 
 
-    blocos.forEach(b => {
-
-      const opt =
-        document.createElement("option");
-
-      opt.value = b;
-
-      opt.textContent =
-        NOMES_BLOCOS[b] || b;
-
-      blocoSelect.appendChild(opt);
-
-    });
-
-  }
+  const blocos =
+    Object.keys(
+      estrutura[predioAtivo] || {}
+    );
 
 
-  /*
-   * ==========================================================
-   * CARREGA AS SALAS
-   * ==========================================================
-   */
-
-  function carregarSalas(
-    bloco,
-    salaPreSelecionada
+  for (
+    const bloco of blocos
   ) {
 
-    salaSelect.innerHTML =
-      '<option value="">Selecione a sala</option>';
 
+    /*
+     * Verifica o código interno
+     */
 
     if (
-      bloco &&
-      estrutura[predioAtivo] &&
-      estrutura[predioAtivo][bloco]
+      normalizarTexto(bloco) ===
+      informado
     ) {
 
-      estrutura[predioAtivo][bloco]
-        .forEach(sala => {
+      return bloco;
 
-          const opt =
-            document.createElement("option");
-
-          opt.value = sala;
-
-          opt.textContent = sala;
+    }
 
 
-          if (
-            salaPreSelecionada &&
-            sala === salaPreSelecionada
-          ) {
+    /*
+     * Verifica o nome amigável
+     */
 
-            opt.selected = true;
+    if (
+      normalizarTexto(
+        NOMES_BLOCOS[bloco] || ""
+      ) ===
+      informado
+    ) {
 
-          }
-
-
-          salaSelect.appendChild(opt);
-
-        });
-
-
-      salaSelect.disabled = false;
-
-    } else {
-
-      salaSelect.disabled = true;
+      return bloco;
 
     }
 
   }
 
 
-  /*
-   * ==========================================================
-   * INICIALIZA OS BLOCOS
-   * ==========================================================
-   */
+  return null;
 
-  carregarBlocos();
+}
 
 
-  /*
-   * ==========================================================
-   * QR CODE
-   *
-   * Se vier bloco pela URL, bloqueia o campo.
-   * ==========================================================
-   */
+/*
+ * ==========================================================
+ * DEFINE O PRÉDIO ATIVO
+ * ==========================================================
+ */
+
+if (
+  predioURL &&
+  estrutura[predioURL]
+) {
+
+  predioAtivo =
+    predioURL;
+
+}
+
+
+/*
+ * ==========================================================
+ * CARREGA OS BLOCOS DO PRÉDIO
+ * ==========================================================
+ */
+
+function carregarBlocos() {
+
+  blocoSelect.innerHTML =
+    '<option value="">Selecione o bloco</option>';
+
+
+  const blocos =
+    Object.keys(
+      estrutura[predioAtivo] || {}
+    );
+
+
+  blocos.forEach(
+    function(b) {
+
+      const opt =
+        document.createElement(
+          "option"
+        );
+
+
+      opt.value =
+        b;
+
+
+      opt.textContent =
+        NOMES_BLOCOS[b] || b;
+
+
+      blocoSelect.appendChild(
+        opt
+      );
+
+    }
+  );
+
+}
+
+
+/*
+ * ==========================================================
+ * CARREGA AS SALAS
+ * ==========================================================
+ */
+
+function carregarSalas(
+  bloco,
+  salaPreSelecionada
+) {
+
+  salaSelect.innerHTML =
+    '<option value="">Selecione a sala</option>';
+
 
   if (
-    blocoURL &&
+    bloco &&
     estrutura[predioAtivo] &&
-    estrutura[predioAtivo][blocoURL]
+    estrutura[predioAtivo][bloco]
   ) {
 
-    blocoSelect.value =
-      blocoURL;
 
-    blocoSelect.classList.add(
-      "bloqueado"
-    );
+    estrutura[predioAtivo][bloco]
+      .forEach(
+        function(sala) {
 
-    blocoSelect.disabled = true;
-
-    document.getElementById(
-      "badgeBloco"
-    ).innerHTML =
-      '<span class="badge-qr">📱 QR Code</span>';
+          const opt =
+            document.createElement(
+              "option"
+            );
 
 
-    carregarSalas(
-      blocoURL,
-      salaURL
-    );
+          opt.value =
+            sala;
 
 
-    if (salaURL) {
+          opt.textContent =
+            sala;
+
+
+          if (
+            salaPreSelecionada &&
+            normalizarTexto(sala) ===
+            normalizarTexto(
+              salaPreSelecionada
+            )
+          ) {
+
+            opt.selected =
+              true;
+
+          }
+
+
+          salaSelect.appendChild(
+            opt
+          );
+
+        }
+      );
+
+
+    salaSelect.disabled =
+      false;
+
+  }
+
+  else {
+
+    salaSelect.disabled =
+      true;
+
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * INICIALIZA OS BLOCOS
+ * ==========================================================
+ */
+
+carregarBlocos();
+
+
+/*
+ * ==========================================================
+ * QR CODE
+ *
+ * ESTA É A PARTE CORRIGIDA.
+ *
+ * O sistema aceita tanto:
+ *
+ * Arquitetura
+ *
+ * quanto:
+ *
+ * Anexo da Arquitetura
+ *
+ * E converte ambos para:
+ *
+ * Arquitetura
+ *
+ * ==========================================================
+ */
+
+const blocoReal =
+  encontrarBloco(
+    blocoURL
+  );
+
+
+if (
+  blocoReal &&
+  estrutura[predioAtivo] &&
+  estrutura[predioAtivo][blocoReal]
+) {
+
+
+  /*
+   * Define o valor real do bloco
+   */
+
+  blocoSelect.value =
+    blocoReal;
+
+
+  /*
+   * Bloqueia o bloco
+   */
+
+  blocoSelect.classList.add(
+    "bloqueado"
+  );
+
+
+  blocoSelect.disabled =
+    true;
+
+
+  /*
+   * Mostra identificação do QR
+   */
+
+  document.getElementById(
+    "badgeBloco"
+  ).innerHTML =
+    '<span class="badge-qr">📱 QR Code</span>';
+
+
+  /*
+   * Carrega as salas
+   */
+
+  carregarSalas(
+    blocoReal,
+    salaURL
+  );
+
+
+  /*
+   * ========================================================
+   * LOCALIZA A SALA EXATA
+   * ========================================================
+   */
+
+  if (salaURL) {
+
+
+    const salaReal =
+      estrutura[predioAtivo][blocoReal]
+        .find(
+          function(sala) {
+
+            return (
+              normalizarTexto(sala) ===
+              normalizarTexto(salaURL)
+            );
+
+          }
+        );
+
+
+    /*
+     * Se a sala existir, bloqueia
+     */
+
+    if (salaReal) {
 
       salaSelect.value =
-        salaURL;
+        salaReal;
+
 
       salaSelect.classList.add(
         "bloqueado"
       );
 
-      salaSelect.disabled = true;
+
+      salaSelect.disabled =
+        true;
+
 
       document.getElementById(
         "badgeSala"
@@ -1007,218 +1538,251 @@
 
   }
 
+}
 
-  /*
-   * ==========================================================
-   * ALTERAÇÃO MANUAL DO BLOCO
-   * ==========================================================
-   */
 
-  blocoSelect.addEventListener(
-    "change",
-    function() {
+/*
+ * ==========================================================
+ * ALTERAÇÃO MANUAL DO BLOCO
+ * ==========================================================
+ */
+
+blocoSelect.addEventListener(
+  "change",
+  function() {
+
+    /*
+     * Se o bloco não veio pelo QR,
+     * permite alteração normalmente.
+     */
+
+    if (
+      !this.disabled
+    ) {
 
       carregarSalas(
         this.value
       );
 
     }
-  );
+
+  }
+);
 
 
-  /*
-   * ==========================================================
-   * GOOGLE APPS SCRIPT
-   * ==========================================================
-   */
+/*
+ * ==========================================================
+ * GOOGLE APPS SCRIPT
+ * ==========================================================
+ */
 
-  const SHEET_URL =
-    "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
-
-
-  /*
-   * ==========================================================
-   * WHATSAPP
-   * ==========================================================
-   */
-
-  const NUMERO_WHATSAPP =
-    "5588993751792";
+const SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
 
 
-  /*
-   * ==========================================================
-   * ENVIO DO CHAMADO
-   * ==========================================================
-   */
+/*
+ * ==========================================================
+ * WHATSAPP
+ * ==========================================================
+ */
 
-  document
-    .getElementById("formChamado")
-    .addEventListener(
-      "submit",
-      async function(e) {
-
-        e.preventDefault();
+const NUMERO_WHATSAPP =
+  "5588993751792";
 
 
-        const btn =
-          document.getElementById(
-            "btnEnviar"
-          );
+/*
+ * ==========================================================
+ * ENVIO DO CHAMADO
+ * ==========================================================
+ */
+
+document
+  .getElementById(
+    "formChamado"
+  )
+  .addEventListener(
+    "submit",
+    async function(e) {
+
+      e.preventDefault();
 
 
-        const status =
-          document.getElementById(
-            "status"
-          );
-
-
-        btn.disabled = true;
-
-        btn.innerHTML =
-          "⏳ Salvando...";
-
-
-        status.textContent = "";
-
-        status.className = "";
-
-
-        /*
-         * ====================================================
-         * DADOS DO CHAMADO
-         * ====================================================
-         */
-
-        const dados = {
-
-          predio:
-            predioAtivo,
-
-          bloco:
-            blocoSelect.value,
-
-          sala:
-            salaSelect.value,
-
-          nome:
-            document.getElementById(
-              "nome"
-            ).value,
-
-          problema:
-            document.getElementById(
-              "problema"
-            ).value,
-
-          obs:
-            document.getElementById(
-              "obs"
-            ).value
-
-        };
-
-
-        console.log(
-          "📤 Enviando chamado:",
-          dados
+      const btn =
+        document.getElementById(
+          "btnEnviar"
         );
 
 
-        try {
-
-          /*
-           * ================================================
-           * SALVA NA PLANILHA
-           * ================================================
-           */
-
-          await fetch(
-            SHEET_URL,
-            {
-              method: "POST",
-              body: JSON.stringify(dados)
-            }
-          );
+      const status =
+        document.getElementById(
+          "status"
+        );
 
 
-          /*
-           * ================================================
-           * MENSAGEM DO WHATSAPP
-           * ================================================
-           */
+      btn.disabled =
+        true;
 
-          const msg =
+
+      btn.innerHTML =
+        "⏳ Salvando...";
+
+
+      status.textContent =
+        "";
+
+
+      status.className =
+        "";
+
+
+      /*
+       * ====================================================
+       * DADOS DO CHAMADO
+       * ====================================================
+       */
+
+      const dados = {
+
+        predio:
+          predioAtivo,
+
+        bloco:
+          blocoSelect.value,
+
+        sala:
+          salaSelect.value,
+
+        nome:
+          document.getElementById(
+            "nome"
+          ).value,
+
+        problema:
+          document.getElementById(
+            "problema"
+          ).value,
+
+        obs:
+          document.getElementById(
+            "obs"
+          ).value
+
+      };
+
+
+      console.log(
+        "📤 Enviando chamado:",
+        dados
+      );
+
+
+      try {
+
+
+        /*
+         * ================================================
+         * SALVA NA PLANILHA
+         * ================================================
+         */
+
+        await fetch(
+          SHEET_URL,
+          {
+            method: "POST",
+
+            body:
+              JSON.stringify(
+                dados
+              )
+          }
+        );
+
+
+        /*
+         * ================================================
+         * MENSAGEM DO WHATSAPP
+         * ================================================
+         */
+
+        const msg =
 
 `📢 *Chamado Técnico - NTI*
 🏛️ Prédio: ${dados.predio}
 🏢 Bloco: ${dados.bloco} | Sala: ${dados.sala}
 👨‍🏫 Solicitante: ${dados.nome}
 🔧 Problema: ${dados.problema}
-📝 Observação: ${dados.obs || "Nenhuma"}`;
+📝 Observação: ${dados.obs || "Nenhuma}`;
 
 
-          /*
-           * ================================================
-           * ABRE O WHATSAPP
-           * ================================================
-           */
+        /*
+         * ================================================
+         * ABRE O WHATSAPP
+         * ================================================
+         */
 
-          window.open(
-            `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,
-            "_blank"
-          );
-
-
-          /*
-           * ================================================
-           * SUCESSO
-           * ================================================
-           */
-
-          status.textContent =
-            "✅ Chamado registrado com sucesso!";
-
-          status.className =
-            "status-success";
+        window.open(
+          `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,
+          "_blank"
+        );
 
 
-          btn.innerHTML =
-            "<span>📲</span> Enviar Chamado";
+        /*
+         * ================================================
+         * SUCESSO
+         * ================================================
+         */
 
-          btn.disabled = false;
-
-
-        } catch (err) {
-
-          /*
-           * ================================================
-           * ERRO
-           * ================================================
-           */
-
-          status.textContent =
-            "❌ Erro ao salvar. Verifique sua internet.";
-
-          status.className =
-            "status-error";
+        status.textContent =
+          "✅ Chamado registrado com sucesso!";
 
 
-          btn.disabled = false;
-
-          btn.innerHTML =
-            "<span>📲</span> Enviar Chamado";
+        status.className =
+          "status-success";
 
 
-          console.error(
-            "Erro:",
-            err
-          );
+        btn.innerHTML =
+          "<span>📲</span> Enviar Chamado";
 
-        }
+
+        btn.disabled =
+          false;
 
       }
-    );
+
+      catch (err) {
+
+
+        /*
+         * ================================================
+         * ERRO
+         * ================================================
+         */
+
+        status.textContent =
+          "❌ Erro ao salvar. Verifique sua internet.";
+
+
+        status.className =
+          "status-error";
+
+
+        btn.disabled =
+          false;
+
+
+        btn.innerHTML =
+          "<span>📲</span> Enviar Chamado";
+
+
+        console.error(
+          "Erro:",
+          err
+        );
+
+      }
+
+    }
+  );
 
 </script>
 
