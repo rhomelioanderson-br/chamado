@@ -1,389 +1,815 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Chamados - NTI</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top left, #8B0000 0%, #1a0000 50%, #000000 100%);
-      padding: 20px; color: #1a1a1a;
+      padding: 20px;
+      color: #1a1a1a;
     }
-    
-    .container { max-width: 1400px; margin: 0 auto; }
-    
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* =========================================================
+       LOGIN
+    ========================================================= */
+
     .login-container {
-      max-width: 400px; margin: 80px auto;
-      background: white; padding: 40px 30px;
+      max-width: 400px;
+      margin: 80px auto;
+      background: white;
+      padding: 40px 30px;
       border-radius: 20px;
       box-shadow: 0 25px 70px rgba(0,0,0,0.5);
       animation: slideUp 0.6s ease;
     }
-    
+
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .login-icon {
-      width: 80px; height: 80px;
+      width: 80px;
+      height: 80px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 20px; font-size: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 36px;
       box-shadow: 0 10px 25px rgba(200, 16, 46, 0.4);
     }
-    
+
     .login-container h2 {
-      text-align: center; color: #1a1a1a;
-      font-size: 22px; margin-bottom: 5px; font-weight: 800;
+      text-align: center;
+      color: #1a1a1a;
+      font-size: 22px;
+      margin-bottom: 5px;
+      font-weight: 800;
     }
-    
+
     .login-container .sub {
-      text-align: center; color: #6b7280;
-      font-size: 13px; margin-bottom: 25px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 25px;
     }
-    
+
     .login-container label {
-      display: block; color: #4a0000;
-      font-size: 12px; font-weight: 700;
-      margin-bottom: 8px; margin-top: 15px;
+      display: block;
+      color: #4a0000;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      margin-top: 15px;
       text-transform: uppercase;
     }
-    
-    .login-container input, .login-container select {
-      width: 100%; padding: 13px 15px;
-      border: 2px solid #e5e7eb; border-radius: 10px;
-      font-size: 15px; background: #fafafa;
+
+    .login-container input,
+    .login-container select {
+      width: 100%;
+      padding: 13px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fafafa;
       font-family: 'Inter', sans-serif;
     }
-    
-    .login-container input:focus, .login-container select:focus {
-      outline: none; border-color: #C8102E; background: white;
+
+    .login-container input:focus,
+    .login-container select:focus {
+      outline: none;
+      border-color: #C8102E;
+      background: white;
     }
-    
+
     .login-container button {
-      width: 100%; padding: 14px;
+      width: 100%;
+      padding: 14px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white; border: none; border-radius: 10px;
-      font-size: 15px; font-weight: 700;
-      cursor: pointer; margin-top: 20px;
-      text-transform: uppercase; letter-spacing: 0.5px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       transition: all 0.3s;
     }
-    
+
     .login-container button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 25px rgba(200, 16, 46, 0.4);
     }
-    
+
     .login-erro {
-      background: #fee2e2; color: #991b1b;
-      padding: 10px; border-radius: 8px;
-      font-size: 13px; text-align: center;
-      margin-top: 15px; display: none;
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 15px;
+      display: none;
     }
-    
+
+    /* =========================================================
+       MODAIS
+    ========================================================= */
+
     .modal-overlay {
-      display: none; position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7); z-index: 2000;
-      justify-content: center; align-items: center;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
     }
-    
-    .modal-overlay.ativo { display: flex; }
-    
+
+    .modal-overlay.ativo {
+      display: flex;
+    }
+
     .modal {
-      background: white; padding: 35px 30px;
-      border-radius: 20px; max-width: 400px; width: 90%;
+      background: white;
+      padding: 35px 30px;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 90%;
       box-shadow: 0 25px 70px rgba(0,0,0,0.5);
       animation: slideUp 0.4s ease;
     }
-    
+
     .modal h2 {
-      color: #1a1a1a; font-size: 20px;
-      margin-bottom: 5px; font-weight: 800; text-align: center;
+      color: #1a1a1a;
+      font-size: 20px;
+      margin-bottom: 5px;
+      font-weight: 800;
+      text-align: center;
     }
-    
+
     .modal .sub {
-      text-align: center; color: #6b7280;
-      font-size: 13px; margin-bottom: 20px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 20px;
     }
-    
+
     .modal label {
-      display: block; color: #4a0000;
-      font-size: 12px; font-weight: 700;
-      margin-bottom: 8px; margin-top: 15px;
+      display: block;
+      color: #4a0000;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      margin-top: 15px;
       text-transform: uppercase;
     }
-    
-    .modal input, .modal select {
-      width: 100%; padding: 12px 15px;
-      border: 2px solid #e5e7eb; border-radius: 10px;
-      font-size: 14px; background: #fafafa;
+
+    .modal input,
+    .modal select,
+    .modal textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fafafa;
       font-family: 'Inter', sans-serif;
     }
-    
-    .modal input:focus, .modal select:focus {
-      outline: none; border-color: #C8102E; background: white;
+
+    .modal textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.5;
     }
-    
-    .modal-botoes { display: flex; gap: 10px; margin-top: 20px; }
-    
+
+    .modal input:focus,
+    .modal select:focus,
+    .modal textarea:focus {
+      outline: none;
+      border-color: #C8102E;
+      background: white;
+    }
+
+    .modal-botoes {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
     .modal button {
-      flex: 1; padding: 12px; border: none; border-radius: 10px;
-      font-size: 14px; font-weight: 700; cursor: pointer;
-      text-transform: uppercase; transition: all 0.3s;
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s;
       font-family: 'Inter', sans-serif;
     }
-    
-    .btn-salvar { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
-    .btn-cancelar { background: #e5e7eb; color: #374151; }
-    
-    .modal-erro {
-      background: #fee2e2; color: #991b1b;
-      padding: 10px; border-radius: 8px;
-      font-size: 13px; text-align: center;
-      margin-top: 15px; display: none;
+
+    .btn-salvar {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
     }
-    
+
+    .btn-cancelar {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-salvar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-cancelar:hover {
+      background: #d1d5db;
+    }
+
+    .modal button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .modal-erro {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
     .header {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      padding: 25px 30px; border-radius: 15px;
+      padding: 25px 30px;
+      border-radius: 15px;
       margin-bottom: 25px;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    
-    .header-title { color: white; }
-    .header-title h1 { font-size: 22px; font-weight: 800; }
-    .header-title p { font-size: 12px; opacity: 0.9; margin-top: 3px; }
-    
-    .header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    
+
+    .header-title {
+      color: white;
+    }
+
+    .header-title h1 {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .header-title p {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-top: 3px;
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
     .predio-badge {
       background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
-      color: #4a0000; padding: 10px 18px;
-      border-radius: 25px; font-size: 13px; font-weight: 800;
-      display: flex; align-items: center; gap: 8px;
-      cursor: pointer; transition: all 0.3s;
+      color: #4a0000;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
       box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
     }
-    
-    .predio-badge:hover { transform: translateY(-2px); }
-    
+
+    .predio-badge:hover {
+      transform: translateY(-2px);
+    }
+
     .user-badge {
       background: rgba(255, 255, 255, 0.2);
-      color: white; padding: 10px 18px;
-      border-radius: 25px; font-size: 13px; font-weight: 700;
-      display: flex; align-items: center; gap: 8px;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    
+
     .refresh-info {
       background: rgba(255, 255, 255, 0.15);
-      padding: 10px 18px; border-radius: 25px;
-      color: white; font-size: 13px; font-weight: 500;
-      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      border-radius: 25px;
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    
-    .btn-som, .btn-sair, .btn-senha {
+
+    .btn-som,
+    .btn-sair,
+    .btn-senha {
       background: rgba(255, 255, 255, 0.15);
-      color: white; border: 2px solid rgba(255,255,255,0.3);
-      padding: 10px 18px; border-radius: 25px;
-      font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: all 0.3s;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
       font-family: 'Inter', sans-serif;
     }
-    
-    .btn-som:hover, .btn-sair:hover, .btn-senha:hover { background: rgba(255,255,255,0.25); }
-    .btn-som.ativo { background: #FFC107; color: #4a0000; border-color: #FFC107; }
-    
-    .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    @keyframes flash { 0%, 100% { background: white; } 50% { background: #fef3c7; } }
-    .novo-chamado { animation: flash 1s ease 3; }
-    
+
+    .btn-som:hover,
+    .btn-sair:hover,
+    .btn-senha:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .btn-som.ativo {
+      background: #FFC107;
+      color: #4a0000;
+      border-color: #FFC107;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes flash {
+      0%, 100% {
+        background: white;
+      }
+
+      50% {
+        background: #fef3c7;
+      }
+    }
+
+    .novo-chamado {
+      animation: flash 1s ease 3;
+    }
+
+    /* =========================================================
+       CARDS
+    ========================================================= */
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px; margin-bottom: 25px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
-    
+
     .card {
-      background: white; padding: 22px;
+      background: white;
+      padding: 22px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
-    
-    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; }
-    .card.total::before { background: #C8102E; }
-    .card.pendente::before { background: #ef4444; }
-    .card.atendimento::before { background: #f59e0b; }
-    .card.concluido::before { background: #10b981; }
-    .card.tempo::before { background: #6366f1; }
-    
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+
+    .card.total::before {
+      background: #C8102E;
+    }
+
+    .card.pendente::before {
+      background: #ef4444;
+    }
+
+    .card.atendimento::before {
+      background: #f59e0b;
+    }
+
+    .card.concluido::before {
+      background: #10b981;
+    }
+
+    .card.tempo::before {
+      background: #6366f1;
+    }
+
     .card-label {
-      font-size: 12px; color: #6b7280; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
-    .card-value { font-size: 32px; font-weight: 800; color: #1a1a1a; }
-    .card-sub { font-size: 11px; color: #9ca3af; margin-top: 4px; font-weight: 500; }
+
+    .card-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1a1a1a;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
     .card-icon {
-      position: absolute; right: 20px; top: 50%;
-      transform: translateY(-50%); font-size: 40px; opacity: 0.15;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      opacity: 0.15;
     }
-    
+
+    /* =========================================================
+       FILTROS
+    ========================================================= */
+
     .filters {
-      background: white; padding: 18px 20px;
-      border-radius: 15px; margin-bottom: 20px;
-      display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+      background: white;
+      padding: 18px 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-    
+
     .filters label {
-      font-size: 13px; font-weight: 600; color: #4a0000;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    
-    .filters select {
-      padding: 8px 14px; border: 2px solid #e5e7eb;
-      border-radius: 8px; font-size: 14px; background: #fafafa;
-      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500;
-    }
-    
-    .filters select:focus { outline: none; border-color: #C8102E; }
-    
-    .table-container {
-      background: white; border-radius: 15px;
-      overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: linear-gradient(135deg, #4a0000 0%, #2a0000 100%); }
-    
-    th {
-      padding: 15px 12px; text-align: left; color: white;
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4a0000;
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
+
+    .filters select {
+      padding: 8px 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fafafa;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .filters select:focus {
+      outline: none;
+      border-color: #C8102E;
+    }
+
+    /* =========================================================
+       TABELA
+    ========================================================= */
+
+    .table-container {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: linear-gradient(135deg, #4a0000 0%, #2a0000 100%);
+    }
+
+    th {
+      padding: 15px 12px;
+      text-align: left;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     td {
-      padding: 14px 12px; border-bottom: 1px solid #f3f4f6;
-      font-size: 14px; color: #374151;
+      padding: 14px 12px;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+      color: #374151;
     }
-    
-    tbody tr:hover { background: #fef2f2; }
-    
+
+    tbody tr:hover {
+      background: #fef2f2;
+    }
+
     .status-badge {
-      display: inline-block; padding: 5px 12px; border-radius: 20px;
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
-    
-    .status-pendente { background: #fee2e2; color: #991b1b; }
-    .status-atendimento { background: #fef3c7; color: #92400e; }
-    .status-concluido { background: #d1fae5; color: #065f46; }
-    
+
+    .status-pendente {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .status-atendimento {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-concluido {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
     .predio-tag {
-      display: inline-block; padding: 4px 10px;
-      background: #FFC107; color: #4a0000;
-      border-radius: 6px; font-size: 11px; font-weight: 700;
+      display: inline-block;
+      padding: 4px 10px;
+      background: #FFC107;
+      color: #4a0000;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
     }
-    
+
     .bloco-badge {
-      display: inline-block; padding: 4px 10px;
-      background: #C8102E; color: white;
-      border-radius: 6px; font-size: 11px; font-weight: 700;
+      display: inline-block;
+      padding: 4px 10px;
+      background: #C8102E;
+      color: white;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
     }
-    
+
     .tempo-badge {
-      display: inline-block; padding: 4px 10px;
-      background: #eef2ff; color: #4338ca;
-      border-radius: 6px; font-size: 12px; font-weight: 700;
+      display: inline-block;
+      padding: 4px 10px;
+      background: #eef2ff;
+      color: #4338ca;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
     }
-    
+
     .tempo-atual {
-      display: inline-block; padding: 4px 10px;
-      background: #fef3c7; color: #92400e;
-      border-radius: 6px; font-size: 12px; font-weight: 700;
+      display: inline-block;
+      padding: 4px 10px;
+      background: #fef3c7;
+      color: #92400e;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
     }
-    
+
+    .solucao-texto {
+      max-width: 260px;
+      line-height: 1.4;
+      color: #374151;
+    }
+
+    .solucao-vazia {
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    /* =========================================================
+       BOTÕES
+    ========================================================= */
+
     .btn-acao {
-      padding: 7px 14px; border: none; border-radius: 8px;
-      font-size: 12px; font-weight: 700; cursor: pointer;
-      text-transform: uppercase; letter-spacing: 0.3px;
-      transition: all 0.3s; font-family: 'Inter', sans-serif;
+      padding: 7px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
     }
-    
+
     .btn-puxar {
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
       color: white;
     }
-    
+
     .btn-puxar:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(200, 16, 46, 0.4);
     }
-    
+
     .btn-concluir {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: white;
     }
-    
+
     .btn-concluir:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
     }
-    
+
     .btn-acao:disabled {
-      background: #d1d5db; color: #6b7280;
-      cursor: not-allowed; transform: none;
+      background: #d1d5db;
+      color: #6b7280;
+      cursor: not-allowed;
+      transform: none;
     }
-    
-    .empty { text-align: center; padding: 60px 20px; color: #9ca3af; font-size: 15px; }
-    .loading { text-align: center; padding: 40px; color: #6b7280; }
-    
+
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #9ca3af;
+      font-size: 15px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
     .toast {
-      position: fixed; top: 20px; right: 20px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
       background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-      color: white; padding: 18px 25px; border-radius: 12px;
+      color: white;
+      padding: 18px 25px;
+      border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-      z-index: 1000; display: flex; align-items: center; gap: 12px;
-      font-weight: 600; animation: slideIn 0.4s ease; max-width: 350px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      animation: slideIn 0.4s ease;
+      max-width: 350px;
     }
-    
+
     @keyframes slideIn {
-      from { transform: translateX(400px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
-    
-    .toast-icon { font-size: 28px; animation: shake 0.5s ease 3; }
+
+    .toast-icon {
+      font-size: 28px;
+      animation: shake 0.5s ease 3;
+    }
+
     @keyframes shake {
-      0%, 100% { transform: rotate(0); }
-      25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); }
+      0%, 100% {
+        transform: rotate(0);
+      }
+
+      25% {
+        transform: rotate(-15deg);
+      }
+
+      75% {
+        transform: rotate(15deg);
+      }
     }
-    
+
+    /* =========================================================
+       RESPONSIVO
+    ========================================================= */
+
     @media (max-width: 768px) {
-      .table-container { overflow-x: auto; }
-      table { min-width: 1100px; }
-      .header { flex-direction: column; text-align: center; }
-      .card-value { font-size: 26px; }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 1250px;
+      }
+
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .card-value {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
+
 <body>
 
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
 <div class="login-container" id="telaLogin">
+
   <div class="login-icon">🔐</div>
+
   <h2>ACESSO RESTRITO</h2>
-  <p class="sub">Sistema de Chamados — NTI</p>
-  
+
+  <p class="sub">
+    Sistema de Chamados — NTI
+  </p>
+
   <label>Usuário</label>
+
   <select id="loginUser">
     <option value="">Selecione seu usuário</option>
     <option value="rhomelio">Rhomelio</option>
@@ -393,13 +819,19 @@
     <option value="eglenrique">Eglenrique</option>
     <option value="nestor">Nestor</option>
     <option value="admin">👑 Administrador</option>
-    
   </select>
-  
+
   <label>Senha</label>
-  <input type="password" id="loginPass" placeholder="Digite sua senha" autocomplete="current-password">
-  
+
+  <input
+    type="password"
+    id="loginPass"
+    placeholder="Digite sua senha"
+    autocomplete="current-password"
+  >
+
   <label>Prédio de Atendimento</label>
+
   <select id="loginPredio">
     <option value="">Selecione o prédio</option>
     <option value="SEDE">🏛️ SEDE</option>
@@ -407,120 +839,399 @@
     <option value="Clínica Escola">🏥 Clínica Escola</option>
     <option value="Shopping">🏬 Shopping</option>
   </select>
-  
-  <button onclick="fazerLogin()">🔓 Entrar</button>
-  <div class="login-erro" id="loginErro">❌ Usuário ou senha incorretos</div>
+
+  <button onclick="fazerLogin()">
+    🔓 Entrar
+  </button>
+
+  <div class="login-erro" id="loginErro">
+    ❌ Usuário ou senha incorretos
+  </div>
+
 </div>
+
+
+<!-- =========================================================
+     MODAL ALTERAR SENHA
+========================================================= -->
 
 <div class="modal-overlay" id="modalSenha">
+
   <div class="modal">
+
     <h2>🔑 ALTERAR SENHA</h2>
-    <p class="sub">Defina uma nova senha pessoal</p>
-    
+
+    <p class="sub">
+      Defina uma nova senha pessoal
+    </p>
+
     <label>Senha Atual</label>
-    <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
-    
+
+    <input
+      type="password"
+      id="senhaAtual"
+      placeholder="Digite sua senha atual"
+    >
+
     <label>Nova Senha</label>
-    <input type="password" id="senhaNova" placeholder="Mínimo 4 caracteres">
-    
+
+    <input
+      type="password"
+      id="senhaNova"
+      placeholder="Mínimo 4 caracteres"
+    >
+
     <label>Confirmar Nova Senha</label>
-    <input type="password" id="senhaConfirma" placeholder="Digite novamente">
-    
+
+    <input
+      type="password"
+      id="senhaConfirma"
+      placeholder="Digite novamente"
+    >
+
     <div class="modal-erro" id="modalErro"></div>
-    
+
     <div class="modal-botoes">
-      <button class="btn-cancelar" onclick="fecharModalSenha()">Cancelar</button>
-      <button class="btn-salvar" onclick="salvarNovaSenha()">Salvar</button>
+
+      <button
+        class="btn-cancelar"
+        onclick="fecharModalSenha()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="btn-salvar"
+        onclick="salvarNovaSenha()"
+      >
+        Salvar
+      </button>
+
     </div>
+
   </div>
+
 </div>
 
+
+<!-- =========================================================
+     MODAL TROCAR PRÉDIO
+========================================================= -->
+
 <div class="modal-overlay" id="modalPredio">
+
   <div class="modal">
+
     <h2>🏛️ TROCAR PRÉDIO</h2>
-    <p class="sub">Selecione o prédio que deseja atender</p>
-    
+
+    <p class="sub">
+      Selecione o prédio que deseja atender
+    </p>
+
     <label>Prédio</label>
+
     <select id="novoPredio">
       <option value="SEDE">🏛️ SEDE</option>
       <option value="CCS">🏥 CCS</option>
       <option value="Clínica Escola">🏥 Clínica Escola</option>
       <option value="Shopping">🏬 Shopping</option>
     </select>
-    
+
     <div class="modal-botoes">
-      <button class="btn-cancelar" onclick="fecharModalPredio()">Cancelar</button>
-      <button class="btn-salvar" onclick="trocarPredio()">Trocar</button>
+
+      <button
+        class="btn-cancelar"
+        onclick="fecharModalPredio()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="btn-salvar"
+        onclick="trocarPredio()"
+      >
+        Trocar
+      </button>
+
     </div>
+
   </div>
+
 </div>
 
-<div class="container" id="painel" style="display:none;">
-  <div class="header">
-    <div class="header-title">
-      <h1>📊 PAINEL DE CHAMADOS</h1>
-      <p>Sistema de Chamados — NTI</p>
-    </div>
-    <div class="header-controls">
-      <div class="predio-badge" onclick="abrirModalPredio()" title="Clique para trocar de prédio">
-        🏛️ <span id="predioAtual">SEDE</span> ▾
-      </div>
-      <div class="user-badge">👤 <span id="nomeAtendente"></span></div>
-      <button class="btn-senha" onclick="abrirModalSenha()">🔑 Senha</button>
-      <button class="btn-som ativo" id="btnSom" onclick="toggleSom()">
-        🔔 <span id="somTexto">Som On</span>
+
+<!-- =========================================================
+     NOVO MODAL: CONCLUIR CHAMADO
+========================================================= -->
+
+<div class="modal-overlay" id="modalConclusao">
+
+  <div class="modal">
+
+    <h2>✅ CONCLUIR CHAMADO</h2>
+
+    <p class="sub">
+      Informe a solução realizada antes de finalizar
+    </p>
+
+    <label>Solução</label>
+
+    <textarea
+      id="solucaoChamado"
+      placeholder="Descreva o que foi feito para solucionar o chamado..."
+      rows="5"
+    ></textarea>
+
+    <div class="modal-erro" id="conclusaoErro"></div>
+
+    <div class="modal-botoes">
+
+      <button
+        class="btn-cancelar"
+        onclick="fecharModalConclusao()"
+      >
+        Cancelar
       </button>
-      <div class="refresh-info"><div class="dot"></div><span id="updateInfo">Atualizando...</span></div>
-      <button class="btn-sair" onclick="sair()">🚪 Sair</button>
+
+      <button
+        class="btn-salvar"
+        id="btnFinalizarChamado"
+        onclick="confirmarConclusao()"
+      >
+        ✅ Finalizar Chamado
+      </button>
+
     </div>
+
   </div>
+
+</div>
+
+
+<!-- =========================================================
+     PAINEL
+========================================================= -->
+
+<div class="container" id="painel" style="display:none;">
+
+  <div class="header">
+
+    <div class="header-title">
+
+      <h1>📊 PAINEL DE CHAMADOS</h1>
+
+      <p>
+        Sistema de Chamados — NTI
+      </p>
+
+    </div>
+
+    <div class="header-controls">
+
+      <div
+        class="predio-badge"
+        onclick="abrirModalPredio()"
+        title="Clique para trocar de prédio"
+      >
+        🏛️
+        <span id="predioAtual">SEDE</span>
+        ▾
+      </div>
+
+      <div class="user-badge">
+        👤
+        <span id="nomeAtendente"></span>
+      </div>
+
+      <button
+        class="btn-senha"
+        onclick="abrirModalSenha()"
+      >
+        🔑 Senha
+      </button>
+
+      <button
+        class="btn-som ativo"
+        id="btnSom"
+        onclick="toggleSom()"
+      >
+        🔔
+        <span id="somTexto">Som On</span>
+      </button>
+
+      <div class="refresh-info">
+
+        <div class="dot"></div>
+
+        <span id="updateInfo">
+          Atualizando...
+        </span>
+
+      </div>
+
+      <button
+        class="btn-sair"
+        onclick="sair()"
+      >
+        🚪 Sair
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       CARDS
+  ======================================================== -->
 
   <div class="cards">
+
     <div class="card total">
-      <div class="card-label">Total</div>
-      <div class="card-value" id="totalGeral">0</div>
-      <div class="card-icon">📋</div>
+
+      <div class="card-label">
+        Total
+      </div>
+
+      <div class="card-value" id="totalGeral">
+        0
+      </div>
+
+      <div class="card-icon">
+        📋
+      </div>
+
     </div>
+
+
     <div class="card pendente">
-      <div class="card-label">Pendentes</div>
-      <div class="card-value" id="totalPendente">0</div>
-      <div class="card-icon">🔴</div>
+
+      <div class="card-label">
+        Pendentes
+      </div>
+
+      <div class="card-value" id="totalPendente">
+        0
+      </div>
+
+      <div class="card-icon">
+        🔴
+      </div>
+
     </div>
+
+
     <div class="card atendimento">
-      <div class="card-label">Em Atendimento</div>
-      <div class="card-value" id="totalAtendimento">0</div>
-      <div class="card-icon">🟡</div>
+
+      <div class="card-label">
+        Em Atendimento
+      </div>
+
+      <div class="card-value" id="totalAtendimento">
+        0
+      </div>
+
+      <div class="card-icon">
+        🟡
+      </div>
+
     </div>
+
+
     <div class="card concluido">
-      <div class="card-label">Concluídos</div>
-      <div class="card-value" id="totalConcluido">0</div>
-      <div class="card-icon">🟢</div>
+
+      <div class="card-label">
+        Concluídos
+      </div>
+
+      <div class="card-value" id="totalConcluido">
+        0
+      </div>
+
+      <div class="card-icon">
+        🟢
+      </div>
+
     </div>
+
+
     <div class="card tempo">
-      <div class="card-label">Tempo Médio</div>
-      <div class="card-value" id="tempoMedio">-</div>
-      <div class="card-sub">de atendimento</div>
-      <div class="card-icon">⏱️</div>
+
+      <div class="card-label">
+        Tempo Médio
+      </div>
+
+      <div class="card-value" id="tempoMedio">
+        -
+      </div>
+
+      <div class="card-sub">
+        de atendimento
+      </div>
+
+      <div class="card-icon">
+        ⏱️
+      </div>
+
     </div>
+
   </div>
+
+
+  <!-- =======================================================
+       FILTROS
+  ======================================================== -->
 
   <div class="filters">
-    <label>Filtrar:</label>
+
+    <label>
+      Filtrar:
+    </label>
+
     <select id="filtroStatus">
-      <option value="">Todos os Status</option>
-      <option value="Pendente">Pendente</option>
-      <option value="Em Atendimento">Em Atendimento</option>
-      <option value="Concluído">Concluído</option>
+
+      <option value="">
+        Todos os Status
+      </option>
+
+      <option value="Pendente">
+        Pendente
+      </option>
+
+      <option value="Em Atendimento">
+        Em Atendimento
+      </option>
+
+      <option value="Concluído">
+        Concluído
+      </option>
+
     </select>
+
+
     <select id="filtroBloco">
-      <option value="">Todos os Blocos</option>
+
+      <option value="">
+        Todos os Blocos
+      </option>
+
     </select>
+
   </div>
 
+
+  <!-- =======================================================
+       TABELA
+  ======================================================== -->
+
   <div class="table-container">
+
     <table>
+
       <thead>
+
         <tr>
+
           <th>Data/Hora</th>
           <th>Prédio</th>
           <th>Bloco</th>
@@ -528,468 +1239,2120 @@
           <th>Solicitante</th>
           <th>Problema</th>
           <th>Obs</th>
+          <th>Solução</th>
           <th>Status</th>
           <th>Atendente</th>
           <th>Tempo</th>
           <th>Ação</th>
+
         </tr>
+
       </thead>
+
       <tbody id="tabelaChamados">
-        <tr><td colspan="11" class="loading">⏳ Carregando chamados...</td></tr>
+
+        <tr>
+
+          <td
+            colspan="12"
+            class="loading"
+          >
+            ⏳ Carregando chamados...
+          </td>
+
+        </tr>
+
       </tbody>
+
     </table>
+
   </div>
+
 </div>
 
+
 <script>
-const USUARIOS_PADRAO = {
-    "rhomelio":   { nome: "Rhomelio" },
-    "eudes":      { nome: "Eudes" },
-    "william":    { nome: "William" },
-    "joab":       { nome: "Joab" },
-    "eglenrique": { nome: "Eglenrique" },
-    "nestor":     { nome: "Nestor" },
-    "admin":      { nome: "Administrador", admin: true }
+
+  /* =========================================================
+     CONFIGURAÇÕES
+  ========================================================= */
+
+  const USUARIOS_PADRAO = {
+
+    "rhomelio": {
+      nome: "Rhomelio"
+    },
+
+    "eudes": {
+      nome: "Eudes"
+    },
+
+    "william": {
+      nome: "William"
+    },
+
+    "joab": {
+      nome: "Joab"
+    },
+
+    "eglenrique": {
+      nome: "Eglenrique"
+    },
+
+    "nestor": {
+      nome: "Nestor"
+    },
+
+    "admin": {
+      nome: "Administrador",
+      admin: true
+    }
+
   };
-  
+
+
   const SENHA_PADRAO = "qaz@1234";
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
-  const CHAVE = "UnintaNti2025ChaveSecretaRhomelio";
-  
+
+
+  const SHEET_URL =
+    "https://script.google.com/macros/s/AKfycbzAgWSuNCyZNe3nlSrwm8EEpoKecVbiof1iATIJIOjdv9f32H3hEpHvcGJvScCdXh4/exec";
+
+
+  const CHAVE =
+    "UnintaNti2025ChaveSecretaRhomelio";
+
+
+  /* =========================================================
+     VARIÁVEIS
+  ========================================================= */
+
   let todosChamados = [];
+
   let primeiraCarga = true;
+
   let somAtivado = true;
+
   let idsConhecidos = new Set();
+
   let usuarioLogado = null;
+
   let predioAtual = "SEDE";
 
+  // NOVA VARIÁVEL
+  let linhaChamadoConclusao = null;
+
+
+  /* =========================================================
+     SENHAS
+  ========================================================= */
+
   function obterSenha(user) {
-    const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
+
+    const senhas =
+      JSON.parse(
+        localStorage.getItem("senhasAtendentes") || "{}"
+      );
+
     if (senhas[user] === undefined) {
+
       senhas[user] = SENHA_PADRAO;
-      localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
+
+      localStorage.setItem(
+        "senhasAtendentes",
+        JSON.stringify(senhas)
+      );
+
     }
+
     return senhas[user];
   }
 
+
   function salvarSenha(user, novaSenha) {
-    const senhas = JSON.parse(localStorage.getItem("senhasAtendentes") || "{}");
+
+    const senhas =
+      JSON.parse(
+        localStorage.getItem("senhasAtendentes") || "{}"
+      );
+
     senhas[user] = novaSenha;
-    localStorage.setItem("senhasAtendentes", JSON.stringify(senhas));
+
+    localStorage.setItem(
+      "senhasAtendentes",
+      JSON.stringify(senhas)
+    );
+
   }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const salvo = localStorage.getItem("atendente");
-    const predioSalvo = localStorage.getItem("predioAtual");
-    if (salvo) {
-      usuarioLogado = JSON.parse(salvo);
-      if (predioSalvo) predioAtual = predioSalvo;
-      mostrarPainel();
+
+  /* =========================================================
+     INICIALIZAÇÃO
+  ========================================================= */
+
+  window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+      const salvo =
+        localStorage.getItem("atendente");
+
+      const predioSalvo =
+        localStorage.getItem("predioAtual");
+
+      if (salvo) {
+
+        usuarioLogado =
+          JSON.parse(salvo);
+
+        if (predioSalvo) {
+          predioAtual = predioSalvo;
+        }
+
+        mostrarPainel();
+
+      }
+
     }
-  });
+  );
+
+
+  /* =========================================================
+     LOGIN
+  ========================================================= */
 
   function fazerLogin() {
-    const user = document.getElementById("loginUser").value;
-    const pass = document.getElementById("loginPass").value.trim();
-    const predio = document.getElementById("loginPredio").value;
-    const erro = document.getElementById("loginErro");
-    
+
+    const user =
+      document.getElementById("loginUser").value;
+
+    const pass =
+      document.getElementById("loginPass").value.trim();
+
+    const predio =
+      document.getElementById("loginPredio").value;
+
+    const erro =
+      document.getElementById("loginErro");
+
+
     if (!user) {
-      erro.textContent = "❌ Selecione um usuário";
+
+      erro.textContent =
+        "❌ Selecione um usuário";
+
       erro.style.display = "block";
-      setTimeout(() => erro.style.display = "none", 3000);
+
+      setTimeout(
+        () => erro.style.display = "none",
+        3000
+      );
+
       return;
     }
-    
+
+
     if (!predio) {
-      erro.textContent = "❌ Selecione um prédio de atendimento";
+
+      erro.textContent =
+        "❌ Selecione um prédio de atendimento";
+
       erro.style.display = "block";
-      setTimeout(() => erro.style.display = "none", 3000);
+
+      setTimeout(
+        () => erro.style.display = "none",
+        3000
+      );
+
       return;
     }
-    
-    const senhaCorreta = obterSenha(user);
-    
- if (USUARIOS_PADRAO[user] && senhaCorreta === pass) {
-      usuarioLogado = { user: user, nome: USUARIOS_PADRAO[user].nome };
+
+
+    const senhaCorreta =
+      obterSenha(user);
+
+
+    if (
+      USUARIOS_PADRAO[user] &&
+      senhaCorreta === pass
+    ) {
+
+      usuarioLogado = {
+
+        user: user,
+
+        nome: USUARIOS_PADRAO[user].nome
+
+      };
+
+
       predioAtual = predio;
-      localStorage.setItem("atendente", JSON.stringify(usuarioLogado));
-      localStorage.setItem("predioAtual", predioAtual);
-      
-      // Se for admin, redireciona para página de admin
+
+
+      localStorage.setItem(
+        "atendente",
+        JSON.stringify(usuarioLogado)
+      );
+
+
+      localStorage.setItem(
+        "predioAtual",
+        predioAtual
+      );
+
+
       if (USUARIOS_PADRAO[user].admin) {
-        window.location.href = "admin.html";
+
+        window.location.href =
+          "admin.html";
+
         return;
+
       }
-      
+
+
       mostrarPainel();
+
     } else {
-      erro.textContent = "❌ Senha incorreta";
+
+      erro.textContent =
+        "❌ Senha incorreta";
+
       erro.style.display = "block";
-      setTimeout(() => erro.style.display = "none", 3000);
+
+      setTimeout(
+        () => erro.style.display = "none",
+        3000
+      );
+
     }
+
   }
+
+
+  /* =========================================================
+     MOSTRAR PAINEL
+  ========================================================= */
 
   function mostrarPainel() {
-    document.getElementById("telaLogin").style.display = "none";
-    document.getElementById("painel").style.display = "block";
-    document.getElementById("nomeAtendente").textContent = usuarioLogado.nome;
-    document.getElementById("predioAtual").textContent = predioAtual;
+
+    document.getElementById(
+      "telaLogin"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "painel"
+    ).style.display = "block";
+
+
+    document.getElementById(
+      "nomeAtendente"
+    ).textContent =
+      usuarioLogado.nome;
+
+
+    document.getElementById(
+      "predioAtual"
+    ).textContent =
+      predioAtual;
+
+
     carregarChamados();
-    setInterval(carregarChamados, 2000);
-    setInterval(renderizar, 60000);
+
+
+    setInterval(
+      carregarChamados,
+      2000
+    );
+
+
+    setInterval(
+      renderizar,
+      60000
+    );
+
   }
+
+
+  /* =========================================================
+     SAIR
+  ========================================================= */
 
   function sair() {
-    if (confirm("Deseja realmente sair?")) {
-      localStorage.removeItem("atendente");
-      localStorage.removeItem("predioAtual");
+
+    if (
+      confirm("Deseja realmente sair?")
+    ) {
+
+      localStorage.removeItem(
+        "atendente"
+      );
+
+      localStorage.removeItem(
+        "predioAtual"
+      );
+
       location.reload();
+
     }
+
   }
+
+
+  /* =========================================================
+     TROCAR PRÉDIO
+  ========================================================= */
 
   function abrirModalPredio() {
-    document.getElementById("novoPredio").value = predioAtual;
-    document.getElementById("modalPredio").classList.add("ativo");
+
+    document.getElementById(
+      "novoPredio"
+    ).value =
+      predioAtual;
+
+
+    document.getElementById(
+      "modalPredio"
+    ).classList.add("ativo");
+
   }
+
 
   function fecharModalPredio() {
-    document.getElementById("modalPredio").classList.remove("ativo");
+
+    document.getElementById(
+      "modalPredio"
+    ).classList.remove("ativo");
+
   }
+
 
   function trocarPredio() {
-    const novo = document.getElementById("novoPredio").value;
+
+    const novo =
+      document.getElementById(
+        "novoPredio"
+      ).value;
+
+
     if (novo) {
+
       predioAtual = novo;
-      localStorage.setItem("predioAtual", predioAtual);
-      document.getElementById("predioAtual").textContent = predioAtual;
+
+
+      localStorage.setItem(
+        "predioAtual",
+        predioAtual
+      );
+
+
+      document.getElementById(
+        "predioAtual"
+      ).textContent =
+        predioAtual;
+
+
       fecharModalPredio();
+
+
       primeiraCarga = true;
+
       idsConhecidos = new Set();
+
+
       renderizar();
+
     }
+
   }
+
+
+  /* =========================================================
+     ALTERAR SENHA
+  ========================================================= */
 
   function abrirModalSenha() {
-    document.getElementById("modalSenha").classList.add("ativo");
-    document.getElementById("senhaAtual").value = "";
-    document.getElementById("senhaNova").value = "";
-    document.getElementById("senhaConfirma").value = "";
-    document.getElementById("modalErro").style.display = "none";
+
+    document.getElementById(
+      "modalSenha"
+    ).classList.add("ativo");
+
+
+    document.getElementById(
+      "senhaAtual"
+    ).value = "";
+
+
+    document.getElementById(
+      "senhaNova"
+    ).value = "";
+
+
+    document.getElementById(
+      "senhaConfirma"
+    ).value = "";
+
+
+    document.getElementById(
+      "modalErro"
+    ).style.display = "none";
+
   }
+
 
   function fecharModalSenha() {
-    document.getElementById("modalSenha").classList.remove("ativo");
+
+    document.getElementById(
+      "modalSenha"
+    ).classList.remove("ativo");
+
   }
+
 
   function salvarNovaSenha() {
-    const atual = document.getElementById("senhaAtual").value;
-    const nova = document.getElementById("senhaNova").value;
-    const confirma = document.getElementById("senhaConfirma").value;
-    const erro = document.getElementById("modalErro");
-    
-    const senhaSalva = obterSenha(usuarioLogado.user);
-    
+
+    const atual =
+      document.getElementById(
+        "senhaAtual"
+      ).value;
+
+
+    const nova =
+      document.getElementById(
+        "senhaNova"
+      ).value;
+
+
+    const confirma =
+      document.getElementById(
+        "senhaConfirma"
+      ).value;
+
+
+    const erro =
+      document.getElementById(
+        "modalErro"
+      );
+
+
+    const senhaSalva =
+      obterSenha(
+        usuarioLogado.user
+      );
+
+
     if (senhaSalva !== atual) {
-      erro.textContent = "❌ Senha atual incorreta";
+
+      erro.textContent =
+        "❌ Senha atual incorreta";
+
       erro.style.display = "block";
+
       return;
+
     }
-    
+
+
     if (nova.length < 4) {
-      erro.textContent = "❌ A nova senha deve ter pelo menos 4 caracteres";
+
+      erro.textContent =
+        "❌ A nova senha deve ter pelo menos 4 caracteres";
+
       erro.style.display = "block";
+
       return;
+
     }
-    
+
+
     if (nova !== confirma) {
-      erro.textContent = "❌ As senhas não coincidem";
+
+      erro.textContent =
+        "❌ As senhas não coincidem";
+
       erro.style.display = "block";
+
       return;
+
     }
-    
-    salvarSenha(usuarioLogado.user, nova);
-    alert("✅ Senha alterada com sucesso!");
+
+
+    salvarSenha(
+      usuarioLogado.user,
+      nova
+    );
+
+
+    alert(
+      "✅ Senha alterada com sucesso!"
+    );
+
+
     fecharModalSenha();
+
   }
 
-  document.getElementById("loginPass").addEventListener("keypress", e => {
-    if (e.key === "Enter") fazerLogin();
-  });
 
-  if ("Notification" in window && Notification.permission === "default") {
+  /* =========================================================
+     ENTER NO LOGIN
+  ========================================================= */
+
+  document.getElementById(
+    "loginPass"
+  ).addEventListener(
+    "keypress",
+    e => {
+
+      if (e.key === "Enter") {
+        fazerLogin();
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     NOTIFICAÇÃO
+  ========================================================= */
+
+  if (
+    "Notification" in window &&
+    Notification.permission === "default"
+  ) {
+
     Notification.requestPermission();
+
   }
+
+
+  /* =========================================================
+     SOM
+  ========================================================= */
 
   function toggleSom() {
+
     somAtivado = !somAtivado;
-    const btn = document.getElementById("btnSom");
+
+
+    const btn =
+      document.getElementById(
+        "btnSom"
+      );
+
+
     if (somAtivado) {
+
       btn.classList.add("ativo");
-      btn.innerHTML = '🔔 <span id="somTexto">Som On</span>';
+
+      btn.innerHTML =
+        '🔔 <span id="somTexto">Som On</span>';
+
     } else {
+
       btn.classList.remove("ativo");
-      btn.innerHTML = '🔕 <span id="somTexto">Som Off</span>';
+
+      btn.innerHTML =
+        '🔕 <span id="somTexto">Som Off</span>';
+
     }
+
   }
+
 
   function tocarSom() {
+
     if (!somAtivado) return;
+
+
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
+
+      const ctx =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+
+      const osc =
+        ctx.createOscillator();
+
+
+      const gain =
+        ctx.createGain();
+
+
+      osc.connect(gain);
+
+      gain.connect(
+        ctx.destination
+      );
+
+
       osc.frequency.value = 800;
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+
+
+      gain.gain.setValueAtTime(
+        0.3,
+        ctx.currentTime
+      );
+
+
       osc.start();
-      setTimeout(() => { osc.frequency.value = 1000; }, 150);
-      setTimeout(() => { osc.frequency.value = 800; }, 300);
-      setTimeout(() => {
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
-        osc.stop(ctx.currentTime + 0.3);
-      }, 450);
+
+
+      setTimeout(
+        () => {
+          osc.frequency.value = 1000;
+        },
+        150
+      );
+
+
+      setTimeout(
+        () => {
+          osc.frequency.value = 800;
+        },
+        300
+      );
+
+
+      setTimeout(
+        () => {
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            ctx.currentTime + 0.3
+          );
+
+          osc.stop(
+            ctx.currentTime + 0.3
+          );
+
+        },
+        450
+      );
+
     } catch (e) {}
+
   }
+
+
+  /* =========================================================
+     NOTIFICAÇÃO DE NOVO CHAMADO
+  ========================================================= */
 
   function mostrarNotificacao(chamado) {
-    if ("Notification" in window && Notification.permission === "granted") {
-      const notif = new Notification("🔔 Novo Chamado!", {
-        body: chamado.predio + " - " + chamado.bloco + "\n" + chamado.sala + " - " + chamado.professor + "\nProblema: " + chamado.problema,
-        icon: "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
-        tag: "chamado-" + chamado.id
-      });
-      setTimeout(() => notif.close(), 8000);
+
+    if (
+      "Notification" in window &&
+      Notification.permission === "granted"
+    ) {
+
+      const notif =
+        new Notification(
+          "🔔 Novo Chamado!",
+          {
+            body:
+              chamado.predio +
+              " - " +
+              chamado.bloco +
+              "\n" +
+              chamado.sala +
+              " - " +
+              chamado.professor +
+              "\nProblema: " +
+              chamado.problema,
+
+            icon:
+              "https://cdn-icons-png.flaticon.com/512/3119/3119338.png",
+
+            tag:
+              "chamado-" +
+              chamado.id
+          }
+        );
+
+
+      setTimeout(
+        () => notif.close(),
+        8000
+      );
+
     }
 
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    toast.innerHTML = '<div class="toast-icon">🔔</div><div><div style="font-size:15px;">Novo Chamado!</div><div style="font-size:12px;opacity:0.9;margin-top:3px;">' + chamado.predio + ' • ' + chamado.sala + ' • ' + chamado.professor + '</div></div>';
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.style.transition = "all 0.4s";
-      toast.style.opacity = "0";
-      toast.style.transform = "translateX(400px)";
-      setTimeout(() => toast.remove(), 400);
-    }, 5000);
-  }
 
- async function puxarChamado(linha) {
-    if (!confirm("Puxar este chamado para " + usuarioLogado.nome + "?")) return;
-    try {
-      await fetch(SHEET_URL, {
-        method: "POST",
-        body: JSON.stringify({ 
-          acao: "puxar", 
-          linha: linha, 
-          atendente: usuarioLogado.nome,
-          chave: CHAVE
-        })
-      });
-      carregarChamados();
-    } catch (e) { alert("Erro ao puxar chamado"); }
-  }
+    const toast =
+      document.createElement("div");
 
-  async function concluirChamado(linha) {
-    if (!confirm("Marcar este chamado como concluído?")) return;
-    try {
-      await fetch(SHEET_URL, {
-        method: "POST",
-        body: JSON.stringify({ 
-          acao: "concluir", 
-          linha: linha,
-          chave: CHAVE
-        })
-      });
-      carregarChamados();
-    } catch (e) { alert("Erro ao concluir chamado"); }
-  }
 
-  async function carregarChamados() {
-    try {
-      const res = await fetch(SHEET_URL, {
-        method: "POST",
-        body: JSON.stringify({ acao: "listar", chave: CHAVE })
-      });
-      const data = await res.json();
-      const novosChamados = (data.chamados || []).reverse();
+    toast.className =
+      "toast";
 
-      const chamadosDoPredio = novosChamados.filter(c => c.predio === predioAtual);
 
-      if (!primeiraCarga) {
-        const novos = chamadosDoPredio.filter(c => !idsConhecidos.has(c.id));
-        if (novos.length > 0) {
-          tocarSom();
-          novos.forEach(c => mostrarNotificacao(c));
-          document.title = "(" + novos.length + ") 🔔 Novo Chamado!";
-          setTimeout(() => { document.title = "Painel de Chamados - NTI"; }, 10000);
-        }
-      } else {
-        primeiraCarga = false;
-      }
+    toast.innerHTML =
+      '<div class="toast-icon">🔔</div>' +
 
-      idsConhecidos = new Set(chamadosDoPredio.map(c => c.id));
-      todosChamados = chamadosDoPredio;
-      atualizarBlocos();
-      renderizar();
-      atualizarHora();
-    } catch (err) {
-      document.getElementById("tabelaChamados").innerHTML = 
-        '<tr><td colspan="11" class="empty">❌ Erro ao carregar dados</td></tr>';
-      console.error("Erro ao carregar:", err);
-    }
-  }
+      '<div>' +
 
-  function atualizarBlocos() {
-    const filtroBloco = document.getElementById("filtroBloco");
-    const valorAtual = filtroBloco.value;
-    const blocos = [...new Set(todosChamados.map(c => c.bloco))].sort();
-    filtroBloco.innerHTML = '<option value="">Todos os Blocos</option>';
-    blocos.forEach(b => {
-      filtroBloco.innerHTML += '<option value="' + b + '">' + b + '</option>';
-    });
-    filtroBloco.value = valorAtual;
-  }
+      '<div style="font-size:15px;">Novo Chamado!</div>' +
 
-  function formatarData(data) {
-    if (!data) return "-";
-    const d = new Date(data);
-    return d.toLocaleString('pt-BR', { 
-      day: '2-digit', month: '2-digit', 
-      hour: '2-digit', minute: '2-digit' 
-    });
-  }
+      '<div style="font-size:12px;opacity:0.9;margin-top:3px;">' +
 
-  function calcularTempo(dataInicio, dataFim) {
-    if (!dataInicio || !dataFim) return null;
-    const ms = new Date(dataFim) - new Date(dataInicio);
-    if (ms < 0) return null;
-    
-    const minutos = Math.floor(ms / 60000);
-    const horas = Math.floor(minutos / 60);
-    const dias = Math.floor(horas / 24);
-    
-    if (dias > 0) return dias + "d " + (horas % 24) + "h";
-    if (horas > 0) return horas + "h " + (minutos % 60) + "min";
-    if (minutos > 0) return minutos + "min";
-    return "menos de 1min";
-  }
+      chamado.predio +
+      ' • ' +
+      chamado.sala +
+      ' • ' +
+      chamado.professor +
 
-  function getTempoChamado(c) {
-    const status = c.status || "Pendente";
-    
-    if (status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao) {
-      const tempo = calcularTempo(c.dataInicioAtendimento, c.dataConclusao);
-      return tempo ? '<span class="tempo-badge">⏱️ ' + tempo + '</span>' : "-";
-    }
-    
-    if (status.includes("Atendimento") && c.dataInicioAtendimento) {
-      const tempo = calcularTempo(c.dataInicioAtendimento, new Date());
-      return tempo ? '<span class="tempo-atual">⏳ ' + tempo + '</span>' : "-";
-    }
-    
-    if (status === "Pendente") {
-      const tempo = calcularTempo(c.dataHora, new Date());
-      return tempo ? '<span class="tempo-atual">⏳ Espera: ' + tempo + '</span>' : "-";
-    }
-    
-    return "-";
-  }
+      '</div>' +
 
-  function calcularTempoMedio() {
-    const concluidos = todosChamados.filter(c => 
-      c.status && c.status.includes("Concluído") && c.dataInicioAtendimento && c.dataConclusao
+      '</div>';
+
+
+    document.body.appendChild(
+      toast
     );
-    
-    if (concluidos.length === 0) return "-";
-    
-    const totalMs = concluidos.reduce((sum, c) => {
-      return sum + (new Date(c.dataConclusao) - new Date(c.dataInicioAtendimento));
-    }, 0);
-    
-    const mediaMs = totalMs / concluidos.length;
-    const minutos = Math.floor(mediaMs / 60000);
-    const horas = Math.floor(minutos / 60);
-    
-    if (horas > 0) return horas + "h " + (minutos % 60) + "min";
-    if (minutos > 0) return minutos + "min";
-    return "<1min";
+
+
+    setTimeout(
+      () => {
+
+        toast.style.transition =
+          "all 0.4s";
+
+        toast.style.opacity = "0";
+
+        toast.style.transform =
+          "translateX(400px)";
+
+
+        setTimeout(
+          () => toast.remove(),
+          400
+        );
+
+      },
+      5000
+    );
+
   }
 
-  function getStatusBadge(status) {
-    if (!status) return '<span class="status-badge status-pendente">Pendente</span>';
-    if (status.includes("Concluído")) return '<span class="status-badge status-concluido">Concluído</span>';
-    if (status.includes("Atendimento")) return '<span class="status-badge status-atendimento">Em Atendimento</span>';
-    return '<span class="status-badge status-pendente">Pendente</span>';
-  }
 
-  function getBotaoAcao(c) {
-    const status = c.status || "Pendente";
-    if (status === "Pendente") {
-      return '<button class="btn-acao btn-puxar" onclick="puxarChamado(' + c.id + ')">🙋 Puxar pra mim</button>';
-    }
-    if (status.includes("Atendimento")) {
-      if (c.atendente === usuarioLogado.nome) {
-        return '<button class="btn-acao btn-concluir" onclick="concluirChamado(' + c.id + ')">✅ Concluir</button>';
-      }
-      return '<button class="btn-acao" disabled>Em atendimento</button>';
-    }
-    return '<span style="color:#10b981;font-weight:700;">✅ Concluído</span>';
-  }
+  /* =========================================================
+     PUXAR CHAMADO
+  ========================================================= */
 
-  function renderizar() {
-    const filtroStatus = document.getElementById("filtroStatus").value;
-    const filtroBloco = document.getElementById("filtroBloco").value;
-    
-    let filtrados = todosChamados;
-    if (filtroStatus) filtrados = filtrados.filter(c => (c.status || "Pendente").includes(filtroStatus));
-    if (filtroBloco) filtrados = filtrados.filter(c => c.bloco === filtroBloco);
+  async function puxarChamado(linha) {
 
-    document.getElementById("totalGeral").textContent = todosChamados.length;
-    document.getElementById("totalPendente").textContent = todosChamados.filter(c => !c.status || c.status === "Pendente").length;
-    document.getElementById("totalAtendimento").textContent = todosChamados.filter(c => c.status && c.status.includes("Atendimento")).length;
-    document.getElementById("totalConcluido").textContent = todosChamados.filter(c => c.status && c.status.includes("Concluído")).length;
-    document.getElementById("tempoMedio").textContent = calcularTempoMedio();
-
-    const tbody = document.getElementById("tabelaChamados");
-    if (filtrados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="11" class="empty">📭 Nenhum chamado para ' + predioAtual + '</td></tr>';
+    if (
+      !confirm(
+        "Puxar este chamado para " +
+        usuarioLogado.nome +
+        "?"
+      )
+    ) {
       return;
     }
 
-    let html = '';
-    filtrados.forEach((c, idx) => {
-      const ehNovo = idx === 0 && !primeiraCarga;
-      html += '<tr ' + (ehNovo ? 'class="novo-chamado"' : '') + '>';
-      html += '<td>' + formatarData(c.dataHora) + '</td>';
-      html += '<td><span class="predio-tag">' + (c.predio || "-") + '</span></td>';
-      html += '<td><span class="bloco-badge">' + c.bloco + '</span></td>';
-      html += '<td><strong>' + c.sala + '</strong></td>';
-      html += '<td>' + c.professor + '</td>';
-      html += '<td>' + c.problema + '</td>';
-      html += '<td>' + (c.observacao || "-") + '</td>';
-      html += '<td>' + getStatusBadge(c.status) + '</td>';
-      html += '<td>' + (c.atendente || "-") + '</td>';
-      html += '<td>' + getTempoChamado(c) + '</td>';
-      html += '<td>' + getBotaoAcao(c) + '</td>';
-      html += '</tr>';
-    });
-    tbody.innerHTML = html;
+
+    try {
+
+      await fetch(
+        SHEET_URL,
+        {
+          method: "POST",
+
+          body: JSON.stringify({
+
+            acao: "puxar",
+
+            linha: linha,
+
+            atendente:
+              usuarioLogado.nome,
+
+            chave: CHAVE
+
+          })
+        }
+      );
+
+
+      carregarChamados();
+
+    } catch (e) {
+
+      alert(
+        "Erro ao puxar chamado"
+      );
+
+    }
+
   }
+
+
+  /* =========================================================
+     ABRIR MODAL DE CONCLUSÃO
+  ========================================================= */
+
+  function concluirChamado(linha) {
+
+    linhaChamadoConclusao = linha;
+
+
+    document.getElementById(
+      "solucaoChamado"
+    ).value = "";
+
+
+    document.getElementById(
+      "conclusaoErro"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "btnFinalizarChamado"
+    ).disabled = false;
+
+
+    document.getElementById(
+      "btnFinalizarChamado"
+    ).textContent =
+      "✅ Finalizar Chamado";
+
+
+    document.getElementById(
+      "modalConclusao"
+    ).classList.add("ativo");
+
+
+    setTimeout(
+      () => {
+
+        document.getElementById(
+          "solucaoChamado"
+        ).focus();
+
+      },
+      100
+    );
+
+  }
+
+
+  /* =========================================================
+     FECHAR MODAL DE CONCLUSÃO
+  ========================================================= */
+
+  function fecharModalConclusao() {
+
+    document.getElementById(
+      "modalConclusao"
+    ).classList.remove("ativo");
+
+
+    linhaChamadoConclusao = null;
+
+  }
+
+
+  /* =========================================================
+     CONFIRMAR CONCLUSÃO
+  ========================================================= */
+
+  async function confirmarConclusao() {
+
+    const solucao =
+      document.getElementById(
+        "solucaoChamado"
+      ).value.trim();
+
+
+    const erro =
+      document.getElementById(
+        "conclusaoErro"
+      );
+
+
+    const botao =
+      document.getElementById(
+        "btnFinalizarChamado"
+      );
+
+
+    // -------------------------------------------------------
+    // VALIDAÇÃO
+    // -------------------------------------------------------
+
+    if (!solucao) {
+
+      erro.textContent =
+        "❌ Informe a solução realizada antes de finalizar.";
+
+      erro.style.display = "block";
+
+      document.getElementById(
+        "solucaoChamado"
+      ).focus();
+
+      return;
+
+    }
+
+
+    if (solucao.length < 3) {
+
+      erro.textContent =
+        "❌ Descreva melhor a solução realizada.";
+
+      erro.style.display = "block";
+
+      return;
+
+    }
+
+
+    if (!linhaChamadoConclusao) {
+
+      erro.textContent =
+        "❌ Chamado não identificado.";
+
+      erro.style.display = "block";
+
+      return;
+
+    }
+
+
+    try {
+
+      botao.disabled = true;
+
+      botao.textContent =
+        "⏳ Finalizando...";
+
+
+      const resposta =
+        await fetch(
+          SHEET_URL,
+          {
+            method: "POST",
+
+            body: JSON.stringify({
+
+              acao: "concluir",
+
+              linha:
+                linhaChamadoConclusao,
+
+              solucao:
+                solucao,
+
+              chave:
+                CHAVE
+
+            })
+          }
+        );
+
+
+      const resultado =
+        await resposta.json();
+
+
+      if (
+        resultado.status !== "sucesso"
+      ) {
+
+        throw new Error(
+          resultado.msg ||
+          "Erro ao concluir"
+        );
+
+      }
+
+
+      fecharModalConclusao();
+
+
+      carregarChamados();
+
+
+    } catch (e) {
+
+      console.error(
+        "Erro ao concluir:",
+        e
+      );
+
+
+      erro.textContent =
+        "❌ " +
+        (
+          e.message ||
+          "Erro ao finalizar chamado."
+        );
+
+
+      erro.style.display =
+        "block";
+
+
+      botao.disabled = false;
+
+      botao.textContent =
+        "✅ Finalizar Chamado";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     CARREGAR CHAMADOS
+  ========================================================= */
+
+  async function carregarChamados() {
+
+    try {
+
+      const res =
+        await fetch(
+          SHEET_URL,
+          {
+            method: "POST",
+
+            body: JSON.stringify({
+
+              acao: "listar",
+
+              chave: CHAVE
+
+            })
+          }
+        );
+
+
+      const data =
+        await res.json();
+
+
+      const novosChamados =
+        (data.chamados || [])
+          .reverse();
+
+
+      const chamadosDoPredio =
+        novosChamados.filter(
+          c =>
+            c.predio ===
+            predioAtual
+        );
+
+
+      if (!primeiraCarga) {
+
+        const novos =
+          chamadosDoPredio.filter(
+            c =>
+              !idsConhecidos.has(
+                c.id
+              )
+          );
+
+
+        if (novos.length > 0) {
+
+          tocarSom();
+
+
+          novos.forEach(
+            c =>
+              mostrarNotificacao(c)
+          );
+
+
+          document.title =
+            "(" +
+            novos.length +
+            ") 🔔 Novo Chamado!";
+
+
+          setTimeout(
+            () => {
+
+              document.title =
+                "Painel de Chamados - NTI";
+
+            },
+            10000
+          );
+
+        }
+
+      } else {
+
+        primeiraCarga = false;
+
+      }
+
+
+      idsConhecidos =
+        new Set(
+          chamadosDoPredio.map(
+            c => c.id
+          )
+        );
+
+
+      todosChamados =
+        chamadosDoPredio;
+
+
+      atualizarBlocos();
+
+      renderizar();
+
+      atualizarHora();
+
+
+    } catch (err) {
+
+      document.getElementById(
+        "tabelaChamados"
+      ).innerHTML =
+
+        '<tr>' +
+
+        '<td colspan="12" class="empty">' +
+
+        '❌ Erro ao carregar dados' +
+
+        '</td>' +
+
+        '</tr>';
+
+
+      console.error(
+        "Erro ao carregar:",
+        err
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     ATUALIZAR BLOCOS
+  ========================================================= */
+
+  function atualizarBlocos() {
+
+    const filtroBloco =
+      document.getElementById(
+        "filtroBloco"
+      );
+
+
+    const valorAtual =
+      filtroBloco.value;
+
+
+    const blocos =
+      [
+        ...new Set(
+          todosChamados.map(
+            c => c.bloco
+          )
+        )
+      ].sort();
+
+
+    filtroBloco.innerHTML =
+      '<option value="">Todos os Blocos</option>';
+
+
+    blocos.forEach(
+      b => {
+
+        filtroBloco.innerHTML +=
+
+          '<option value="' +
+          b +
+          '">' +
+          b +
+          '</option>';
+
+      }
+    );
+
+
+    filtroBloco.value =
+      valorAtual;
+
+  }
+
+
+  /* =========================================================
+     FORMATAR DATA
+  ========================================================= */
+
+  function formatarData(data) {
+
+    if (!data) return "-";
+
+
+    const d =
+      new Date(data);
+
+
+    return d.toLocaleString(
+      'pt-BR',
+      {
+        day: '2-digit',
+        month: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     CALCULAR TEMPO
+  ========================================================= */
+
+  function calcularTempo(
+    dataInicio,
+    dataFim
+  ) {
+
+    if (
+      !dataInicio ||
+      !dataFim
+    ) {
+      return null;
+    }
+
+
+    const ms =
+      new Date(dataFim) -
+      new Date(dataInicio);
+
+
+    if (ms < 0) {
+      return null;
+    }
+
+
+    const minutos =
+      Math.floor(
+        ms / 60000
+      );
+
+
+    const horas =
+      Math.floor(
+        minutos / 60
+      );
+
+
+    const dias =
+      Math.floor(
+        horas / 24
+      );
+
+
+    if (dias > 0) {
+
+      return (
+        dias +
+        "d " +
+        (horas % 24) +
+        "h"
+      );
+
+    }
+
+
+    if (horas > 0) {
+
+      return (
+        horas +
+        "h " +
+        (minutos % 60) +
+        "min"
+      );
+
+    }
+
+
+    if (minutos > 0) {
+
+      return minutos +
+        "min";
+
+    }
+
+
+    return "menos de 1min";
+
+  }
+
+
+  /* =========================================================
+     TEMPO DO CHAMADO
+  ========================================================= */
+
+  function getTempoChamado(c) {
+
+    const status =
+      c.status ||
+      "Pendente";
+
+
+    if (
+      status.includes(
+        "Concluído"
+      ) &&
+      c.dataInicioAtendimento &&
+      c.dataConclusao
+    ) {
+
+      const tempo =
+        calcularTempo(
+          c.dataInicioAtendimento,
+          c.dataConclusao
+        );
+
+
+      return tempo
+        ? '<span class="tempo-badge">⏱️ ' +
+          tempo +
+          '</span>'
+        : "-";
+
+    }
+
+
+    if (
+      status.includes(
+        "Atendimento"
+      ) &&
+      c.dataInicioAtendimento
+    ) {
+
+      const tempo =
+        calcularTempo(
+          c.dataInicioAtendimento,
+          new Date()
+        );
+
+
+      return tempo
+        ? '<span class="tempo-atual">⏳ ' +
+          tempo +
+          '</span>'
+        : "-";
+
+    }
+
+
+    if (
+      status === "Pendente"
+    ) {
+
+      const tempo =
+        calcularTempo(
+          c.dataHora,
+          new Date()
+        );
+
+
+      return tempo
+        ? '<span class="tempo-atual">⏳ Espera: ' +
+          tempo +
+          '</span>'
+        : "-";
+
+    }
+
+
+    return "-";
+
+  }
+
+
+  /* =========================================================
+     TEMPO MÉDIO
+  ========================================================= */
+
+  function calcularTempoMedio() {
+
+    const concluidos =
+      todosChamados.filter(
+        c =>
+          c.status &&
+          c.status.includes(
+            "Concluído"
+          ) &&
+          c.dataInicioAtendimento &&
+          c.dataConclusao
+      );
+
+
+    if (
+      concluidos.length === 0
+    ) {
+      return "-";
+    }
+
+
+    const totalMs =
+      concluidos.reduce(
+        (sum, c) => {
+
+          return sum +
+            (
+              new Date(
+                c.dataConclusao
+              ) -
+              new Date(
+                c.dataInicioAtendimento
+              )
+            );
+
+        },
+        0
+      );
+
+
+    const mediaMs =
+      totalMs /
+      concluidos.length;
+
+
+    const minutos =
+      Math.floor(
+        mediaMs / 60000
+      );
+
+
+    const horas =
+      Math.floor(
+        minutos / 60
+      );
+
+
+    if (horas > 0) {
+
+      return (
+        horas +
+        "h " +
+        (minutos % 60) +
+        "min"
+      );
+
+    }
+
+
+    if (minutos > 0) {
+
+      return minutos +
+        "min";
+
+    }
+
+
+    return "<1min";
+
+  }
+
+
+  /* =========================================================
+     STATUS
+  ========================================================= */
+
+  function getStatusBadge(status) {
+
+    if (!status) {
+
+      return (
+        '<span class="status-badge status-pendente">' +
+        'Pendente' +
+        '</span>'
+      );
+
+    }
+
+
+    if (
+      status.includes(
+        "Concluído"
+      )
+    ) {
+
+      return (
+        '<span class="status-badge status-concluido">' +
+        'Concluído' +
+        '</span>'
+      );
+
+    }
+
+
+    if (
+      status.includes(
+        "Atendimento"
+      )
+    ) {
+
+      return (
+        '<span class="status-badge status-atendimento">' +
+        'Em Atendimento' +
+        '</span>'
+      );
+
+    }
+
+
+    return (
+      '<span class="status-badge status-pendente">' +
+      'Pendente' +
+      '</span>'
+    );
+
+  }
+
+
+  /* =========================================================
+     BOTÃO DE AÇÃO
+  ========================================================= */
+
+  function getBotaoAcao(c) {
+
+    const status =
+      c.status ||
+      "Pendente";
+
+
+    if (
+      status === "Pendente"
+    ) {
+
+      return (
+
+        '<button ' +
+
+        'class="btn-acao btn-puxar" ' +
+
+        'onclick="puxarChamado(' +
+        c.id +
+        ')">' +
+
+        '🙋 Puxar pra mim' +
+
+        '</button>'
+
+      );
+
+    }
+
+
+    if (
+      status.includes(
+        "Atendimento"
+      )
+    ) {
+
+      if (
+        c.atendente ===
+        usuarioLogado.nome
+      ) {
+
+        return (
+
+          '<button ' +
+
+          'class="btn-acao btn-concluir" ' +
+
+          'onclick="concluirChamado(' +
+          c.id +
+          ')">' +
+
+          '✅ Concluir' +
+
+          '</button>'
+
+        );
+
+      }
+
+
+      return (
+
+        '<button ' +
+
+        'class="btn-acao" disabled>' +
+
+        'Em atendimento' +
+
+        '</button>'
+
+      );
+
+    }
+
+
+    return (
+
+      '<span style="color:#10b981;font-weight:700;">' +
+
+      '✅ Concluído' +
+
+      '</span>'
+
+    );
+
+  }
+
+
+  /* =========================================================
+     RENDERIZAR
+  ========================================================= */
+
+  function renderizar() {
+
+    const filtroStatus =
+      document.getElementById(
+        "filtroStatus"
+      ).value;
+
+
+    const filtroBloco =
+      document.getElementById(
+        "filtroBloco"
+      ).value;
+
+
+    let filtrados =
+      todosChamados;
+
+
+    if (filtroStatus) {
+
+      filtrados =
+        filtrados.filter(
+          c =>
+            (
+              c.status ||
+              "Pendente"
+            ).includes(
+              filtroStatus
+            )
+        );
+
+    }
+
+
+    if (filtroBloco) {
+
+      filtrados =
+        filtrados.filter(
+          c =>
+            c.bloco ===
+            filtroBloco
+        );
+
+    }
+
+
+    document.getElementById(
+      "totalGeral"
+    ).textContent =
+      todosChamados.length;
+
+
+    document.getElementById(
+      "totalPendente"
+    ).textContent =
+
+      todosChamados.filter(
+        c =>
+          !c.status ||
+          c.status ===
+          "Pendente"
+      ).length;
+
+
+    document.getElementById(
+      "totalAtendimento"
+    ).textContent =
+
+      todosChamados.filter(
+        c =>
+          c.status &&
+          c.status.includes(
+            "Atendimento"
+          )
+      ).length;
+
+
+    document.getElementById(
+      "totalConcluido"
+    ).textContent =
+
+      todosChamados.filter(
+        c =>
+          c.status &&
+          c.status.includes(
+            "Concluído"
+          )
+      ).length;
+
+
+    document.getElementById(
+      "tempoMedio"
+    ).textContent =
+      calcularTempoMedio();
+
+
+    const tbody =
+      document.getElementById(
+        "tabelaChamados"
+      );
+
+
+    if (
+      filtrados.length === 0
+    ) {
+
+      tbody.innerHTML =
+
+        '<tr>' +
+
+        '<td colspan="12" class="empty">' +
+
+        '📭 Nenhum chamado para ' +
+        predioAtual +
+
+        '</td>' +
+
+        '</tr>';
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    filtrados.forEach(
+      (c, idx) => {
+
+        const ehNovo =
+          idx === 0 &&
+          !primeiraCarga;
+
+
+        html +=
+
+          '<tr ' +
+          (
+            ehNovo
+              ? 'class="novo-chamado"'
+              : ''
+          ) +
+          '>';
+
+
+        html +=
+
+          '<td>' +
+          formatarData(
+            c.dataHora
+          ) +
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          '<span class="predio-tag">' +
+
+          (c.predio || "-") +
+
+          '</span>' +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          '<span class="bloco-badge">' +
+
+          (c.bloco || "-") +
+
+          '</span>' +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          '<strong>' +
+
+          (c.sala || "-") +
+
+          '</strong>' +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          (c.professor || "-") +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          (c.problema || "-") +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          (c.observacao || "-") +
+
+          '</td>';
+
+
+        // NOVA COLUNA SOLUÇÃO
+        if (
+          c.solucao &&
+          c.solucao.trim() !== ""
+        ) {
+
+          html +=
+
+            '<td>' +
+
+            '<div class="solucao-texto">' +
+
+            c.solucao +
+
+            '</div>' +
+
+            '</td>';
+
+        } else {
+
+          html +=
+
+            '<td>' +
+
+            '<span class="solucao-vazia">' +
+
+            '-' +
+
+            '</span>' +
+
+            '</td>';
+
+        }
+
+
+        html +=
+
+          '<td>' +
+
+          getStatusBadge(
+            c.status
+          ) +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          (c.atendente || "-") +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          getTempoChamado(c) +
+
+          '</td>';
+
+
+        html +=
+
+          '<td>' +
+
+          getBotaoAcao(c) +
+
+          '</td>';
+
+
+        html += '</tr>';
+
+      }
+    );
+
+
+    tbody.innerHTML =
+      html;
+
+  }
+
+
+  /* =========================================================
+     ATUALIZAR HORA
+  ========================================================= */
 
   function atualizarHora() {
-    const agora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById("updateInfo").textContent = "Atualizado às " + agora;
+
+    const agora =
+      new Date().toLocaleTimeString(
+        'pt-BR',
+        {
+          hour: '2-digit',
+          minute: '2-digit'
+        }
+      );
+
+
+    document.getElementById(
+      "updateInfo"
+    ).textContent =
+
+      "Atualizado às " +
+      agora;
+
   }
 
-  document.getElementById("filtroStatus").addEventListener("change", renderizar);
-  document.getElementById("filtroBloco").addEventListener("change", renderizar);
 
-  document.body.addEventListener("click", function ativar() {
-    try { new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
-    document.body.removeEventListener("click", ativar);
-  }, { once: true });
+  /* =========================================================
+     FILTROS
+  ========================================================= */
+
+  document.getElementById(
+    "filtroStatus"
+  ).addEventListener(
+    "change",
+    renderizar
+  );
+
+
+  document.getElementById(
+    "filtroBloco"
+  ).addEventListener(
+    "change",
+    renderizar
+  );
+
+
+  /* =========================================================
+     ATIVAR ÁUDIO
+  ========================================================= */
+
+  document.body.addEventListener(
+    "click",
+    function ativar() {
+
+      try {
+
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+      } catch(e) {}
+
+
+      document.body.removeEventListener(
+        "click",
+        ativar
+      );
+
+    },
+    {
+      once: true
+    }
+  );
+
+
+  /* =========================================================
+     ESC PARA FECHAR MODAIS
+  ========================================================= */
+
+  document.addEventListener(
+    "keydown",
+    function(e) {
+
+      if (e.key !== "Escape") {
+        return;
+      }
+
+
+      document
+        .getElementById(
+          "modalConclusao"
+        )
+        .classList.remove(
+          "ativo"
+        );
+
+
+      document
+        .getElementById(
+          "modalSenha"
+        )
+        .classList.remove(
+          "ativo"
+        );
+
+
+      document
+        .getElementById(
+          "modalPredio"
+        )
+        .classList.remove(
+          "ativo"
+        );
+
+
+      linhaChamadoConclusao =
+        null;
+
+    }
+  );
+
 </script>
 
 </body>
 </html>
+```
